@@ -19,7 +19,9 @@ export default function Footer() {
 
           <div className="flex items-center gap-6">
             <a
-              href="#"
+              href="https://github.com/Mateuszl28"
+              target="_blank"
+              rel="noopener noreferrer"
               aria-label="GitHub"
               className="text-slate-500 hover:text-white transition-colors"
             >
@@ -33,7 +35,7 @@ export default function Footer() {
               <Linkedin size={20} />
             </a>
             <a
-              href="#contact"
+              href="mailto:lagockimateusz6@gmail.com"
               aria-label="Email"
               className="text-slate-500 hover:text-white transition-colors"
             >

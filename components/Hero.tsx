@@ -86,7 +86,9 @@ export default function Hero() {
           className="flex items-center justify-center gap-6"
         >
           <a
-            href="#"
+            href="https://github.com/Mateuszl28"
+            target="_blank"
+            rel="noopener noreferrer"
             aria-label="GitHub"
             className="text-slate-500 hover:text-white transition-colors hover:-translate-y-1 inline-block transition-transform"
           >
@@ -100,7 +102,7 @@ export default function Hero() {
             <Linkedin size={22} />
           </a>
           <a
-            href="#contact"
+            href="mailto:lagockimateusz6@gmail.com"
             aria-label="Email"
             className="text-slate-500 hover:text-white transition-colors hover:-translate-y-1 inline-block transition-transform"
           >

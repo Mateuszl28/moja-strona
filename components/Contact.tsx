@@ -92,7 +92,7 @@ export default function Contact() {
             className="md:col-span-2 space-y-4"
           >
             <a
-              href="mailto:hello@example.com"
+              href="mailto:lagockimateusz6@gmail.com"
               className="block glass glass-hover rounded-2xl p-5 transition-all"
             >
               <div className="flex items-center gap-3 mb-1">
@@ -101,13 +101,17 @@ export default function Contact() {
                 </div>
                 <div>
                   <p className="text-xs text-slate-500">Email</p>
-                  <p className="text-sm font-medium">hello@example.com</p>
+                  <p className="text-sm font-medium break-all">
+                    lagockimateusz6@gmail.com
+                  </p>
                 </div>
               </div>
             </a>
 
             <a
-              href="#"
+              href="https://github.com/Mateuszl28"
+              target="_blank"
+              rel="noopener noreferrer"
               className="block glass glass-hover rounded-2xl p-5 transition-all"
             >
               <div className="flex items-center gap-3">
@@ -116,7 +120,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <p className="text-xs text-slate-500">GitHub</p>
-                  <p className="text-sm font-medium">@mateuszlagocki</p>
+                  <p className="text-sm font-medium">@Mateuszl28</p>
                 </div>
               </div>
             </a>
