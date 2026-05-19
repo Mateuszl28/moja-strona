@@ -3,7 +3,7 @@ import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Skills from "@/components/Skills";
 import Projects from "@/components/Projects";
-import GitHubStats from "@/components/GitHubStats";
+import Timeline from "@/components/Timeline";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import BackgroundBlobs from "@/components/BackgroundBlobs";
@@ -19,7 +19,7 @@ export default function Home() {
       <About />
       <Skills />
       <Projects />
-      <GitHubStats />
+      <Timeline />
       <Contact />
       <Footer />
     </main>
