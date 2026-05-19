@@ -75,11 +75,11 @@ export default function Contact() {
         >
           <p className="font-mono text-sm text-purple-400 mb-2">{"// 05."}</p>
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Pogadajmy <span className="text-gradient">o twoim projekcie</span>
+            Daj <span className="text-gradient">znać</span>
           </h2>
           <p className="text-slate-400 max-w-2xl mx-auto">
-            Masz pomysł, pytanie, albo po prostu chcesz się przywitać? Pisz
-            śmiało — odpowiadam zwykle w ciągu 24h.
+            Szukasz juniora do zespołu, masz pomysł na projekt, albo chcesz
+            pogadać o kodzie? Napisz śmiało — staram się odpowiadać szybko.
           </p>
         </motion.div>
 
