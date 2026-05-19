@@ -6,23 +6,23 @@ import { Code2, Rocket, BookOpen, Coffee } from "lucide-react";
 const facts = [
   {
     icon: Code2,
-    title: "Czysty kod",
-    text: "Piszę kod, który łatwo czytać i utrzymywać. Bo wiem, że jutro to ja będę go czytał.",
+    title: "Lubię budować",
+    text: "Najwięcej uczę się przy projektach. Ta strona to jeden z nich.",
   },
   {
     icon: Rocket,
-    title: "Szybko się uczę",
-    text: "Każdy dzień to nowa biblioteka, nowy pattern, nowa rzecz do zrozumienia. I to mnie kręci.",
+    title: "Frontend",
+    text: "React, Next.js, TypeScript, Tailwind. Tu spędzam większość czasu.",
   },
   {
     icon: BookOpen,
-    title: "Ciągły rozwój",
-    text: "Dokumentacja, tutoriale, projekty side. Wiem, że bycie programistą = nauka przez całe życie.",
+    title: "Wciąż się uczę",
+    text: "Każdy projekt to nowe pytania. Lubię to.",
   },
   {
     icon: Coffee,
-    title: "Pasja, nie zawód",
-    text: "Programowanie nie jest dla mnie pracą — jest sposobem rozwiązywania problemów i budowania rzeczy.",
+    title: "Otwarty na feedback",
+    text: "Jeśli widzisz coś co mogę zrobić lepiej — daj znać.",
   },
 ];
 
@@ -75,28 +75,25 @@ export default function About() {
             className="space-y-5 text-slate-300 text-lg leading-relaxed"
           >
             <p>
-              Jestem{" "}
-              <span className="text-white font-semibold">
-                Mateuszem Łagockim
-              </span>{" "}
-              — początkującym programistą, który odkrył, że budowanie aplikacji
-              i stron internetowych to coś więcej niż tylko zarobek. To sposób
-              myślenia.
+              Cześć! Jestem{" "}
+              <span className="text-white font-semibold">Mateusz</span> —
+              uczę się programowania i powoli buduję rzeczy, które mają sens.
             </p>
             <p>
-              Zacząłem od podstaw HTML i CSS, a teraz buduję projekty w{" "}
-              <span className="text-purple-400">React</span> i{" "}
-              <span className="text-pink-400">Next.js</span>. Po drodze poznałem
-              TypeScript, Tailwind, Git i kilka innych narzędzi, bez których nie
-              wyobrażam sobie dzisiaj pracy.
+              Pracuję głównie we frontendzie:{" "}
+              <span className="text-purple-400">React</span>,{" "}
+              <span className="text-pink-400">Next.js</span>, TypeScript,
+              Tailwind. Po godzinach eksperymentuję z nowymi narzędziami,
+              czytam dokumentację i pakuję się w projekty, które mnie czegoś
+              uczą.
             </p>
             <p>
-              Wierzę, że najlepszy sposób na naukę to{" "}
+              Nie udaję, że umiem wszystko — wręcz przeciwnie.{" "}
               <span className="text-white font-semibold">
-                budowanie prawdziwych rzeczy
-              </span>{" "}
-              — dlatego cały czas pracuję nad nowymi projektami. Jeśli masz
-              pomysł, na którym mógłbym się czegoś nauczyć — odezwij się.
+                Jestem na początku drogi
+              </span>
+              , ale mocno mi na niej zależy. Jeśli masz fajny pomysł albo
+              chcesz po prostu pogadać o kodzie — pisz.
             </p>
           </motion.div>
         </div>
