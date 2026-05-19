@@ -1,81 +1,39 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Github, ExternalLink, Folder } from "lucide-react";
+import { ExternalLink, Folder } from "lucide-react";
 
 const projects = [
   {
-    title: "Portfolio Website",
+    title: "Praca inżynierska",
     description:
-      "Strona, którą właśnie oglądasz. Zbudowana z Next.js 14, TypeScript i Tailwind CSS. Z animacjami Framer Motion, glassmorphism i mnóstwem gradientów.",
-    tech: ["Next.js", "TypeScript", "Tailwind", "Framer Motion"],
+      "Mój projekt inżynierski — aplikacja webowa wdrożona na własnym serwerze.",
+    tech: [],
     gradient: "from-purple-600 to-pink-600",
-    emoji: "✨",
-    github: "#",
-    demo: "#",
-    featured: true,
+    emoji: "🎓",
+    demo: "http://212.132.124.0/",
   },
   {
-    title: "Task Manager App",
+    title: "Rapidsoc",
     description:
-      "Aplikacja do zarządzania zadaniami z drag & drop, kategoriami i lokalnym storage. Mój pierwszy poważny projekt w React.",
-    tech: ["React", "TypeScript", "LocalStorage"],
+      "Projekt zrealizowany w ramach zawodów programistycznych.",
+    tech: [],
     gradient: "from-blue-600 to-cyan-500",
-    emoji: "📝",
-    github: "#",
-    demo: "#",
-    featured: true,
+    emoji: "⚡",
+    demo: "https://rapidsoc1-nc0o6orro-mateuszl28s-projects.vercel.app/",
   },
   {
-    title: "Weather Dashboard",
+    title: "Sentra AI",
     description:
-      "Dashboard pogodowy korzystający z OpenWeather API. Pokazuje aktualną pogodę i prognozę dla wybranego miasta.",
-    tech: ["React", "API", "CSS Modules"],
+      "AI Phishing Sentinel — narzędzie do wykrywania phishingu z analizą emaili przez Gemini 2.5 Flash. Drugi projekt z zawodów (Hack the Tech 2026, kategoria Cybersecurity).",
+    tech: ["TypeScript", "Gemini AI"],
     gradient: "from-orange-500 to-pink-500",
-    emoji: "🌤️",
-    github: "#",
-    demo: "#",
-    featured: false,
-  },
-  {
-    title: "Quiz App",
-    description:
-      "Interaktywna aplikacja quizowa z timerami, kategoriami i systemem punktów. Wspierane przez Open Trivia DB.",
-    tech: ["JavaScript", "HTML", "CSS"],
-    gradient: "from-green-500 to-emerald-600",
-    emoji: "🎯",
-    github: "#",
-    demo: "#",
-    featured: false,
-  },
-  {
-    title: "Markdown Notes",
-    description:
-      "Edytor notatek z podglądem markdown w czasie rzeczywistym, zapisem do pliku i opcjami eksportu.",
-    tech: ["React", "Marked.js"],
-    gradient: "from-indigo-600 to-purple-600",
-    emoji: "📓",
-    github: "#",
-    demo: "#",
-    featured: false,
-  },
-  {
-    title: "Pomodoro Timer",
-    description:
-      "Klasyczny timer Pomodoro z konfigurowalnymi sesjami, dźwiękami i statystykami produktywności.",
-    tech: ["React", "Tailwind"],
-    gradient: "from-red-500 to-orange-500",
-    emoji: "🍅",
-    github: "#",
-    demo: "#",
-    featured: false,
+    emoji: "🛡️",
+    demo: "https://sentra-ai-peach.vercel.app/",
   },
 ];
 
 export default function Projects() {
-  const featured = projects.filter((p) => p.featured);
-  const other = projects.filter((p) => !p.featured);
-
   return (
     <section id="projects" className="relative py-32 px-6">
       <div className="max-w-7xl mx-auto">
@@ -91,25 +49,27 @@ export default function Projects() {
             Moje <span className="text-gradient">projekty</span>
           </h2>
           <p className="text-slate-400 max-w-2xl mx-auto">
-            Wybrane projekty, nad którymi pracowałem. Każdy z nich nauczył mnie
-            czegoś nowego.
+            Wybrane projekty, nad którymi pracowałem.
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-6 mb-8">
-          {featured.map((project, i) => (
-            <motion.div
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {projects.map((project, i) => (
+            <motion.a
               key={project.title}
+              href={project.demo}
+              target="_blank"
+              rel="noopener noreferrer"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: i * 0.15 }}
-              className="group relative glass rounded-3xl overflow-hidden hover:-translate-y-1 transition-all duration-300"
+              className="group relative glass rounded-3xl overflow-hidden hover:-translate-y-1 transition-all duration-300 block"
             >
               <div
-                className={`h-48 bg-gradient-to-br ${project.gradient} relative overflow-hidden`}
+                className={`h-40 bg-gradient-to-br ${project.gradient} relative overflow-hidden`}
               >
-                <div className="absolute inset-0 flex items-center justify-center text-7xl opacity-80 group-hover:scale-110 transition-transform duration-500">
+                <div className="absolute inset-0 flex items-center justify-center text-6xl opacity-80 group-hover:scale-110 transition-transform duration-500">
                   {project.emoji}
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0f] via-transparent to-transparent" />
@@ -118,89 +78,28 @@ export default function Projects() {
               <div className="p-6">
                 <div className="flex items-start justify-between gap-3 mb-3">
                   <h3 className="text-xl font-bold">{project.title}</h3>
-                  <div className="flex gap-2">
-                    <a
-                      href={project.github}
-                      aria-label="GitHub"
-                      className="text-slate-500 hover:text-white transition-colors"
-                    >
-                      <Github size={18} />
-                    </a>
-                    <a
-                      href={project.demo}
-                      aria-label="Demo"
-                      className="text-slate-500 hover:text-white transition-colors"
-                    >
-                      <ExternalLink size={18} />
-                    </a>
-                  </div>
+                  <ExternalLink
+                    size={18}
+                    className="text-slate-500 group-hover:text-white transition-colors shrink-0 mt-1"
+                  />
                 </div>
                 <p className="text-sm text-slate-400 leading-relaxed mb-4">
                   {project.description}
                 </p>
-                <div className="flex flex-wrap gap-2">
-                  {project.tech.map((t) => (
-                    <span
-                      key={t}
-                      className="px-3 py-1 rounded-full bg-white/5 text-xs font-mono text-slate-400"
-                    >
-                      {t}
-                    </span>
-                  ))}
-                </div>
+                {project.tech.length > 0 && (
+                  <div className="flex flex-wrap gap-2">
+                    {project.tech.map((t) => (
+                      <span
+                        key={t}
+                        className="px-3 py-1 rounded-full bg-white/5 text-xs font-mono text-slate-400"
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                )}
               </div>
-            </motion.div>
-          ))}
-        </div>
-
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {other.map((project, i) => (
-            <motion.div
-              key={project.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="group glass glass-hover rounded-2xl p-5 transition-all hover:-translate-y-1"
-            >
-              <div className="flex items-start justify-between mb-3">
-                <div
-                  className={`w-10 h-10 rounded-lg bg-gradient-to-br ${project.gradient} flex items-center justify-center text-xl`}
-                >
-                  {project.emoji}
-                </div>
-                <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <a
-                    href={project.github}
-                    aria-label="GitHub"
-                    className="text-slate-500 hover:text-white"
-                  >
-                    <Github size={16} />
-                  </a>
-                  <a
-                    href={project.demo}
-                    aria-label="Demo"
-                    className="text-slate-500 hover:text-white"
-                  >
-                    <ExternalLink size={16} />
-                  </a>
-                </div>
-              </div>
-              <h3 className="font-semibold mb-2">{project.title}</h3>
-              <p className="text-xs text-slate-400 leading-relaxed mb-3 line-clamp-2">
-                {project.description}
-              </p>
-              <div className="flex flex-wrap gap-1.5">
-                {project.tech.slice(0, 3).map((t) => (
-                  <span
-                    key={t}
-                    className="px-2 py-0.5 rounded text-[10px] font-mono text-slate-500"
-                  >
-                    {t}
-                  </span>
-                ))}
-              </div>
-            </motion.div>
+            </motion.a>
           ))}
         </div>
 
@@ -212,11 +111,13 @@ export default function Projects() {
           className="mt-12 text-center"
         >
           <a
-            href="#"
+            href="https://github.com/Mateuszl28"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-6 py-3 rounded-full glass glass-hover text-sm font-medium transition-all"
           >
             <Folder size={16} />
-            Zobacz wszystkie projekty na GitHubie
+            Więcej projektów na GitHubie
           </a>
         </motion.div>
       </div>
