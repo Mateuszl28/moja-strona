@@ -73,7 +73,7 @@ export default function Contact() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <p className="font-mono text-sm text-purple-400 mb-2">{"// 04."}</p>
+          <p className="font-mono text-sm text-purple-400 mb-2">{"// 05."}</p>
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
             Pogadajmy <span className="text-gradient">o twoim projekcie</span>
           </h2>

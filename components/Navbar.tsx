@@ -5,11 +5,13 @@ import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
 const links = [
-  { href: "#home", label: "Home" },
-  { href: "#about", label: "O mnie" },
-  { href: "#skills", label: "Umiejętności" },
-  { href: "#projects", label: "Projekty" },
-  { href: "#contact", label: "Kontakt" },
+  { href: "/#home", label: "Home" },
+  { href: "/#about", label: "O mnie" },
+  { href: "/#skills", label: "Umiejętności" },
+  { href: "/#projects", label: "Projekty" },
+  { href: "/teraz", label: "Teraz" },
+  { href: "/blog", label: "Blog" },
+  { href: "/#contact", label: "Kontakt" },
 ];
 
 export default function Navbar() {
