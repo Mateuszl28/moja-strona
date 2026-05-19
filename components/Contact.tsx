@@ -1,21 +1,67 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Mail, Github, Linkedin, MapPin, Send } from "lucide-react";
+import {
+  Mail,
+  Github,
+  Linkedin,
+  MapPin,
+  Send,
+  CheckCircle2,
+  AlertCircle,
+  Loader2,
+} from "lucide-react";
 import { useState } from "react";
+
+type Status =
+  | { state: "idle" }
+  | { state: "sending" }
+  | { state: "success" }
+  | { state: "error"; message: string };
 
 export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
-  const [sent, setSent] = useState(false);
+  const [status, setStatus] = useState<Status>({ state: "idle" });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSent(true);
-    setTimeout(() => {
-      setSent(false);
+    if (status.state === "sending") return;
+
+    setStatus({ state: "sending" });
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+
+      const data = (await res.json().catch(() => ({}))) as {
+        ok?: boolean;
+        error?: string;
+      };
+
+      if (!res.ok || !data.ok) {
+        setStatus({
+          state: "error",
+          message:
+            data.error || "Nie udało się wysłać wiadomości. Spróbuj ponownie.",
+        });
+        return;
+      }
+
+      setStatus({ state: "success" });
       setForm({ name: "", email: "", message: "" });
-    }, 3000);
+      setTimeout(() => setStatus({ state: "idle" }), 5000);
+    } catch {
+      setStatus({
+        state: "error",
+        message: "Problem z połączeniem. Sprawdź internet i spróbuj ponownie.",
+      });
+    }
   };
+
+  const isSending = status.state === "sending";
 
   return (
     <section id="contact" className="relative py-32 px-6">
@@ -119,9 +165,12 @@ export default function Contact() {
                 <input
                   type="text"
                   required
+                  minLength={2}
+                  maxLength={100}
+                  disabled={isSending}
                   value={form.name}
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500/20 transition-all"
+                  className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500/20 transition-all disabled:opacity-50"
                   placeholder="Jan Kowalski"
                 />
               </div>
@@ -132,9 +181,11 @@ export default function Contact() {
                 <input
                   type="email"
                   required
+                  maxLength={200}
+                  disabled={isSending}
                   value={form.email}
                   onChange={(e) => setForm({ ...form, email: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500/20 transition-all"
+                  className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500/20 transition-all disabled:opacity-50"
                   placeholder="jan@example.com"
                 />
               </div>
@@ -146,21 +197,44 @@ export default function Contact() {
               <textarea
                 required
                 rows={5}
+                minLength={10}
+                maxLength={5000}
+                disabled={isSending}
                 value={form.message}
                 onChange={(e) =>
                   setForm({ ...form, message: e.target.value })
                 }
-                className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500/20 transition-all resize-none"
+                className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500/20 transition-all resize-none disabled:opacity-50"
                 placeholder="Cześć Mateusz, mam pomysł na..."
               />
             </div>
+
+            {status.state === "error" && (
+              <div className="flex items-start gap-2 p-3 rounded-xl bg-red-500/10 border border-red-500/20 text-sm text-red-300">
+                <AlertCircle size={18} className="shrink-0 mt-0.5" />
+                <span>{status.message}</span>
+              </div>
+            )}
+
+            {status.state === "success" && (
+              <div className="flex items-start gap-2 p-3 rounded-xl bg-green-500/10 border border-green-500/20 text-sm text-green-300">
+                <CheckCircle2 size={18} className="shrink-0 mt-0.5" />
+                <span>
+                  Wiadomość wysłana! Odpowiem najszybciej jak to możliwe.
+                </span>
+              </div>
+            )}
+
             <button
               type="submit"
-              disabled={sent}
-              className="w-full px-6 py-3.5 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 font-medium hover:shadow-lg hover:shadow-purple-500/50 transition-all disabled:opacity-50 flex items-center justify-center gap-2"
+              disabled={isSending}
+              className="w-full px-6 py-3.5 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 font-medium hover:shadow-lg hover:shadow-purple-500/50 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
             >
-              {sent ? (
-                "Wiadomość wysłana! ✨"
+              {isSending ? (
+                <>
+                  <Loader2 size={16} className="animate-spin" />
+                  Wysyłanie...
+                </>
               ) : (
                 <>
                   Wyślij wiadomość
