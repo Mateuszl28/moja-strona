@@ -80,12 +80,11 @@ export default function About() {
               uczę się programowania i powoli buduję rzeczy, które mają sens.
             </p>
             <p>
-              Pracuję głównie we frontendzie:{" "}
+              Najwięcej czasu spędzam przy frontendzie —{" "}
               <span className="text-purple-400">React</span>,{" "}
-              <span className="text-pink-400">Next.js</span>, TypeScript,
-              Tailwind. Po godzinach eksperymentuję z nowymi narzędziami,
-              czytam dokumentację i pakuję się w projekty, które mnie czegoś
-              uczą.
+              <span className="text-pink-400">Next.js</span>, TypeScript i
+              Tailwind. Lubię też zaglądać w stronę AI: ostatnio bawiłem się
+              integracją z Gemini przy projekcie konkursowym.
             </p>
             <p>
               Nie udaję, że umiem wszystko — wręcz przeciwnie.{" "}
