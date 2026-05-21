@@ -6,6 +6,7 @@ import Projects from "@/components/Projects";
 import Timeline from "@/components/Timeline";
 import Playground from "@/components/Playground";
 import LiveWidgets from "@/components/LiveWidgets";
+import MobileApp from "@/components/MobileApp";
 import FAQ from "@/components/FAQ";
 import HireMe from "@/components/HireMe";
 import Contact from "@/components/Contact";
@@ -33,6 +34,7 @@ export default function Home() {
       <Timeline />
       <Playground />
       <LiveWidgets />
+      <MobileApp />
       <FAQ />
       <HireMe />
       <Contact />
