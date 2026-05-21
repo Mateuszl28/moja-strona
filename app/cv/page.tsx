@@ -12,6 +12,7 @@ import {
   MapPin,
   Sparkles,
 } from "lucide-react";
+import ShareQR from "@/components/ShareQR";
 
 const PERSONAL = {
   name: "Mateusz Łagocki",
@@ -216,6 +217,10 @@ export default function CVPage() {
             (UoP, B2B, umowa zlecenie).
           </p>
         </section>
+
+        <div className="mt-10 print:hidden">
+          <ShareQR />
+        </div>
 
         <footer className="mt-12 pt-6 border-t border-slate-200 text-center text-xs text-slate-400 print:text-slate-500">
           <p>

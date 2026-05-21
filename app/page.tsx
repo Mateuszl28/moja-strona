@@ -10,6 +10,8 @@ import MobileApp from "@/components/MobileApp";
 import FAQ from "@/components/FAQ";
 import HireMe from "@/components/HireMe";
 import Contact from "@/components/Contact";
+import Guestbook from "@/components/Guestbook";
+import TipJar from "@/components/TipJar";
 import Newsletter from "@/components/Newsletter";
 import Footer from "@/components/Footer";
 import BackgroundBlobs from "@/components/BackgroundBlobs";
@@ -17,8 +19,11 @@ import EasterEggs from "@/components/EasterEggs";
 import ScrollProgress from "@/components/ScrollProgress";
 import CursorGlow from "@/components/CursorGlow";
 import TechMarquee from "@/components/TechMarquee";
+import { getVerifiedMessages } from "@/lib/guestbook";
 
 export default function Home() {
+  const guestbookMessages = getVerifiedMessages();
+
   return (
     <main className="relative min-h-screen overflow-hidden">
       <ScrollProgress />
@@ -38,6 +43,8 @@ export default function Home() {
       <FAQ />
       <HireMe />
       <Contact />
+      <Guestbook messages={guestbookMessages} />
+      <TipJar />
       <Newsletter />
       <Footer />
     </main>

@@ -2,14 +2,17 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Play, Code, Sparkles, Loader2 } from "lucide-react";
+import { Play, Code, Sparkles, Loader2, Gamepad2 } from "lucide-react";
+import SnakeGame from "./SnakeGame";
+import TetrisGame from "./TetrisGame";
 
 type Demo = {
   id: string;
   title: string;
   description: string;
-  code: string;
+  code?: string;
   Render: () => JSX.Element;
+  isGame?: boolean;
 };
 
 function GradientButton() {
@@ -119,6 +122,20 @@ const demos: Demo[] = [
 </div>`,
     Render: LoadingSpinner,
   },
+  {
+    id: "snake",
+    title: "🐍 Snake",
+    description: "Klasyczna gra Snake w canvas. Steruj strzałkami. Rekord zapisuje się w localStorage.",
+    Render: SnakeGame,
+    isGame: true,
+  },
+  {
+    id: "tetris",
+    title: "🟦 Tetris",
+    description: "Mini Tetris w canvas. Ruchy: ← → ↓, rotacja: ↑ lub spacja.",
+    Render: TetrisGame,
+    isGame: true,
+  },
 ];
 
 export default function Playground() {
@@ -177,20 +194,27 @@ export default function Playground() {
                 {active.id}.tsx
               </span>
             </div>
-            <button
-              onClick={() => setShowCode((s) => !s)}
-              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-xs text-slate-300 transition-colors"
-            >
-              {showCode ? (
-                <>
-                  <Play size={12} /> Pokaż render
-                </>
-              ) : (
-                <>
-                  <Code size={12} /> Pokaż kod
-                </>
-              )}
-            </button>
+            {active.isGame ? (
+              <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/5 text-xs text-slate-400">
+                <Gamepad2 size={12} className="text-purple-400" />
+                Mini gra
+              </span>
+            ) : (
+              <button
+                onClick={() => setShowCode((s) => !s)}
+                className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-xs text-slate-300 transition-colors"
+              >
+                {showCode ? (
+                  <>
+                    <Play size={12} /> Pokaż render
+                  </>
+                ) : (
+                  <>
+                    <Code size={12} /> Pokaż kod
+                  </>
+                )}
+              </button>
+            )}
           </div>
 
           <div className="p-8 min-h-[200px] flex flex-col items-center justify-center">
@@ -198,7 +222,7 @@ export default function Playground() {
               {active.description}
             </p>
 
-            {showCode ? (
+            {showCode && active.code ? (
               <motion.pre
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -211,7 +235,7 @@ export default function Playground() {
                 key={active.id}
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="flex items-center justify-center"
+                className="flex items-center justify-center w-full"
               >
                 <ActiveRender />
               </motion.div>
