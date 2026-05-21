@@ -4,24 +4,27 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
+import { useI18n } from "./I18nProvider";
+import LanguageToggle from "./LanguageToggle";
 
-type Link = {
+type LinkItem = {
   href: string;
-  label: string;
+  key: keyof ReturnType<typeof useI18n>["dict"]["nav"];
   sectionId?: string;
 };
 
-const links: Link[] = [
-  { href: "/#home", label: "Home", sectionId: "home" },
-  { href: "/#about", label: "O mnie", sectionId: "about" },
-  { href: "/#skills", label: "Umiejętności", sectionId: "skills" },
-  { href: "/#projects", label: "Projekty", sectionId: "projects" },
-  { href: "/teraz", label: "Teraz" },
-  { href: "/blog", label: "Blog" },
-  { href: "/#contact", label: "Kontakt", sectionId: "contact" },
+const links: LinkItem[] = [
+  { href: "/#home", key: "home", sectionId: "home" },
+  { href: "/#about", key: "about", sectionId: "about" },
+  { href: "/#skills", key: "skills", sectionId: "skills" },
+  { href: "/#projects", key: "projects", sectionId: "projects" },
+  { href: "/teraz", key: "teraz" },
+  { href: "/blog", key: "blog" },
+  { href: "/#contact", key: "contact", sectionId: "contact" },
 ];
 
 export default function Navbar() {
+  const { dict } = useI18n();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<string>("home");
@@ -58,7 +61,7 @@ export default function Navbar() {
     return () => observer.disconnect();
   }, [pathname]);
 
-  const isLinkActive = (link: Link): boolean => {
+  const isLinkActive = (link: LinkItem): boolean => {
     if (link.href === "/teraz") return pathname === "/teraz";
     if (link.href === "/blog") return pathname.startsWith("/blog");
     if (link.sectionId && pathname === "/") return activeSection === link.sectionId;
@@ -84,7 +87,7 @@ export default function Navbar() {
           &lt;ML/&gt;
         </a>
 
-        <ul className="hidden md:flex items-center gap-8">
+        <ul className="hidden md:flex items-center gap-7">
           {links.map((link) => {
             const active = isLinkActive(link);
             return (
@@ -95,7 +98,7 @@ export default function Navbar() {
                     active ? "text-white" : "text-slate-400 hover:text-white"
                   }`}
                 >
-                  {link.label}
+                  {dict.nav[link.key]}
                   <span
                     className={`absolute -bottom-1 left-0 h-px bg-gradient-to-r from-purple-500 to-pink-500 transition-all duration-300 ${
                       active ? "w-full" : "w-0 group-hover:w-full"
@@ -107,12 +110,15 @@ export default function Navbar() {
           })}
         </ul>
 
-        <a
-          href="/#contact"
-          className="hidden md:inline-flex px-5 py-2 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 text-sm font-medium hover:shadow-lg hover:shadow-purple-500/50 transition-all"
-        >
-          Napisz do mnie
-        </a>
+        <div className="hidden md:flex items-center gap-3">
+          <LanguageToggle />
+          <a
+            href="/#contact"
+            className="inline-flex px-5 py-2 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 text-sm font-medium hover:shadow-lg hover:shadow-purple-500/50 transition-all"
+          >
+            {dict.nav.cta}
+          </a>
+        </div>
 
         <button
           onClick={() => setOpen(!open)}
@@ -141,11 +147,14 @@ export default function Navbar() {
                       active ? "text-white" : "text-slate-400 hover:text-white"
                     }`}
                   >
-                    {link.label}
+                    {dict.nav[link.key]}
                   </a>
                 </li>
               );
             })}
+            <li className="pt-2 border-t border-white/5">
+              <LanguageToggle />
+            </li>
           </ul>
         </motion.div>
       )}

@@ -4,6 +4,7 @@ import CommandPalette from "@/components/CommandPalette";
 import LoadingScreen from "@/components/LoadingScreen";
 import AIChatbot from "@/components/AIChatbot";
 import Analytics from "@/components/Analytics";
+import { I18nProvider } from "@/components/I18nProvider";
 
 const BASE_URL =
   process.env.NEXT_PUBLIC_SITE_URL || "http://85.215.197.199";
@@ -64,11 +65,13 @@ export default function RootLayout({
   return (
     <html lang="pl">
       <body className="antialiased">
-        <LoadingScreen />
-        {children}
-        <CommandPalette />
-        <AIChatbot />
-        <Analytics />
+        <I18nProvider>
+          <LoadingScreen />
+          {children}
+          <CommandPalette />
+          <AIChatbot />
+          <Analytics />
+        </I18nProvider>
       </body>
     </html>
   );

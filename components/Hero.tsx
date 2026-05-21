@@ -2,14 +2,15 @@
 
 import { motion } from "framer-motion";
 import { ArrowDown, Sparkles, Github, Linkedin, Mail } from "lucide-react";
-
-const stats = [
-  { value: "3+", label: "Projektów" },
-  { value: "1.5y", label: "Doświadczenia" },
-  { value: "∞", label: "Linijek kawy" },
-];
+import { useI18n } from "./I18nProvider";
 
 export default function Hero() {
+  const { dict } = useI18n();
+  const stats = [
+    { value: "3+", label: dict.hero.stats.projects },
+    { value: "1.5y", label: dict.hero.stats.experience },
+    { value: "∞", label: dict.hero.stats.coffee },
+  ];
   return (
     <section
       id="home"
@@ -25,7 +26,7 @@ export default function Hero() {
           >
             <Sparkles size={14} className="text-purple-400" />
             <span className="text-sm text-slate-300">
-              Dostępny do pierwszej pracy
+              {dict.hero.badge}
             </span>
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
@@ -40,7 +41,7 @@ export default function Hero() {
             className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-[1.05] tracking-tight"
           >
             <span className="text-slate-400 text-3xl md:text-4xl lg:text-5xl block mb-2 font-medium">
-              Cześć, jestem
+              {dict.hero.greeting}
             </span>
             <span className="text-gradient">Mateusz</span>
             <br />
@@ -53,10 +54,10 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-lg md:text-xl text-slate-400 mb-8 max-w-xl lg:max-w-none leading-relaxed"
           >
-            Junior frontend developer. Buduję rzeczy w internecie z{" "}
+            {dict.hero.role}{" "}
             <span className="text-purple-400 font-medium">React</span>,{" "}
-            <span className="text-pink-400 font-medium">Next.js</span> i
-            TypeScript. Stale się uczę.
+            <span className="text-pink-400 font-medium">Next.js</span>{" "}
+            {dict.hero.and} TypeScript. {dict.hero.learning}
           </motion.p>
 
           <motion.div
@@ -90,7 +91,7 @@ export default function Hero() {
               href="#projects"
               className="group px-7 py-3.5 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 font-medium hover:shadow-xl hover:shadow-purple-500/50 transition-all hover:-translate-y-0.5 text-sm"
             >
-              Zobacz projekty
+              {dict.hero.seeProjects}
               <span className="ml-2 inline-block group-hover:translate-x-1 transition-transform">
                 →
               </span>
@@ -99,7 +100,7 @@ export default function Hero() {
               href="#contact"
               className="px-7 py-3.5 rounded-full glass glass-hover font-medium transition-all text-sm"
             >
-              Skontaktuj się
+              {dict.hero.contactMe}
             </a>
           </motion.div>
 
