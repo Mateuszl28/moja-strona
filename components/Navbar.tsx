@@ -2,27 +2,68 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 
-const links = [
-  { href: "/#home", label: "Home" },
-  { href: "/#about", label: "O mnie" },
-  { href: "/#skills", label: "Umiejętności" },
-  { href: "/#projects", label: "Projekty" },
+type Link = {
+  href: string;
+  label: string;
+  sectionId?: string;
+};
+
+const links: Link[] = [
+  { href: "/#home", label: "Home", sectionId: "home" },
+  { href: "/#about", label: "O mnie", sectionId: "about" },
+  { href: "/#skills", label: "Umiejętności", sectionId: "skills" },
+  { href: "/#projects", label: "Projekty", sectionId: "projects" },
   { href: "/teraz", label: "Teraz" },
   { href: "/blog", label: "Blog" },
-  { href: "/#contact", label: "Kontakt" },
+  { href: "/#contact", label: "Kontakt", sectionId: "contact" },
 ];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState<string>("home");
+  const pathname = usePathname();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  useEffect(() => {
+    if (pathname !== "/") return;
+    const ids = ["home", "about", "skills", "projects", "timeline", "contact"];
+    const sections = ids
+      .map((id) => document.getElementById(id))
+      .filter((el): el is HTMLElement => el !== null);
+
+    if (sections.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+        if (visible[0]) {
+          setActiveSection(visible[0].target.id);
+        }
+      },
+      { rootMargin: "-30% 0px -55% 0px", threshold: [0, 0.2, 0.5, 1] }
+    );
+
+    sections.forEach((s) => observer.observe(s));
+    return () => observer.disconnect();
+  }, [pathname]);
+
+  const isLinkActive = (link: Link): boolean => {
+    if (link.href === "/teraz") return pathname === "/teraz";
+    if (link.href === "/blog") return pathname.startsWith("/blog");
+    if (link.sectionId && pathname === "/") return activeSection === link.sectionId;
+    return false;
+  };
 
   return (
     <motion.nav
@@ -37,28 +78,37 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         <a
-          href="#home"
+          href={pathname === "/" ? "#home" : "/"}
           className="font-mono text-lg font-bold text-gradient"
         >
           &lt;ML/&gt;
         </a>
 
         <ul className="hidden md:flex items-center gap-8">
-          {links.map((link) => (
-            <li key={link.href}>
-              <a
-                href={link.href}
-                className="text-sm text-slate-300 hover:text-white transition-colors relative group"
-              >
-                {link.label}
-                <span className="absolute -bottom-1 left-0 w-0 h-px bg-gradient-to-r from-purple-500 to-pink-500 group-hover:w-full transition-all duration-300" />
-              </a>
-            </li>
-          ))}
+          {links.map((link) => {
+            const active = isLinkActive(link);
+            return (
+              <li key={link.href}>
+                <a
+                  href={link.href}
+                  className={`text-sm transition-colors relative group ${
+                    active ? "text-white" : "text-slate-400 hover:text-white"
+                  }`}
+                >
+                  {link.label}
+                  <span
+                    className={`absolute -bottom-1 left-0 h-px bg-gradient-to-r from-purple-500 to-pink-500 transition-all duration-300 ${
+                      active ? "w-full" : "w-0 group-hover:w-full"
+                    }`}
+                  />
+                </a>
+              </li>
+            );
+          })}
         </ul>
 
         <a
-          href="#contact"
+          href="/#contact"
           className="hidden md:inline-flex px-5 py-2 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 text-sm font-medium hover:shadow-lg hover:shadow-purple-500/50 transition-all"
         >
           Napisz do mnie
@@ -80,17 +130,22 @@ export default function Navbar() {
           className="md:hidden bg-[#0a0a0f]/95 backdrop-blur-md border-b border-white/5"
         >
           <ul className="flex flex-col gap-4 px-6 py-6">
-            {links.map((link) => (
-              <li key={link.href}>
-                <a
-                  href={link.href}
-                  onClick={() => setOpen(false)}
-                  className="text-slate-300 hover:text-white"
-                >
-                  {link.label}
-                </a>
-              </li>
-            ))}
+            {links.map((link) => {
+              const active = isLinkActive(link);
+              return (
+                <li key={link.href}>
+                  <a
+                    href={link.href}
+                    onClick={() => setOpen(false)}
+                    className={`block transition-colors ${
+                      active ? "text-white" : "text-slate-400 hover:text-white"
+                    }`}
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              );
+            })}
           </ul>
         </motion.div>
       )}
