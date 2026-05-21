@@ -30,6 +30,9 @@ const config: Config = {
         "gradient": "gradient 8s linear infinite",
         "float": "float 6s ease-in-out infinite",
         "fade-in": "fadeIn 0.8s ease-out",
+        "marquee": "marquee 40s linear infinite",
+        "shimmer": "shimmer 2s linear infinite",
+        "type-blink": "typeBlink 1s step-end infinite",
       },
       keyframes: {
         blob: {
@@ -48,6 +51,18 @@ const config: Config = {
         fadeIn: {
           "0%": { opacity: "0", transform: "translateY(20px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        marquee: {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-50%)" },
+        },
+        shimmer: {
+          "0%": { backgroundPosition: "-200% 0" },
+          "100%": { backgroundPosition: "200% 0" },
+        },
+        typeBlink: {
+          "0%, 50%": { opacity: "1" },
+          "51%, 100%": { opacity: "0" },
         },
       },
       backgroundImage: {
