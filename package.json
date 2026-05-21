@@ -16,6 +16,7 @@
     "@react-three/drei": "^9.114.0",
     "@react-three/fiber": "^8.17.10",
     "framer-motion": "^11.3.19",
+    "fuse.js": "^7.0.0",
     "gray-matter": "^4.0.3",
     "lucide-react": "^0.424.0",
     "marked": "^14.1.2",

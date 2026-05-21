@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, ExternalLink, Github, Calendar } from "lucide-react";
 import BackgroundBlobs from "@/components/BackgroundBlobs";
 import ReadingProgress from "@/components/ReadingProgress";
+import AudioNarration from "@/components/AudioNarration";
 import {
   getAllProjectSlugs,
   getProjectBySlug,
@@ -139,7 +140,7 @@ export default async function ProjectPage({ params }: Props) {
           )}
 
           {project.tech.length > 0 && (
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-2 mb-6">
               {project.tech.map((t) => (
                 <span
                   key={t}
@@ -150,6 +151,10 @@ export default async function ProjectPage({ params }: Props) {
               ))}
             </div>
           )}
+
+          <AudioNarration
+            text={`${project.title}. ${project.excerpt}. ${project.content}`}
+          />
         </header>
 
         <div

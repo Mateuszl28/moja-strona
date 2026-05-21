@@ -5,6 +5,7 @@ import { ArrowLeft, Calendar, Clock } from "lucide-react";
 import BackgroundBlobs from "@/components/BackgroundBlobs";
 import ReadingProgress from "@/components/ReadingProgress";
 import Giscus from "@/components/Giscus";
+import AudioNarration from "@/components/AudioNarration";
 import { getAllSlugs, getPostBySlug } from "@/lib/blog";
 
 type Props = {
@@ -65,7 +66,7 @@ export default async function BlogPostPage({ params }: Props) {
             {post.title}
           </h1>
           {post.tags && post.tags.length > 0 && (
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-2 mb-6">
               {post.tags.map((tag) => (
                 <span
                   key={tag}
@@ -76,6 +77,8 @@ export default async function BlogPostPage({ params }: Props) {
               ))}
             </div>
           )}
+
+          <AudioNarration text={`${post.title}. ${post.excerpt}. ${post.content}`} />
         </header>
 
         <div
