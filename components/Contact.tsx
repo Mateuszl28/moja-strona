@@ -12,6 +12,7 @@ import {
   Loader2,
 } from "lucide-react";
 import { useState } from "react";
+import SectionNumber from "./SectionNumber";
 
 type Status =
   | { state: "idle" }
@@ -64,8 +65,9 @@ export default function Contact() {
   const isSending = status.state === "sending";
 
   return (
-    <section id="contact" className="relative py-32 px-6">
-      <div className="max-w-5xl mx-auto">
+    <section id="contact" className="relative py-32 px-6 overflow-hidden">
+      <SectionNumber number="05" position="right" />
+      <div className="relative max-w-5xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

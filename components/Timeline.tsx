@@ -9,6 +9,7 @@ import {
   GraduationCap,
   Compass,
 } from "lucide-react";
+import SectionNumber from "./SectionNumber";
 
 type Item = {
   year: string;
@@ -85,8 +86,9 @@ const items: Item[] = [
 
 export default function Timeline() {
   return (
-    <section id="timeline" className="relative py-32 px-6">
-      <div className="max-w-5xl mx-auto">
+    <section id="timeline" className="relative py-32 px-6 overflow-hidden">
+      <SectionNumber number="04" position="left" />
+      <div className="relative max-w-5xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, Calendar, Clock } from "lucide-react";
 import BackgroundBlobs from "@/components/BackgroundBlobs";
+import ReadingProgress from "@/components/ReadingProgress";
 import { getAllSlugs, getPostBySlug } from "@/lib/blog";
 
 type Props = {
@@ -36,6 +37,7 @@ export default function BlogPostPage({ params }: Props) {
 
   return (
     <main className="relative min-h-screen overflow-hidden">
+      <ReadingProgress />
       <BackgroundBlobs />
 
       <article className="relative max-w-3xl mx-auto px-6 py-20">

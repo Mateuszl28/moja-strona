@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ExternalLink, Folder } from "lucide-react";
+import SectionNumber from "./SectionNumber";
 
 const projects = [
   {
@@ -35,8 +36,9 @@ const projects = [
 
 export default function Projects() {
   return (
-    <section id="projects" className="relative py-32 px-6">
-      <div className="max-w-7xl mx-auto">
+    <section id="projects" className="relative py-32 px-6 overflow-hidden">
+      <SectionNumber number="03" position="right" />
+      <div className="relative max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

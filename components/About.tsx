@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Code2, Rocket, BookOpen, Coffee } from "lucide-react";
+import SectionNumber from "./SectionNumber";
 
 const facts = [
   {
@@ -28,8 +29,9 @@ const facts = [
 
 export default function About() {
   return (
-    <section id="about" className="relative py-32 px-6">
-      <div className="max-w-6xl mx-auto">
+    <section id="about" className="relative py-32 px-6 overflow-hidden">
+      <SectionNumber number="01" position="right" />
+      <div className="relative max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

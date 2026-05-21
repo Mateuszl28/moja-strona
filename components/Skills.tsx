@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import SectionNumber from "./SectionNumber";
 
 type Skill = {
   name: string;
@@ -37,8 +38,9 @@ const categories: { title: string; emoji: string; skills: Skill[] }[] = [
 
 export default function Skills() {
   return (
-    <section id="skills" className="relative py-32 px-6">
-      <div className="max-w-6xl mx-auto">
+    <section id="skills" className="relative py-32 px-6 overflow-hidden">
+      <SectionNumber number="02" position="left" />
+      <div className="relative max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
