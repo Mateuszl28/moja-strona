@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { useI18n } from "./I18nProvider";
 import LanguageToggle from "./LanguageToggle";
+import ThemeSwitcher from "./ThemeSwitcher";
 
 type LinkItem = {
   href: string;
@@ -110,11 +111,12 @@ export default function Navbar() {
           })}
         </ul>
 
-        <div className="hidden md:flex items-center gap-3">
+        <div className="hidden md:flex items-center gap-2">
+          <ThemeSwitcher />
           <LanguageToggle />
           <a
             href="/#contact"
-            className="inline-flex px-5 py-2 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 text-sm font-medium hover:shadow-lg hover:shadow-purple-500/50 transition-all"
+            className="inline-flex px-4 py-2 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 text-sm font-medium hover:shadow-lg hover:shadow-purple-500/50 transition-all"
           >
             {dict.nav.cta}
           </a>

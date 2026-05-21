@@ -11,6 +11,78 @@
   --text-muted: #94a3b8;
 }
 
+html[data-theme="synthwave"] {
+  --bg: #1a0033;
+  --bg-secondary: #2d0a4e;
+  --text: #ffeded;
+  --text-muted: #ff8fcd;
+}
+
+html[data-theme="synthwave"] body {
+  background: linear-gradient(180deg, #1a0033 0%, #0d001a 100%);
+}
+
+html[data-theme="terminal"] {
+  --bg: #000000;
+  --bg-secondary: #0a0a0a;
+  --text: #00ff41;
+  --text-muted: #008f11;
+}
+
+html[data-theme="terminal"] body {
+  font-family: "JetBrains Mono", monospace !important;
+}
+
+html[data-theme="terminal"] .text-gradient,
+html[data-theme="terminal"] .text-gradient-blue {
+  background: none !important;
+  -webkit-text-fill-color: #00ff41 !important;
+  color: #00ff41 !important;
+}
+
+html[data-theme="paper"] {
+  --bg: #f5f1e8;
+  --bg-secondary: #ffffff;
+  --text: #1a1a1a;
+  --text-muted: #4a4a4a;
+}
+
+html[data-theme="paper"] body {
+  background: #f5f1e8;
+  color: #1a1a1a;
+}
+
+html[data-theme="paper"] .glass {
+  background: rgba(0, 0, 0, 0.04) !important;
+  border-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+html[data-theme="paper"] .glass-hover:hover {
+  background: rgba(0, 0, 0, 0.06) !important;
+}
+
+html.cv-page,
+html.cv-page body {
+  background: white !important;
+  color: #0f172a !important;
+}
+
+@media print {
+  html.cv-page body {
+    overflow: visible !important;
+  }
+  html.cv-page main {
+    min-height: auto !important;
+  }
+  .print\:hidden {
+    display: none !important;
+  }
+  @page {
+    margin: 1.5cm;
+    size: A4;
+  }
+}
+
 * {
   box-sizing: border-box;
   padding: 0;

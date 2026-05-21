@@ -1,11 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowDown, Sparkles, Github, Linkedin, Mail } from "lucide-react";
+import { ArrowDown, Sparkles, Github, Linkedin, Mail, Code, Box } from "lucide-react";
 import { useI18n } from "./I18nProvider";
+import { useState } from "react";
+import HeroScene from "./HeroScene";
 
 export default function Hero() {
   const { dict } = useI18n();
+  const [view, setView] = useState<"3d" | "code">("3d");
   const stats = [
     { value: "3+", label: dict.hero.stats.projects },
     { value: "1.5y", label: dict.hero.stats.experience },
@@ -145,17 +148,48 @@ export default function Hero() {
           <div className="absolute -inset-4 bg-gradient-to-br from-purple-600/30 via-pink-600/30 to-orange-500/30 rounded-3xl blur-3xl opacity-50 animate-pulse" />
 
           <div className="relative glass rounded-2xl overflow-hidden shadow-2xl">
-            <div className="flex items-center gap-2 px-4 py-3 border-b border-white/5 bg-black/30">
-              <div className="flex gap-1.5">
-                <div className="w-3 h-3 rounded-full bg-red-500/80" />
-                <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
-                <div className="w-3 h-3 rounded-full bg-green-500/80" />
+            <div className="flex items-center justify-between gap-2 px-4 py-3 border-b border-white/5 bg-black/30">
+              <div className="flex items-center gap-2">
+                <div className="flex gap-1.5">
+                  <div className="w-3 h-3 rounded-full bg-red-500/80" />
+                  <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
+                  <div className="w-3 h-3 rounded-full bg-green-500/80" />
+                </div>
+                <span className="ml-2 text-xs font-mono text-slate-500">
+                  {view === "code" ? "mateusz.tsx" : "scene.gl"}
+                </span>
               </div>
-              <span className="ml-3 text-xs font-mono text-slate-500">
-                mateusz.tsx
-              </span>
+              <div className="flex items-center gap-1 rounded-full bg-white/5 p-0.5">
+                <button
+                  onClick={() => setView("3d")}
+                  aria-label="3D view"
+                  className={`p-1.5 rounded-full transition-all ${
+                    view === "3d"
+                      ? "bg-gradient-to-r from-purple-600 to-pink-600 text-white"
+                      : "text-slate-500 hover:text-white"
+                  }`}
+                >
+                  <Box size={12} />
+                </button>
+                <button
+                  onClick={() => setView("code")}
+                  aria-label="Code view"
+                  className={`p-1.5 rounded-full transition-all ${
+                    view === "code"
+                      ? "bg-gradient-to-r from-purple-600 to-pink-600 text-white"
+                      : "text-slate-500 hover:text-white"
+                  }`}
+                >
+                  <Code size={12} />
+                </button>
+              </div>
             </div>
 
+            {view === "3d" ? (
+              <div className="relative h-[420px] bg-black/20">
+                <HeroScene />
+              </div>
+            ) : (
             <pre className="p-6 font-mono text-[13px] leading-relaxed overflow-x-auto">
               <code className="text-slate-300">
                 <span className="text-pink-400">const</span>{" "}
@@ -211,6 +245,7 @@ export default function Hero() {
                 <span className="inline-block w-2 h-4 bg-purple-400 ml-1 animate-type-blink align-middle" />
               </code>
             </pre>
+            )}
           </div>
 
           <div className="absolute -bottom-4 -right-4 glass rounded-xl px-4 py-2 text-xs font-mono text-slate-400 shadow-lg hidden sm:flex items-center gap-2">
