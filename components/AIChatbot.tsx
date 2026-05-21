@@ -130,7 +130,7 @@ export default function AIChatbot() {
                   <div>
                     <p className="font-bold text-sm">AI Asystent</p>
                     <p className="text-[11px] text-slate-500 font-mono">
-                      Gemini 2.0 Flash
+                      Gemini Flash
                     </p>
                   </div>
                 </div>
