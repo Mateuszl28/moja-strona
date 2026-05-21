@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, Calendar, Clock } from "lucide-react";
 import BackgroundBlobs from "@/components/BackgroundBlobs";
 import ReadingProgress from "@/components/ReadingProgress";
+import Giscus from "@/components/Giscus";
 import { getAllSlugs, getPostBySlug } from "@/lib/blog";
 
 type Props = {
@@ -15,7 +16,7 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const post = getPostBySlug(params.slug);
+  const post = await getPostBySlug(params.slug);
   if (!post) return { title: "Post nie znaleziony" };
   return {
     title: `${post.title} — Mateusz Łagocki`,
@@ -31,8 +32,8 @@ function formatDate(date: string) {
   });
 }
 
-export default function BlogPostPage({ params }: Props) {
-  const post = getPostBySlug(params.slug);
+export default async function BlogPostPage({ params }: Props) {
+  const post = await getPostBySlug(params.slug);
   if (!post) notFound();
 
   return (
@@ -81,6 +82,8 @@ export default function BlogPostPage({ params }: Props) {
           className="prose-blog"
           dangerouslySetInnerHTML={{ __html: post.html }}
         />
+
+        <Giscus />
       </article>
     </main>
   );

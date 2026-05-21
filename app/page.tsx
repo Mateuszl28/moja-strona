@@ -6,7 +6,10 @@ import Projects from "@/components/Projects";
 import Timeline from "@/components/Timeline";
 import Playground from "@/components/Playground";
 import LiveWidgets from "@/components/LiveWidgets";
+import FAQ from "@/components/FAQ";
+import HireMe from "@/components/HireMe";
 import Contact from "@/components/Contact";
+import Newsletter from "@/components/Newsletter";
 import Footer from "@/components/Footer";
 import BackgroundBlobs from "@/components/BackgroundBlobs";
 import EasterEggs from "@/components/EasterEggs";
@@ -30,7 +33,10 @@ export default function Home() {
       <Timeline />
       <Playground />
       <LiveWidgets />
+      <FAQ />
+      <HireMe />
       <Contact />
+      <Newsletter />
       <Footer />
     </main>
   );

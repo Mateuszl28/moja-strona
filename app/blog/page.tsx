@@ -11,8 +11,9 @@ export const metadata: Metadata = {
     "Notatki o programowaniu, projektach, narzędziach i tym, czego się aktualnie uczę.",
 };
 
-export default function BlogPage() {
-  const posts = getAllPosts().map((p) => ({
+export default async function BlogPage() {
+  const all = await getAllPosts();
+  const posts = all.map((p) => ({
     slug: p.slug,
     title: p.title,
     date: p.date,

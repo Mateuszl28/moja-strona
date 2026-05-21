@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 import CommandPalette from "@/components/CommandPalette";
 import LoadingScreen from "@/components/LoadingScreen";
+import AIChatbot from "@/components/AIChatbot";
+import Analytics from "@/components/Analytics";
 
 const BASE_URL =
   process.env.NEXT_PUBLIC_SITE_URL || "http://85.215.197.199";
@@ -65,6 +67,8 @@ export default function RootLayout({
         <LoadingScreen />
         {children}
         <CommandPalette />
+        <AIChatbot />
+        <Analytics />
       </body>
     </html>
   );
