@@ -3,11 +3,13 @@ import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Skills from "@/components/Skills";
 import Projects from "@/components/Projects";
+import Stats from "@/components/Stats";
 import Timeline from "@/components/Timeline";
 import Playground from "@/components/Playground";
 import GenerativeArt from "@/components/GenerativeArt";
 import LiveWidgets from "@/components/LiveWidgets";
 import MobileApp from "@/components/MobileApp";
+import Hobby from "@/components/Hobby";
 import Testimonials from "@/components/Testimonials";
 import FAQ from "@/components/FAQ";
 import HireMe from "@/components/HireMe";
@@ -38,11 +40,13 @@ export default function Home() {
       <About />
       <Skills />
       <Projects />
+      <Stats />
       <Timeline />
       <Playground />
       <GenerativeArt />
       <LiveWidgets />
       <MobileApp />
+      <Hobby />
       <Testimonials />
       <FAQ />
       <HireMe />
