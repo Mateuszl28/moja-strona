@@ -2,7 +2,14 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Quote, ChevronLeft, ChevronRight, Linkedin } from "lucide-react";
+import {
+  Quote,
+  ChevronLeft,
+  ChevronRight,
+  Linkedin,
+  MessageCircle,
+  Sparkles,
+} from "lucide-react";
 
 type Testimonial = {
   text: string;
@@ -12,50 +19,23 @@ type Testimonial = {
   source?: "LinkedIn" | "Email" | "Friend";
 };
 
-const testimonials: Testimonial[] = [
-  {
-    text: "Mateusz to typ programisty, który nie czeka, aż mu ktoś powie 'zrób to'. Sam łapie problem, sam go rozwiązuje. Robił z nami na konkursie i mocno wyróżniał się focuse'em.",
-    name: "Kuba M.",
-    role: "Team mate · Hack the Tech 2026",
-    avatar: "KM",
-    source: "Friend",
-  },
-  {
-    text: "Świetna komunikacja, otwarta głowa i konkretne pytania. Dawał mi feedback dokładnie tam, gdzie był potrzebny — to rzadkość u juniorów.",
-    name: "Anna K.",
-    role: "Mentor · Frontend",
-    avatar: "AK",
-    source: "LinkedIn",
-  },
-  {
-    text: "Powierzyłem mu fragment frontu, nie spodziewałem się dopieszczenia detali na tym poziomie. Animacje, responsywność, edge cases — wszystko ogarnięte. Polecam.",
-    name: "Tomek R.",
-    role: "Lead Dev",
-    avatar: "TR",
-    source: "LinkedIn",
-  },
-  {
-    text: "Pisaliśmy razem pracę grupową. Mateusz wziął na siebie część techniczną i nie tylko ją skończył w terminie, ale jeszcze nauczył nas paru rzeczy po drodze.",
-    name: "Magda W.",
-    role: "Studentka informatyki",
-    avatar: "MW",
-    source: "Email",
-  },
-];
+const testimonials: Testimonial[] = [];
 
 export default function Testimonials() {
   const [idx, setIdx] = useState(0);
   const [paused, setPaused] = useState(false);
+  const hasTestimonials = testimonials.length > 0;
 
   useEffect(() => {
-    if (paused) return;
+    if (paused || !hasTestimonials) return;
     const t = setInterval(() => {
       setIdx((i) => (i + 1) % testimonials.length);
     }, 6000);
     return () => clearInterval(t);
-  }, [paused]);
+  }, [paused, hasTestimonials]);
 
-  const prev = () => setIdx((i) => (i - 1 + testimonials.length) % testimonials.length);
+  const prev = () =>
+    setIdx((i) => (i - 1 + testimonials.length) % testimonials.length);
   const next = () => setIdx((i) => (i + 1) % testimonials.length);
 
   const t = testimonials[idx];
@@ -79,6 +59,50 @@ export default function Testimonials() {
             lub konkurować.
           </p>
         </div>
+
+        {!hasTestimonials && (
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="relative"
+          >
+            <div className="absolute -inset-4 bg-gradient-to-br from-purple-600/10 via-pink-600/10 to-orange-500/10 rounded-3xl blur-2xl" />
+            <div className="relative glass rounded-3xl p-10 md:p-12 text-center">
+              <div className="inline-flex w-14 h-14 rounded-2xl bg-gradient-to-br from-purple-600 to-pink-600 items-center justify-center mb-5">
+                <MessageCircle size={22} className="text-white" />
+              </div>
+              <h3 className="text-2xl font-bold mb-3">
+                <span className="text-gradient">Wkrótce</span> tutaj
+              </h3>
+              <p className="text-slate-400 leading-relaxed max-w-xl mx-auto mb-6">
+                Tu pojawią się prawdziwe opinie od osób, z którymi pracowałem
+                i uczyłem się. Pracuję nad tym &mdash; chwilę cierpliwości.
+              </p>
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 text-xs font-mono text-slate-400">
+                <Sparkles size={12} className="text-purple-400" />
+                Zbieram rekomendacje
+              </div>
+              <p className="mt-8 text-[11px] text-slate-600 leading-relaxed">
+                Pracowałeś / uczyłeś się ze mną? Napisz parę zdań przez{" "}
+                <a
+                  href="#contact"
+                  className="text-purple-400 hover:underline"
+                >
+                  formularz kontaktowy
+                </a>{" "}
+                lub zostaw wpis w księdze gości &mdash; może trafi tutaj.
+              </p>
+            </div>
+          </motion.div>
+        )}
+
+        {hasTestimonials && (
+          <>{/* carousel rendered below */}</>
+        )}
+
+        {hasTestimonials && t && (
 
         <div className="relative">
           <div className="glass rounded-3xl p-8 md:p-12 min-h-[280px] flex flex-col justify-center">
@@ -154,11 +178,14 @@ export default function Testimonials() {
             </button>
           </div>
         </div>
+        )}
 
-        <p className="text-center text-[11px] font-mono text-slate-600 mt-6">
-          {paused ? "⏸ pause" : "▶ auto-play (6s)"} · {idx + 1}/
-          {testimonials.length}
-        </p>
+        {hasTestimonials && (
+          <p className="text-center text-[11px] font-mono text-slate-600 mt-6">
+            {paused ? "⏸ pause" : "▶ auto-play (6s)"} · {idx + 1}/
+            {testimonials.length}
+          </p>
+        )}
       </div>
     </section>
   );
