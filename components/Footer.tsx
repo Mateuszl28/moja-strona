@@ -1,6 +1,6 @@
 "use client";
 
-import { Github, Linkedin, Mail, Heart } from "lucide-react";
+import { Github, Linkedin, Mail, Heart, Rss } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -40,6 +40,13 @@ export default function Footer() {
               className="text-slate-500 hover:text-white transition-colors"
             >
               <Mail size={20} />
+            </a>
+            <a
+              href="/feed.xml"
+              aria-label="RSS feed"
+              className="text-slate-500 hover:text-orange-400 transition-colors"
+            >
+              <Rss size={20} />
             </a>
           </div>
 
