@@ -5,8 +5,11 @@ import Skills from "@/components/Skills";
 import Projects from "@/components/Projects";
 import Timeline from "@/components/Timeline";
 import Playground from "@/components/Playground";
+import GenerativeArt from "@/components/GenerativeArt";
 import LiveWidgets from "@/components/LiveWidgets";
 import MobileApp from "@/components/MobileApp";
+import Testimonials from "@/components/Testimonials";
+import Gallery from "@/components/Gallery";
 import FAQ from "@/components/FAQ";
 import HireMe from "@/components/HireMe";
 import Contact from "@/components/Contact";
@@ -38,8 +41,11 @@ export default function Home() {
       <Projects />
       <Timeline />
       <Playground />
+      <GenerativeArt />
+      <Gallery />
       <LiveWidgets />
       <MobileApp />
+      <Testimonials />
       <FAQ />
       <HireMe />
       <Contact />
