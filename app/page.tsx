@@ -9,7 +9,6 @@ import GenerativeArt from "@/components/GenerativeArt";
 import LiveWidgets from "@/components/LiveWidgets";
 import MobileApp from "@/components/MobileApp";
 import Testimonials from "@/components/Testimonials";
-import Gallery from "@/components/Gallery";
 import FAQ from "@/components/FAQ";
 import HireMe from "@/components/HireMe";
 import Contact from "@/components/Contact";
@@ -42,7 +41,6 @@ export default function Home() {
       <Timeline />
       <Playground />
       <GenerativeArt />
-      <Gallery />
       <LiveWidgets />
       <MobileApp />
       <Testimonials />
