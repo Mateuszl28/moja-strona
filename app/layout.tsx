@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import CommandPalette from "@/components/CommandPalette";
 import LoadingScreen from "@/components/LoadingScreen";
@@ -6,6 +7,18 @@ import AIChatbot from "@/components/AIChatbot";
 import Analytics from "@/components/Analytics";
 import { I18nProvider } from "@/components/I18nProvider";
 import { ThemeProvider } from "@/components/ThemeProvider";
+
+const inter = Inter({
+  subsets: ["latin", "latin-ext"],
+  variable: "--font-inter",
+  display: "swap",
+});
+
+const mono = JetBrains_Mono({
+  subsets: ["latin", "latin-ext"],
+  variable: "--font-mono",
+  display: "swap",
+});
 
 const BASE_URL =
   process.env.NEXT_PUBLIC_SITE_URL || "http://85.215.197.199";
@@ -29,7 +42,7 @@ export const metadata: Metadata = {
     "Tailwind",
     "programista",
   ],
-  authors: [{ name: "Mateusz Łagocki" }],
+  authors: [{ name: "Mateusz Łagocki", url: BASE_URL }],
   creator: "Mateusz Łagocki",
   openGraph: {
     type: "website",
@@ -61,6 +74,33 @@ export const metadata: Metadata = {
       "application/rss+xml": `${BASE_URL}/feed.xml`,
     },
   },
+  formatDetection: {
+    telephone: false,
+    email: false,
+    address: false,
+  },
+};
+
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Mateusz Łagocki",
+  jobTitle: "Junior Frontend Developer",
+  url: BASE_URL,
+  email: "lagockimateusz6@gmail.com",
+  sameAs: ["https://github.com/Mateuszl28"],
+  knowsAbout: [
+    "Frontend Development",
+    "React",
+    "Next.js",
+    "TypeScript",
+    "Tailwind CSS",
+    "JavaScript",
+    "AI Integration",
+    "Gemini API",
+  ],
+  description:
+    "Junior frontend developer z pasją do budowania rzeczy w internecie. React, Next.js, TypeScript.",
 };
 
 export default function RootLayout({
@@ -69,7 +109,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pl">
+    <html
+      lang="pl"
+      className={`${inter.variable} ${mono.variable}`}
+      suppressHydrationWarning
+    >
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(personSchema),
+          }}
+        />
+      </head>
       <body className="antialiased">
         <ThemeProvider>
           <I18nProvider>

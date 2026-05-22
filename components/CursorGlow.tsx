@@ -8,6 +8,7 @@ export default function CursorGlow() {
   useEffect(() => {
     if (typeof window === "undefined") return;
     if (window.matchMedia("(hover: none)").matches) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     let raf = 0;
     let mouseX = window.innerWidth / 2;

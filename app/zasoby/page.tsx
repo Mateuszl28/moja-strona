@@ -12,9 +12,14 @@ import {
 import BackgroundBlobs from "@/components/BackgroundBlobs";
 
 export const metadata: Metadata = {
-  title: "Zasoby — to co mi pomogło",
+  title: "Zasoby",
   description:
     "Curated lista kursów, książek, narzędzi i kanałów YouTube, które polecam początkującym programistom.",
+  openGraph: {
+    title: "Zasoby — to co mi pomogło",
+    description:
+      "Curated lista kursów, książek, narzędzi i kanałów YouTube.",
+  },
 };
 
 type Resource = {

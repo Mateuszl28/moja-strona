@@ -4,9 +4,13 @@ import { ArrowLeft, BookOpen, Code2, Sparkles, Target } from "lucide-react";
 import BackgroundBlobs from "@/components/BackgroundBlobs";
 
 export const metadata: Metadata = {
-  title: "Teraz — Mateusz Łagocki",
+  title: "Teraz",
   description:
     "Co aktualnie robię, czego się uczę, nad czym pracuję. Inspirowane stroną /now Dereka Siversa.",
+  openGraph: {
+    title: "Teraz — Mateusz Łagocki",
+    description: "Co aktualnie robię, czego się uczę.",
+  },
 };
 
 const lastUpdated = "maj 2026";
