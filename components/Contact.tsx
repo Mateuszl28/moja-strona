@@ -75,7 +75,7 @@ export default function Contact() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <p className="font-mono text-sm text-purple-400 mb-2">{"// 05."}</p>
+          <p className="font-mono text-sm text-accent-400 mb-2">{"// 05."}</p>
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
             Daj <span className="text-gradient">znać</span>
           </h2>
@@ -98,8 +98,8 @@ export default function Contact() {
               className="block glass glass-hover rounded-2xl p-5 transition-all"
             >
               <div className="flex items-center gap-3 mb-1">
-                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-600/20 to-pink-600/20 flex items-center justify-center">
-                  <Mail size={18} className="text-purple-400" />
+                <div className="w-10 h-10 rounded-lg bg-accent-400/10 flex items-center justify-center">
+                  <Mail size={18} className="text-accent-400" />
                 </div>
                 <div>
                   <p className="text-xs text-slate-500">Email</p>
@@ -117,8 +117,8 @@ export default function Contact() {
               className="block glass glass-hover rounded-2xl p-5 transition-all"
             >
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-600/20 to-pink-600/20 flex items-center justify-center">
-                  <Github size={18} className="text-purple-400" />
+                <div className="w-10 h-10 rounded-lg bg-accent-400/10 flex items-center justify-center">
+                  <Github size={18} className="text-accent-400" />
                 </div>
                 <div>
                   <p className="text-xs text-slate-500">GitHub</p>
@@ -132,8 +132,8 @@ export default function Contact() {
               className="block glass glass-hover rounded-2xl p-5 transition-all"
             >
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-600/20 to-pink-600/20 flex items-center justify-center">
-                  <Linkedin size={18} className="text-purple-400" />
+                <div className="w-10 h-10 rounded-lg bg-accent-400/10 flex items-center justify-center">
+                  <Linkedin size={18} className="text-accent-400" />
                 </div>
                 <div>
                   <p className="text-xs text-slate-500">LinkedIn</p>
@@ -144,8 +144,8 @@ export default function Contact() {
 
             <div className="glass rounded-2xl p-5">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-600/20 to-pink-600/20 flex items-center justify-center">
-                  <MapPin size={18} className="text-purple-400" />
+                <div className="w-10 h-10 rounded-lg bg-accent-400/10 flex items-center justify-center">
+                  <MapPin size={18} className="text-accent-400" />
                 </div>
                 <div>
                   <p className="text-xs text-slate-500">Lokalizacja</p>
@@ -176,7 +176,7 @@ export default function Contact() {
                   disabled={isSending}
                   value={form.name}
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500/20 transition-all disabled:opacity-50"
+                  className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-accent-400 focus:outline-none focus:ring-2 focus:ring-accent-400/20 transition-all disabled:opacity-50"
                   placeholder="Jan Kowalski"
                 />
               </div>
@@ -191,7 +191,7 @@ export default function Contact() {
                   disabled={isSending}
                   value={form.email}
                   onChange={(e) => setForm({ ...form, email: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500/20 transition-all disabled:opacity-50"
+                  className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-accent-400 focus:outline-none focus:ring-2 focus:ring-accent-400/20 transition-all disabled:opacity-50"
                   placeholder="jan@example.com"
                 />
               </div>
@@ -210,7 +210,7 @@ export default function Contact() {
                 onChange={(e) =>
                   setForm({ ...form, message: e.target.value })
                 }
-                className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500/20 transition-all resize-none disabled:opacity-50"
+                className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-accent-400 focus:outline-none focus:ring-2 focus:ring-accent-400/20 transition-all resize-none disabled:opacity-50"
                 placeholder="Cześć Mateusz, mam pomysł na..."
               />
             </div>
@@ -234,7 +234,7 @@ export default function Contact() {
             <button
               type="submit"
               disabled={isSending}
-              className="w-full px-6 py-3.5 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 font-medium hover:shadow-lg hover:shadow-purple-500/50 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+              className="w-full px-6 py-3.5 rounded-lg bg-accent-400 text-[#0d0d10] font-semibold hover:bg-accent-300 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
             >
               {isSending ? (
                 <>

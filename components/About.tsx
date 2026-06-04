@@ -39,7 +39,7 @@ export default function About() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <p className="font-mono text-sm text-purple-400 mb-2">{"// 01."}</p>
+          <p className="font-mono text-sm text-accent-400 mb-2">{"// 01."}</p>
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
             O <span className="text-gradient">mnie</span>
           </h2>
@@ -57,14 +57,11 @@ export default function About() {
             className="relative"
           >
             <div className="aspect-square max-w-md mx-auto relative">
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-600 via-pink-600 to-orange-500 rounded-3xl blur-2xl opacity-50 animate-pulse" />
-              <div className="relative aspect-square rounded-3xl bg-gradient-to-br from-purple-600 via-pink-600 to-orange-500 p-1">
-                <div className="w-full h-full rounded-3xl bg-[#0a0a0f] flex items-center justify-center overflow-hidden relative">
-                  <div className="absolute inset-0 grid-pattern opacity-20" />
-                  <span className="relative font-mono text-8xl font-bold text-gradient">
-                    ML
-                  </span>
-                </div>
+              <div className="relative aspect-square rounded-2xl card overflow-hidden flex items-center justify-center">
+                <div className="absolute inset-0 grid-pattern opacity-30" />
+                <span className="relative font-mono text-8xl font-bold text-accent-400">
+                  ML
+                </span>
               </div>
             </div>
           </motion.div>
@@ -82,11 +79,9 @@ export default function About() {
               uczę się programowania i powoli buduję rzeczy, które mają sens.
             </p>
             <p>
-              Najwięcej czasu spędzam przy frontendzie —{" "}
-              <span className="text-purple-400">React</span>,{" "}
-              <span className="text-pink-400">Next.js</span>, TypeScript i
-              Tailwind. Lubię też zaglądać w stronę AI: ostatnio bawiłem się
-              integracją z Gemini przy projekcie konkursowym.
+              Najwięcej czasu spędzam przy frontendzie — React, Next.js,
+              TypeScript i Tailwind. Lubię też zaglądać w stronę AI: ostatnio
+              bawiłem się integracją z Gemini przy projekcie konkursowym.
             </p>
             <p>
               Nie udaję, że umiem wszystko — wręcz przeciwnie.{" "}
@@ -107,10 +102,10 @@ export default function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="glass glass-hover rounded-2xl p-6 transition-all hover:-translate-y-1"
+              className="glass glass-hover rounded-xl p-6"
             >
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-600/20 to-pink-600/20 flex items-center justify-center mb-4">
-                <fact.icon size={22} className="text-purple-400" />
+              <div className="w-11 h-11 rounded-lg bg-accent-400/10 flex items-center justify-center mb-4">
+                <fact.icon size={20} className="text-accent-400" />
               </div>
               <h3 className="font-semibold mb-2">{fact.title}</h3>
               <p className="text-sm text-slate-400 leading-relaxed">

@@ -1,6 +1,6 @@
 "use client";
 
-import { Github, Linkedin, Mail, Heart, Rss } from "lucide-react";
+import { Github, Linkedin, Mail, Rss } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -44,15 +44,14 @@ export default function Footer() {
             <a
               href="/feed.xml"
               aria-label="RSS feed"
-              className="text-slate-500 hover:text-orange-400 transition-colors"
+              className="text-slate-500 hover:text-accent-400 transition-colors"
             >
               <Rss size={20} />
             </a>
           </div>
 
-          <p className="text-sm text-slate-500 flex items-center gap-1.5">
-            Zbudowane z <Heart size={14} className="text-pink-500 fill-pink-500" /> i
-            Next.js
+          <p className="text-sm text-slate-500">
+            Napisane ręcznie w Next.js. Wciąż dłubię.
           </p>
         </div>
       </div>

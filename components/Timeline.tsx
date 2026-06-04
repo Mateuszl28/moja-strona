@@ -96,7 +96,7 @@ export default function Timeline() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <p className="font-mono text-sm text-purple-400 mb-2">{"// 04."}</p>
+          <p className="font-mono text-sm text-accent-400 mb-2">{"// 04."}</p>
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
             Moja <span className="text-gradient">droga</span>
           </h2>
@@ -106,7 +106,7 @@ export default function Timeline() {
         </motion.div>
 
         <div className="relative">
-          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-purple-500/60 via-pink-500/60 to-orange-500/60 md:-translate-x-1/2" />
+          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-white/10 md:-translate-x-1/2" />
 
           <div className="space-y-12">
             {items.map((item, i) => {
@@ -123,20 +123,16 @@ export default function Timeline() {
                     isLeft ? "" : "md:flex-row-reverse"
                   }`}
                 >
-                  <div
-                    className={`absolute left-4 md:left-1/2 w-3 h-3 rounded-full bg-gradient-to-br ${item.gradient} ring-4 ring-[#0a0a0f] md:-translate-x-1/2 mt-6`}
-                  />
+                  <div className="absolute left-4 md:left-1/2 w-2.5 h-2.5 rounded-full bg-accent-400 ring-4 ring-[#0d0d10] md:-translate-x-1/2 mt-7" />
 
                   <div className="pl-12 md:pl-0 md:w-1/2 md:px-8">
-                    <div className="glass glass-hover rounded-2xl p-6 transition-all">
+                    <div className="glass glass-hover rounded-xl p-6">
                       <div className="flex items-center gap-3 mb-3">
-                        <div
-                          className={`w-10 h-10 rounded-lg bg-gradient-to-br ${item.gradient} flex items-center justify-center`}
-                        >
-                          <Icon size={18} className="text-white" />
+                        <div className="w-10 h-10 rounded-lg bg-accent-400/10 flex items-center justify-center shrink-0">
+                          <Icon size={18} className="text-accent-400" />
                         </div>
                         <div>
-                          <p className="font-mono text-xs text-purple-400">
+                          <p className="font-mono text-xs text-accent-400">
                             {item.year}
                           </p>
                           <h3 className="font-bold">{item.title}</h3>

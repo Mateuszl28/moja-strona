@@ -6,7 +6,6 @@ import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { useI18n } from "./I18nProvider";
 import LanguageToggle from "./LanguageToggle";
-import ThemeSwitcher from "./ThemeSwitcher";
 
 type LinkItem = {
   href: string;
@@ -101,7 +100,7 @@ export default function Navbar() {
                 >
                   {dict.nav[link.key]}
                   <span
-                    className={`absolute -bottom-1 left-0 h-px bg-gradient-to-r from-purple-500 to-pink-500 transition-all duration-300 ${
+                    className={`absolute -bottom-1 left-0 h-px bg-accent-400 transition-all duration-300 ${
                       active ? "w-full" : "w-0 group-hover:w-full"
                     }`}
                   />
@@ -111,12 +110,11 @@ export default function Navbar() {
           })}
         </ul>
 
-        <div className="hidden md:flex items-center gap-2">
-          <ThemeSwitcher />
+        <div className="hidden md:flex items-center gap-3">
           <LanguageToggle />
           <a
             href="/#contact"
-            className="inline-flex px-4 py-2 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 text-sm font-medium hover:shadow-lg hover:shadow-purple-500/50 transition-all"
+            className="inline-flex px-4 py-2 rounded-lg bg-accent-400 text-[#0d0d10] text-sm font-semibold hover:bg-accent-300 transition-colors"
           >
             {dict.nav.cta}
           </a>

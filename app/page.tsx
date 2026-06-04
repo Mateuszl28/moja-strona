@@ -3,57 +3,20 @@ import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Skills from "@/components/Skills";
 import Projects from "@/components/Projects";
-import Stats from "@/components/Stats";
 import Timeline from "@/components/Timeline";
-import Playground from "@/components/Playground";
-import GenerativeArt from "@/components/GenerativeArt";
-import LiveWidgets from "@/components/LiveWidgets";
-import MobileApp from "@/components/MobileApp";
-import Hobby from "@/components/Hobby";
-import Testimonials from "@/components/Testimonials";
-import FAQ from "@/components/FAQ";
-import HireMe from "@/components/HireMe";
 import Contact from "@/components/Contact";
-import Guestbook from "@/components/Guestbook";
-import TipJar from "@/components/TipJar";
-import Newsletter from "@/components/Newsletter";
 import Footer from "@/components/Footer";
-import BackgroundBlobs from "@/components/BackgroundBlobs";
-import EasterEggs from "@/components/EasterEggs";
-import ScrollProgress from "@/components/ScrollProgress";
-import CursorGlow from "@/components/CursorGlow";
-import TechMarquee from "@/components/TechMarquee";
-import { getVerifiedMessages } from "@/lib/guestbook";
 
 export default function Home() {
-  const guestbookMessages = getVerifiedMessages();
-
   return (
-    <main className="relative min-h-screen overflow-hidden">
-      <ScrollProgress />
-      <CursorGlow />
-      <BackgroundBlobs />
-      <EasterEggs />
+    <main className="relative min-h-screen">
       <Navbar />
       <Hero />
-      <TechMarquee />
       <About />
       <Skills />
       <Projects />
-      <Stats />
       <Timeline />
-      <Playground />
-      <GenerativeArt />
-      <LiveWidgets />
-      <MobileApp />
-      <Hobby />
-      <Testimonials />
-      <FAQ />
-      <HireMe />
       <Contact />
-      <Guestbook messages={guestbookMessages} />
-      <TipJar />
-      <Newsletter />
       <Footer />
     </main>
   );

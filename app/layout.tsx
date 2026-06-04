@@ -1,9 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import CommandPalette from "@/components/CommandPalette";
-import LoadingScreen from "@/components/LoadingScreen";
-import AIChatbot from "@/components/AIChatbot";
 import Analytics from "@/components/Analytics";
 import { I18nProvider } from "@/components/I18nProvider";
 import { ThemeProvider } from "@/components/ThemeProvider";
@@ -125,10 +122,7 @@ export default function RootLayout({
       <body className="antialiased">
         <ThemeProvider>
           <I18nProvider>
-            <LoadingScreen />
             {children}
-            <CommandPalette />
-            <AIChatbot />
             <Analytics />
           </I18nProvider>
         </ThemeProvider>

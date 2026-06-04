@@ -21,11 +21,7 @@ export default function SectionNumber({ number, position = "right" }: Props) {
           : "left-0 -translate-x-1/4 md:-translate-x-1/3"
       }`}
       style={{
-        background:
-          "linear-gradient(135deg, rgba(168,85,247,0.04) 0%, rgba(236,72,153,0.02) 100%)",
-        WebkitBackgroundClip: "text",
-        backgroundClip: "text",
-        WebkitTextStroke: "1px rgba(168,85,247,0.08)",
+        WebkitTextStroke: "1px rgba(255,255,255,0.05)",
         color: "transparent",
       }}
     >
