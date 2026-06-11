@@ -30,6 +30,15 @@ body {
   line-height: 1.6;
 }
 
+h1,
+h2,
+h3,
+.font-display {
+  font-family: var(--font-display), var(--font-inter), sans-serif;
+  letter-spacing: -0.025em;
+  font-weight: 600;
+}
+
 ::selection {
   background: rgba(201, 138, 75, 0.22);
   color: var(--ink);

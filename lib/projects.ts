@@ -22,10 +22,12 @@ export const projects: Project[] = [
     featured: true,
   },
   {
-    title: "Sentra AI",
+    title: "Sentra AI — wykrywanie phishingu",
     description:
-      "Projekt z obszaru AI — interfejs i integracja warstwy frontendowej.",
-    tags: ["Next.js", "TypeScript", "AI"],
+      "Wklejasz podejrzanego maila, a Sentra analizuje nagłówki, linki i treść heurystykami, po czym Gemini wyjaśnia zagrożenie prostym językiem i pozwala dopytać.",
+    tags: ["Next.js", "TypeScript", "Gemini AI"],
+    href: "https://sentra-ai-peach.vercel.app",
+    repo: "https://github.com/Mateuszl28/Sentra_AI",
     year: "2025",
     featured: true,
   },

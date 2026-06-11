@@ -18,11 +18,13 @@ export default function KontaktPage() {
     <main className="pt-28">
       <section className="mx-auto max-w-content px-6 pb-12 pt-8">
         <Reveal>
-          <p className="font-mono text-sm text-accent">Kontakt</p>
-          <h1 className="mt-3 text-balance text-4xl font-semibold tracking-tight sm:text-5xl">
+          <p className="font-mono text-xs uppercase tracking-[0.18em] text-accent">
+            Kontakt
+          </p>
+          <h1 className="mt-4 text-balance text-5xl font-semibold leading-[1.04] tracking-tight sm:text-6xl">
             Porozmawiajmy
           </h1>
-          <p className="mt-4 max-w-xl text-lg text-[var(--ink-soft)]">
+          <p className="mt-5 max-w-xl text-lg leading-relaxed text-[var(--ink-soft)]">
             Masz pomysł, projekt albo szukasz kogoś do zespołu? Napisz —
             odpisuję zwykle w&nbsp;ciągu jednego dnia.
           </p>
