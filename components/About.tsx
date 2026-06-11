@@ -1,119 +1,56 @@
-"use client";
+import Reveal from "./Reveal";
 
-import { motion } from "framer-motion";
-import { Code2, Rocket, BookOpen, Coffee } from "lucide-react";
-import SectionNumber from "./SectionNumber";
-
-const facts = [
-  {
-    icon: Code2,
-    title: "Lubię budować",
-    text: "Najwięcej uczę się przy projektach. Ta strona to jeden z nich.",
-  },
-  {
-    icon: Rocket,
-    title: "Frontend",
-    text: "React, Next.js, TypeScript, Tailwind. Tu spędzam większość czasu.",
-  },
-  {
-    icon: BookOpen,
-    title: "Wciąż się uczę",
-    text: "Każdy projekt to nowe pytania. Lubię to.",
-  },
-  {
-    icon: Coffee,
-    title: "Otwarty na feedback",
-    text: "Jeśli widzisz coś co mogę zrobić lepiej — daj znać.",
-  },
+const stack = [
+  "React",
+  "Next.js",
+  "TypeScript",
+  "Tailwind CSS",
+  "Node.js",
+  "Git",
 ];
 
 export default function About() {
   return (
-    <section id="about" className="relative py-32 px-6 overflow-hidden">
-      <SectionNumber number="01" position="right" />
-      <div className="relative max-w-6xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <p className="font-mono text-sm text-accent-400 mb-2">{"// 01."}</p>
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            O <span className="text-gradient">mnie</span>
-          </h2>
-          <p className="text-slate-400 max-w-2xl mx-auto">
-            Kilka rzeczy, które warto o mnie wiedzieć
-          </p>
-        </motion.div>
+    <section id="o-mnie" className="mx-auto max-w-content px-6 py-24">
+      <Reveal>
+        <p className="mb-10 font-mono text-sm text-[var(--ink-soft)]">
+          01 — O mnie
+        </p>
+      </Reveal>
 
-        <div className="grid md:grid-cols-2 gap-8 items-center mb-16">
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="relative"
-          >
-            <div className="aspect-square max-w-md mx-auto relative">
-              <div className="relative aspect-square rounded-2xl card overflow-hidden flex items-center justify-center">
-                <div className="absolute inset-0 grid-pattern opacity-30" />
-                <span className="relative font-mono text-8xl font-bold text-accent-400">
-                  ML
-                </span>
-              </div>
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="space-y-5 text-slate-300 text-lg leading-relaxed"
-          >
+      <div className="grid gap-12 md:grid-cols-[1.4fr_1fr]">
+        <Reveal>
+          <div className="space-y-5 text-lg leading-relaxed text-[var(--ink-soft)]">
             <p>
-              Cześć! Jestem{" "}
-              <span className="text-white font-semibold">Mateusz</span> —
-              uczę się programowania i powoli buduję rzeczy, które mają sens.
+              Jestem frontend developerem, którego napędza budowanie rzeczy,
+              z&nbsp;których ludziom wygodnie się korzysta. Lubię, gdy interfejs
+              jest prosty, szybki i&nbsp;po prostu działa.
             </p>
             <p>
-              Najwięcej czasu spędzam przy frontendzie — React, Next.js,
-              TypeScript i Tailwind. Lubię też zaglądać w stronę AI: ostatnio
-              bawiłem się integracją z Gemini przy projekcie konkursowym.
+              Uczę się przez praktykę — od pracy inżynierskiej, przez projekty
+              konkursowe, po własne eksperymenty. Stale dokładam nowe rzeczy do
+              warsztatu i&nbsp;dbam o&nbsp;detal oraz dostępność.
             </p>
-            <p>
-              Nie udaję, że umiem wszystko — wręcz przeciwnie.{" "}
-              <span className="text-white font-semibold">
-                Jestem na początku drogi
-              </span>
-              , ale mocno mi na niej zależy. Jeśli masz fajny pomysł albo
-              chcesz po prostu pogadać o kodzie — pisz.
-            </p>
-          </motion.div>
-        </div>
+          </div>
+        </Reveal>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {facts.map((fact, i) => (
-            <motion.div
-              key={fact.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="glass glass-hover rounded-xl p-6"
-            >
-              <div className="w-11 h-11 rounded-lg bg-accent-400/10 flex items-center justify-center mb-4">
-                <fact.icon size={20} className="text-accent-400" />
-              </div>
-              <h3 className="font-semibold mb-2">{fact.title}</h3>
-              <p className="text-sm text-slate-400 leading-relaxed">
-                {fact.text}
-              </p>
-            </motion.div>
-          ))}
-        </div>
+        <Reveal delay={0.1}>
+          <div>
+            <h3 className="mb-4 text-sm font-medium text-[var(--ink)]">
+              Czym pracuję
+            </h3>
+            <ul className="flex flex-wrap gap-2">
+              {stack.map((s) => (
+                <li
+                  key={s}
+                  className="rounded-full border border-[var(--line)] bg-[var(--paper-soft)] px-3 py-1.5 text-sm text-[var(--ink-soft)]"
+                >
+                  {s}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </Reveal>
       </div>
     </section>
   );
