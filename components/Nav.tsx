@@ -1,14 +1,17 @@
 "use client";
 
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const links = [
-  { href: "#o-mnie", label: "O mnie" },
-  { href: "#projekty", label: "Projekty" },
-  { href: "#kontakt", label: "Kontakt" },
+  { href: "/", label: "Start" },
+  { href: "/projekty", label: "Projekty" },
+  { href: "/kontakt", label: "Kontakt" },
 ];
 
 export default function Nav() {
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -27,17 +30,28 @@ export default function Nav() {
       }`}
     >
       <nav className="mx-auto flex max-w-content items-center justify-between px-6 py-4">
-        <a href="#top" className="font-mono text-sm tracking-tight">
+        <Link href="/" className="font-mono text-sm tracking-tight">
           ML<span className="text-accent">.</span>
-        </a>
-        <ul className="flex items-center gap-7 text-sm text-[var(--ink-soft)]">
-          {links.map((l) => (
-            <li key={l.href}>
-              <a href={l.href} className="link-underline hover:text-[var(--ink)]">
-                {l.label}
-              </a>
-            </li>
-          ))}
+        </Link>
+        <ul className="flex items-center gap-1 text-sm">
+          {links.map((l) => {
+            const active =
+              l.href === "/" ? pathname === "/" : pathname.startsWith(l.href);
+            return (
+              <li key={l.href}>
+                <Link
+                  href={l.href}
+                  className={`rounded-full px-3.5 py-1.5 transition-colors ${
+                    active
+                      ? "bg-[var(--paper-soft)] text-[var(--ink)]"
+                      : "text-[var(--ink-soft)] hover:text-[var(--ink)]"
+                  }`}
+                >
+                  {l.label}
+                </Link>
+              </li>
+            );
+          })}
         </ul>
       </nav>
     </header>

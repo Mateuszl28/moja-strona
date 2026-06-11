@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import Nav from "@/components/Nav";
+import Footer from "@/components/Footer";
 
 const inter = Inter({
   subsets: ["latin", "latin-ext"],
@@ -30,8 +32,34 @@ export const metadata: Metadata = {
     description:
       "Portfolio Mateusza Łagockiego — frontend developer. React, Next.js, TypeScript.",
   },
-  robots: { index: true, follow: true },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large" },
+  },
   alternates: { canonical: "/" },
+};
+
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Mateusz Łagocki",
+  jobTitle: "Frontend Developer",
+  url: BASE_URL,
+  email: "lagockimateusz6@gmail.com",
+  sameAs: ["https://github.com/Mateuszl28"],
+  knowsAbout: ["React", "Next.js", "TypeScript", "Tailwind CSS", "JavaScript"],
+  description:
+    "Frontend developer z pasją do budowania przejrzystych, szybkich interfejsów.",
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Mateusz Łagocki — Portfolio",
+  url: BASE_URL,
+  inLanguage: "pl-PL",
+  author: { "@type": "Person", name: "Mateusz Łagocki" },
 };
 
 export default function RootLayout({
@@ -39,7 +67,21 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="pl" className={`${inter.variable} ${mono.variable}`}>
-      <body>{children}</body>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+        />
+      </head>
+      <body className="grain">
+        <Nav />
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }

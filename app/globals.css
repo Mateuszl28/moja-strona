@@ -61,6 +61,34 @@ a {
     color: var(--accent);
   }
 
+  /* ciepła, miękka poświata — jeden akcent, bez tęczy */
+  .glow-warm {
+    background: radial-gradient(
+      60% 50% at 50% 0%,
+      rgba(201, 138, 75, 0.16) 0%,
+      rgba(201, 138, 75, 0) 70%
+    );
+  }
+
+  /* subtelna ziarnistość — „papierowy", ludzki charakter */
+  .grain::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.5;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  }
+
+  .dotted {
+    background-image: radial-gradient(
+      rgba(28, 27, 25, 0.07) 1px,
+      transparent 1px
+    );
+    background-size: 22px 22px;
+  }
+
   .link-underline {
     background-image: linear-gradient(var(--accent), var(--accent));
     background-size: 0% 1px;
