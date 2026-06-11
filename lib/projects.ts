@@ -32,11 +32,20 @@ export const projects: Project[] = [
     featured: true,
   },
   {
+    title: "Piece na zawsze",
+    description:
+      "Strona firmowa zbudowana na WordPressie — prezentacja oferty, treści i formularz kontaktowy.",
+    tags: ["WordPress", "Strona firmowa"],
+    href: "https://www.piecenazawsze.pl",
+    year: "2025",
+    featured: true,
+  },
+  {
     title: "Rapidsoc",
     description:
       "Aplikacja webowa zbudowana w nowoczesnym stacku z naciskiem na wydajność.",
     tags: ["React", "Tailwind"],
-    year: "2024",
+    year: "2026",
     featured: true,
   },
   {
@@ -44,7 +53,7 @@ export const projects: Project[] = [
     description:
       "Projekt dyplomowy — pełny cykl od pomysłu, przez implementację, po wdrożenie.",
     tags: ["Frontend", "UX"],
-    year: "2024",
+    year: "2026",
     featured: true,
   },
 ];
