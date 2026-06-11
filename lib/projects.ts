@@ -28,7 +28,7 @@ export const projects: Project[] = [
     tags: ["Next.js", "TypeScript", "Gemini AI"],
     href: "https://sentra-ai-peach.vercel.app",
     repo: "https://github.com/Mateuszl28/Sentra_AI",
-    year: "2025",
+    year: "2026",
     featured: true,
   },
   {
