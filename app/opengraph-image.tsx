@@ -19,34 +19,36 @@ export default function OpengraphImage() {
           fontFamily: "sans-serif",
         }}
       >
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: 12,
-            fontSize: 26,
-            fontFamily: "monospace",
-            color: "#6b685e",
-          }}
-        >
-          <span style={{ color: "#1c1b19", fontWeight: 700 }}>ML</span>
-          <span style={{ color: "#c98a4b" }}>.</span>
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <span style={{ fontSize: 28, fontWeight: 700, color: "#1c1b19" }}>
+            ML
+          </span>
+          <span style={{ fontSize: 28, fontWeight: 700, color: "#c98a4b" }}>
+            .
+          </span>
         </div>
 
-        <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
+        <div style={{ display: "flex", flexDirection: "column" }}>
           <div
             style={{
-              fontSize: 64,
+              display: "flex",
+              fontSize: 62,
               fontWeight: 700,
               color: "#1c1b19",
               lineHeight: 1.1,
-              maxWidth: 900,
+              maxWidth: 980,
             }}
           >
-            Buduję przejrzyste, szybkie interfejsy{" "}
-            <span style={{ color: "#c98a4b" }}>we frontendzie.</span>
+            Buduję przejrzyste, szybkie strony i aplikacje we frontendzie.
           </div>
-          <div style={{ fontSize: 30, color: "#6b685e" }}>
+          <div
+            style={{
+              display: "flex",
+              marginTop: 24,
+              fontSize: 30,
+              color: "#c98a4b",
+            }}
+          >
             Mateusz Łagocki — Frontend Developer
           </div>
         </div>
@@ -54,17 +56,12 @@ export default function OpengraphImage() {
         <div
           style={{
             display: "flex",
-            gap: 16,
             fontSize: 24,
             color: "#6b685e",
             fontFamily: "monospace",
           }}
         >
-          <span>React</span>
-          <span style={{ color: "#c98a4b" }}>·</span>
-          <span>Next.js</span>
-          <span style={{ color: "#c98a4b" }}>·</span>
-          <span>TypeScript</span>
+          React / Next.js / TypeScript
         </div>
       </div>
     ),
