@@ -31,7 +31,6 @@ export const projects: Project[] = [
     category: "Sklepy www",
     tags: ["JavaScript", "HTML & CSS", "E-commerce"],
     href: "https://www.vibeleszno.com",
-    repo: "https://github.com/Mateuszl28/Vibe",
     year: "2026",
     featured: true,
   },
