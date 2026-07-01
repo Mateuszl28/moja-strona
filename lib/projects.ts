@@ -17,7 +17,8 @@ export type Project = {
   description: string;
   category: Category; // do której zakładki trafia projekt
   tags: string[];
-  href?: string; // link na żywo (demo)
+  href?: string; // link na żywo (demo / sklep)
+  hrefLabel?: string; // etykieta przycisku href (domyślnie „Zobacz na żywo")
   repo?: string; // pojedyncze repo (skrót — pokaże się jako „Kod")
   repos?: RepoLink[]; // wiele repo z etykietami (np. Linux / Windows)
   year: string;
@@ -63,6 +64,17 @@ export const projects: Project[] = [
         href: "https://github.com/Mateuszl28/Printer_P15-Windows",
       },
     ],
+    year: "2026",
+    featured: true,
+  },
+  {
+    title: "Lepszy dzień",
+    description:
+      "Autorska aplikacja mobilna wspierająca lepsze nawyki i dobre samopoczucie — drobne, codzienne kroki ku lepszemu dniu.",
+    category: "Aplikacje mobilne",
+    tags: ["Android", "Wellbeing", "Aplikacja mobilna"],
+    href: "https://play.google.com/store/apps/details?id=com.lepszy_dzien",
+    hrefLabel: "Google Play",
     year: "2026",
     featured: true,
   },

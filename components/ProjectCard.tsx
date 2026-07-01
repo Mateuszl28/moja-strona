@@ -39,7 +39,7 @@ export default function ProjectCard({ project: p }: { project: Project }) {
               rel="noreferrer"
               className="inline-flex items-center gap-1 font-medium text-[var(--ink)] transition-colors hover:text-accent"
             >
-              Zobacz na żywo
+              {p.hrefLabel ?? "Zobacz na żywo"}
               <ArrowUpRight size={15} />
             </a>
           )}
