@@ -13,58 +13,58 @@ const projectTypes = [
     id: "strona",
     label: "Strona www",
     desc: "Wizytówka lub strona firmowa",
-    base: 2000,
+    base: 450,
     weeks: 2,
   },
   {
     id: "sklep",
     label: "Sklep internetowy",
     desc: "E-commerce z koszykiem i płatnościami",
-    base: 6000,
+    base: 1500,
     weeks: 5,
   },
   {
     id: "webapp",
     label: "Aplikacja internetowa",
     desc: "Panel, SaaS, narzędzie na zamówienie",
-    base: 8000,
+    base: 900,
     weeks: 7,
   },
   {
     id: "mobile",
     label: "Aplikacja mobilna",
     desc: "iOS / Android",
-    base: 9000,
+    base: 800,
     weeks: 8,
   },
   {
     id: "inne",
     label: "Inne / na zamówienie",
     desc: "Nietypowy projekt lub integracja",
-    base: 3000,
+    base: 500,
     weeks: 3,
   },
 ] as const;
 
-const PAGE_PRICE = 300; // za każdą podstronę ponad pierwszą
+const PAGE_PRICE = 80; // za każdą podstronę ponad pierwszą
 const INCLUDED_PAGES = 1;
 
 const featuresList = [
-  { id: "form", label: "Formularz kontaktowy", price: 300 },
-  { id: "cms", label: "System CMS (samodzielna edycja treści)", price: 1200 },
-  { id: "blog", label: "Blog / aktualności", price: 800 },
-  { id: "i18n", label: "Wielojęzyczność", price: 1000 },
-  { id: "payments", label: "Integracja płatności", price: 1500 },
-  { id: "auth", label: "Konta użytkowników / logowanie", price: 1800 },
-  { id: "seo", label: "Optymalizacja SEO", price: 800 },
-  { id: "anim", label: "Zaawansowane animacje", price: 700 },
-  { id: "content", label: "Przygotowanie treści i grafik", price: 900 },
+  { id: "form", label: "Formularz kontaktowy", price: 80 },
+  { id: "cms", label: "System CMS (samodzielna edycja treści)", price: 300 },
+  { id: "blog", label: "Blog / aktualności", price: 200 },
+  { id: "i18n", label: "Wielojęzyczność", price: 250 },
+  { id: "payments", label: "Integracja płatności", price: 350 },
+  { id: "auth", label: "Konta użytkowników / logowanie", price: 400 },
+  { id: "seo", label: "Optymalizacja SEO", price: 200 },
+  { id: "anim", label: "Zaawansowane animacje", price: 150 },
+  { id: "content", label: "Przygotowanie treści i grafik", price: 200 },
 ] as const;
 
 const designOptions = [
   { id: "have", label: "Mam gotowy projekt graficzny", price: 0 },
-  { id: "template", label: "Na bazie szablonu / propozycji", price: 800 },
-  { id: "custom", label: "Projekt graficzny od zera", price: 1800 },
+  { id: "template", label: "Na bazie szablonu / propozycji", price: 150 },
+  { id: "custom", label: "Projekt graficzny od zera", price: 400 },
 ] as const;
 
 const timelineOptions = [
@@ -75,7 +75,7 @@ const timelineOptions = [
 // ─────────────────────────────────────────────────────────────────────────
 const zl = (n: number) =>
   new Intl.NumberFormat("pl-PL").format(Math.round(n)) + " zł";
-const round100 = (n: number) => Math.round(n / 100) * 100;
+const round10 = (n: number) => Math.round(n / 10) * 10;
 
 export default function QuoteCalculator() {
   const [typeId, setTypeId] = useState<string>(projectTypes[0].id);
@@ -123,7 +123,7 @@ export default function QuoteCalculator() {
     const weeks =
       type.weeks + Math.ceil(features.length / 3) + (designId === "custom" ? 1 : 0);
 
-    return { low: round100(total), high: round100(total * 1.25), weeks, lines };
+    return { low: round10(total), high: round10(total * 1.25), weeks, lines };
   }, [type, pages, features, design, timeline, designId]);
 
   const summaryText = useMemo(() => {
