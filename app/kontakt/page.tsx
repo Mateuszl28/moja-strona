@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Github, Mail, MapPin } from "lucide-react";
+import { Github, Mail, MapPin, CalendarClock } from "lucide-react";
 import ContactForm from "@/components/ContactForm";
 import Reveal from "@/components/Reveal";
 
@@ -12,6 +12,13 @@ export const metadata: Metadata = {
 
 const EMAIL = "kontakt@programujzmateuszem.pl";
 const GITHUB = "https://github.com/Mateuszl28";
+
+// „Umów rozmowę" — mail z gotowym tematem i szkieletem treści.
+const CALL_MAILTO = `mailto:${EMAIL}?subject=${encodeURIComponent(
+  "Chcę umówić rozmowę"
+)}&body=${encodeURIComponent(
+  "Cześć Mateusz,\n\nChciał(a)bym umówić krótką rozmowę o projekcie.\n\nProponowany termin:\nKrótko o projekcie:\n"
+)}`;
 
 export default function KontaktPage() {
   return (
@@ -69,6 +76,17 @@ export default function KontaktPage() {
                   <MapPin size={18} />
                   Polska · praca zdalna
                 </span>
+
+                <a
+                  href={CALL_MAILTO}
+                  className="group mt-3 inline-flex items-center justify-center gap-2 rounded-full bg-[var(--ink)] px-5 py-3 font-medium text-[var(--paper)] transition-transform hover:-translate-y-0.5"
+                >
+                  <CalendarClock size={16} />
+                  Umów rozmowę
+                </a>
+                <p className="text-xs text-[var(--ink-soft)]">
+                  Odpisuję zwykle w&nbsp;ciągu 24&nbsp;godzin.
+                </p>
               </div>
             </div>
           </Reveal>
