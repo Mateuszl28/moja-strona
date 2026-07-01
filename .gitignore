@@ -26,6 +26,12 @@ dev-err.log
 .env*.local
 .env
 
+# sqlite database (dane aplikacji — nie commitujemy)
+/data/
+*.db
+*.db-shm
+*.db-wal
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

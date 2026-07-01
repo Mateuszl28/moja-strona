@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import Solutions from "@/components/Solutions";
 import Reveal from "@/components/Reveal";
+import { getShopProducts } from "@/lib/products";
+
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Sklep",
@@ -29,7 +32,7 @@ export default function SklepPage() {
       </section>
 
       <section className="mx-auto max-w-content px-6 pb-24">
-        <Solutions />
+        <Solutions items={getShopProducts()} />
       </section>
     </main>
   );

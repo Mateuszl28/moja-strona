@@ -12,6 +12,7 @@ const linksPl = [
   { href: "/sklep", label: "Sklep" },
   { href: "/blog", label: "Blog" },
   { href: "/kontakt", label: "Kontakt" },
+  { href: "/panel", label: "Panel" },
 ];
 
 const linksEn = [
@@ -20,6 +21,7 @@ const linksEn = [
   { href: "/en/quote", label: "Quote" },
   { href: "/en/shop", label: "Shop" },
   { href: "/en/contact", label: "Contact" },
+  { href: "/panel", label: "Panel" },
 ];
 
 // Trasy-korzenie dopasowywane dokładnie (żeby /en nie było aktywne na /en/quote).

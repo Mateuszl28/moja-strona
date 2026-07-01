@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { Check, ArrowUpRight, ShoppingCart } from "lucide-react";
 import Reveal from "./Reveal";
-import { solutions } from "@/lib/solutions";
+import type { ShopProduct } from "@/lib/products";
 import { zl } from "@/lib/pricing";
 
 const orderSummary = (
@@ -27,7 +27,13 @@ const orderSummary = (
         `• Zawiera: ${features.join(", ")}`,
       ].join("\n");
 
-export default function Solutions({ en = false }: { en?: boolean }) {
+export default function Solutions({
+  en = false,
+  items = [],
+}: {
+  en?: boolean;
+  items?: ShopProduct[];
+}) {
   const t = en
     ? {
         empty: "Ready-made solutions are coming soon.",
@@ -43,7 +49,7 @@ export default function Solutions({ en = false }: { en?: boolean }) {
       };
   const contactHref = en ? "/en/contact" : "/kontakt";
 
-  if (solutions.length === 0) {
+  if (items.length === 0) {
     return (
       <Reveal>
         <div className="rounded-2xl border border-[var(--line)] bg-[var(--surface)] px-6 py-16 text-center text-[var(--ink-soft)]">
@@ -55,7 +61,7 @@ export default function Solutions({ en = false }: { en?: boolean }) {
 
   return (
     <div className="grid gap-3 lg:grid-cols-3">
-      {solutions.map((s, i) => {
+      {items.map((s, i) => {
         const name = en ? s.nameEn ?? s.name : s.name;
         const description = en ? s.descriptionEn ?? s.description : s.description;
         const features = en ? s.featuresEn ?? s.features : s.features;
