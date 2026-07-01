@@ -17,6 +17,57 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "kalkulator-wyceny-nextjs-bez-backendu",
+    title: "Kalkulator wyceny w Next.js — bez backendu",
+    excerpt:
+      "Interaktywna wycena liczona na żywo, ceny w jednym pliku i podsumowanie, które samo wypełnia formularz kontaktowy — całość po stronie klienta, bez bazy i serwera.",
+    date: "2026-07-01",
+    tags: ["Next.js", "React", "TypeScript", "UX"],
+    content: [
+      {
+        type: "p",
+        text: "Chciałem, żeby klient poznał orientacyjny koszt projektu, zanim w ogóle napisze. Efekt: kalkulator, który przelicza kwotę na żywo — bez żadnego backendu, bazy ani zewnętrznego API.",
+      },
+      { type: "h2", text: "Ceny w jednym miejscu" },
+      {
+        type: "p",
+        text: "Cała konfiguracja — rodzaje projektów, funkcje, warianty grafiki — siedzi w jednym pliku i jest importowana zarówno przez kalkulator, jak i sekcję „Usługi”. Dzięki temu ceny nigdy się nie rozjeżdżają.",
+      },
+      {
+        type: "code",
+        text: "// lib/pricing.ts\nexport const projectTypes = [\n  { id: \"strona\", label: \"Strona www\", base: 450 },\n  { id: \"sklep\",  label: \"Sklep\",     base: 1500 },\n];\n\nexport const featuresList = [\n  { id: \"cms\", label: \"System CMS\", price: 150 },\n  { id: \"seo\", label: \"SEO\", price: 0, tbd: true }, // „do ustalenia\"\n];",
+      },
+      { type: "h2", text: "Liczenie na żywo" },
+      {
+        type: "p",
+        text: "Wybory klienta trzymam w useState, a wynik liczę w useMemo — przelicza się przy każdej zmianie. Kwotę pokazuję jako widełki (od–do), bo wycena jest orientacyjna, a nie ostateczną fakturą.",
+      },
+      {
+        type: "code",
+        text: "const total = useMemo(() => {\n  let sum = type.base;\n  for (const f of featuresList)\n    if (picked.includes(f.id)) sum += f.price;\n  return sum * timeline.mult; // np. ekspres +30%\n}, [type, picked, timeline]);",
+      },
+      { type: "h2", text: "Podsumowanie, które wypełnia formularz" },
+      {
+        type: "p",
+        text: "Przycisk „Wyślij zapytanie” zapisuje gotowe podsumowanie w sessionStorage i przechodzi do strony kontaktu. Tam formularz wczytuje je do treści wiadomości — bez przenoszenia stanu przez URL ani backend.",
+      },
+      {
+        type: "code",
+        text: "// na /wycena\nsessionStorage.setItem(\"wycena_summary\", summary);\n\n// na /kontakt (useEffect)\nconst saved = sessionStorage.getItem(\"wycena_summary\");\nif (saved) messageRef.current.value = saved;",
+      },
+      { type: "h2", text: "Dlaczego bez backendu" },
+      {
+        type: "ul",
+        items: [
+          "Zero danych do pilnowania — nic nie trafia do bazy.",
+          "Hostuje się jak zwykła strona, bez dodatkowej infrastruktury.",
+          "Zmiana cen to edycja jednego pliku, nie migracja.",
+          "Szybko — wszystko dzieje się w przeglądarce.",
+        ],
+      },
+    ],
+  },
+  {
     slug: "wdrozenie-nextjs-vps-nginx-pm2",
     title: "Jak wdrażam Next.js na VPS z nginx i pm2",
     excerpt:

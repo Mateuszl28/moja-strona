@@ -97,6 +97,21 @@ export default function ContactForm() {
         />
       </div>
       <label className="grid gap-1.5 text-sm">
+        <span className="text-[var(--ink-soft)]">Rodzaj projektu (opcjonalnie)</span>
+        <select
+          name="rodzaj_projektu"
+          defaultValue=""
+          className="rounded-lg border border-[var(--line)] bg-[var(--paper)] px-3.5 py-2.5 text-[var(--ink)] outline-none transition-colors focus:border-[var(--accent)]"
+        >
+          <option value="">— wybierz —</option>
+          <option>Strona www</option>
+          <option>Sklep internetowy</option>
+          <option>Aplikacja internetowa</option>
+          <option>Aplikacja mobilna</option>
+          <option>Inne</option>
+        </select>
+      </label>
+      <label className="grid gap-1.5 text-sm">
         <span className="text-[var(--ink-soft)]">Wiadomość</span>
         <textarea
           ref={messageRef}
