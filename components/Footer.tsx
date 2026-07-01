@@ -1,12 +1,36 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Github, Mail } from "lucide-react";
 
+const navPl = [
+  { href: "/", label: "Start" },
+  { href: "/projekty", label: "Projekty" },
+  { href: "/wycena", label: "Wycena" },
+  { href: "/blog", label: "Blog" },
+  { href: "/kontakt", label: "Kontakt" },
+];
+
+const navEn = [
+  { href: "/en", label: "Home" },
+  { href: "/en/projects", label: "Projects" },
+  { href: "/en/quote", label: "Quote" },
+  { href: "/en/contact", label: "Contact" },
+];
+
 export default function Footer() {
+  const pathname = usePathname();
+  const isEn = pathname.startsWith("/en");
+  const nav = isEn ? navEn : navPl;
+  const homeHref = isEn ? "/en" : "/";
+  const privacyLabel = isEn ? "Privacy policy" : "Polityka prywatności";
+
   return (
     <footer className="border-t border-[var(--line)]">
       <div className="mx-auto flex max-w-content flex-col gap-6 px-6 py-10 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <Link href="/" className="font-mono text-sm">
+          <Link href={homeHref} className="font-mono text-sm">
             ML<span className="text-accent">.</span>
           </Link>
           <p className="mt-2 text-sm text-[var(--ink-soft)]">
@@ -15,21 +39,15 @@ export default function Footer() {
         </div>
 
         <nav className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-[var(--ink-soft)]">
-          <Link href="/" className="transition-colors hover:text-[var(--ink)]">
-            Start
-          </Link>
-          <Link href="/projekty" className="transition-colors hover:text-[var(--ink)]">
-            Projekty
-          </Link>
-          <Link href="/wycena" className="transition-colors hover:text-[var(--ink)]">
-            Wycena
-          </Link>
-          <Link href="/blog" className="transition-colors hover:text-[var(--ink)]">
-            Blog
-          </Link>
-          <Link href="/kontakt" className="transition-colors hover:text-[var(--ink)]">
-            Kontakt
-          </Link>
+          {nav.map((l) => (
+            <Link
+              key={l.href}
+              href={l.href}
+              className="transition-colors hover:text-[var(--ink)]"
+            >
+              {l.label}
+            </Link>
+          ))}
           <a
             href="mailto:kontakt@programujzmateuszem.pl"
             className="inline-flex items-center gap-1.5 transition-colors hover:text-accent"
@@ -55,7 +73,7 @@ export default function Footer() {
           href="/polityka-prywatnosci"
           className="transition-colors hover:text-[var(--ink)]"
         >
-          Polityka prywatności
+          {privacyLabel}
         </Link>
       </div>
     </footer>
