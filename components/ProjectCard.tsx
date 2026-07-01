@@ -7,11 +7,16 @@ export default function ProjectCard({ project: p }: { project: Project }) {
 
   return (
     <article className="group flex h-full flex-col rounded-2xl border border-[var(--line)] bg-[var(--surface)] p-6 backdrop-blur-sm transition-all hover:-translate-y-1 hover:border-accent/30 hover:bg-[var(--surface-hover)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.4)]">
-      <div className="mb-4 flex items-center justify-between">
+      <div className="mb-4 flex items-center justify-between gap-3">
+        <span className="font-mono text-xs uppercase tracking-[0.13em] text-accent">
+          {p.category}
+        </span>
         <span className="font-mono text-xs text-[var(--ink-soft)]">{p.year}</span>
       </div>
 
-      <h3 className="text-lg font-medium">{p.title}</h3>
+      <h3 className="text-lg font-medium transition-colors group-hover:text-accent">
+        {p.title}
+      </h3>
       <p className="mt-2 flex-1 text-sm text-[var(--ink-soft)]">{p.description}</p>
 
       <ul className="mt-5 flex flex-wrap gap-1.5">

@@ -10,13 +10,10 @@ export default function Landing() {
 
       <div className="relative z-[2]">
         <div
-          className="fade-rise flex items-center gap-2.5 font-mono text-xs uppercase tracking-[0.18em] text-[var(--ink-soft)]"
+          className="fade-rise inline-flex items-center gap-2.5 rounded-full border border-[var(--line)] bg-[var(--surface)] px-3.5 py-1.5 font-mono text-xs uppercase tracking-[0.18em] text-[var(--ink-soft)]"
           style={{ animationDelay: "0s" }}
         >
-          <span className="relative flex h-2 w-2">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-500 opacity-60" />
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500" />
-          </span>
+          <span className="h-1.5 w-1.5 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.7)]" />
           Dostępny do współpracy
         </div>
 

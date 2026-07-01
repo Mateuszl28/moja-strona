@@ -41,10 +41,10 @@ export default function Nav() {
               <li key={l.href}>
                 <Link
                   href={l.href}
-                  className={`rounded-full px-3.5 py-1.5 transition-colors ${
+                  className={`rounded-full px-3.5 py-1.5 transition-colors duration-200 ${
                     active
                       ? "bg-[var(--paper-soft)] text-[var(--ink)]"
-                      : "text-[var(--ink-soft)] hover:text-[var(--ink)]"
+                      : "text-[var(--ink-soft)] hover:bg-[var(--paper-soft)]/60 hover:text-[var(--ink)]"
                   }`}
                 >
                   {l.label}

@@ -15,18 +15,18 @@ export default function Footer() {
         </div>
 
         <nav className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-[var(--ink-soft)]">
-          <Link href="/" className="hover:text-[var(--ink)]">
+          <Link href="/" className="transition-colors hover:text-[var(--ink)]">
             Start
           </Link>
-          <Link href="/projekty" className="hover:text-[var(--ink)]">
+          <Link href="/projekty" className="transition-colors hover:text-[var(--ink)]">
             Projekty
           </Link>
-          <Link href="/kontakt" className="hover:text-[var(--ink)]">
+          <Link href="/kontakt" className="transition-colors hover:text-[var(--ink)]">
             Kontakt
           </Link>
           <a
             href="mailto:kontakt@programujzmateuszem.pl"
-            className="inline-flex items-center gap-1.5 hover:text-[var(--ink)]"
+            className="inline-flex items-center gap-1.5 transition-colors hover:text-accent"
             aria-label="E-mail"
           >
             <Mail size={15} />
@@ -35,7 +35,7 @@ export default function Footer() {
             href="https://github.com/Mateuszl28"
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center gap-1.5 hover:text-[var(--ink)]"
+            className="inline-flex items-center gap-1.5 transition-colors hover:text-accent"
             aria-label="GitHub"
           >
             <Github size={15} />
