@@ -1,5 +1,6 @@
 import Landing from "@/components/Landing";
 import Services from "@/components/Services";
+import FeaturedProjects from "@/components/FeaturedProjects";
 import About from "@/components/About";
 import Process from "@/components/Process";
 import CTA from "@/components/CTA";
@@ -9,6 +10,7 @@ export default function Home() {
     <main>
       <Landing />
       <Services />
+      <FeaturedProjects />
       <About />
       <Process />
       <CTA />
