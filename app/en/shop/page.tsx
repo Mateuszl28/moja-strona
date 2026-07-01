@@ -5,7 +5,7 @@ import Reveal from "@/components/Reveal";
 export const metadata: Metadata = {
   title: "Shop",
   description:
-    "Ready-made solutions to buy — landings, templates and themes for a fast start.",
+    "In-house apps and ready-made solutions — including an interior design app. Coming soon.",
   alternates: {
     canonical: "/en/shop",
     languages: { "pl-PL": "/sklep", en: "/en/shop" },
@@ -24,8 +24,9 @@ export default function EnShopPage() {
             Ready-made solutions
           </h1>
           <p className="mt-5 max-w-xl text-lg leading-relaxed text-[var(--ink-soft)]">
-            Don&apos;t want to wait for a project from scratch? Grab a ready one
-            — a fast start, ready to personalize and deploy.
+            In-house apps and ready-made solutions. The first product — an
+            interior design app — is coming soon. Want to be first? Ask about
+            availability.
           </p>
         </Reveal>
       </section>

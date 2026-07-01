@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "http://85.215.197.199";
+const BASE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL || "https://programujzmateuszem.pl";
 
 export default function robots(): MetadataRoute.Robots {
   return {

@@ -1,14 +1,15 @@
 // Gotowe rozwiązania do kupienia (panel /sklep, /en/shop).
 //
-// ⚠️ PONIŻSZE PRODUKTY SĄ PRZYKŁADOWE — podmień na swoje realne oferty i ceny.
-//
 // Płatność:
 //  • buyUrl ustawiony (np. Stripe Payment Link / Gumroad / Paddle) → przycisk
 //    „Kup teraz" prowadzi wprost do płatności (bez backendu).
 //  • buyUrl pusty → przycisk „Zamawiam" prefilluje formularz zamówieniem
 //    (zamówienie trafia do Ciebie mailem, bez pobierania płatności).
 //
-// Pola *En = wersja angielska (dla /en/shop).
+// priceNote / priceAlt = dopiski przy cenie (np. „na własność" + druga opcja
+// abonamentowa). Pola *En = wersja angielska (dla /en/shop).
+//
+// ℹ️ Listę funkcji poniżej dopracuj pod realny zakres aplikacji.
 
 export type Solution = {
   id: string;
@@ -17,84 +18,48 @@ export type Solution = {
   description: string;
   descriptionEn?: string;
   price: number;
+  priceNote?: string; // dopisek przy cenie, np. „na własność"
+  priceNoteEn?: string;
+  priceAlt?: string; // druga opcja cenowa, np. „lub 200 zł / mies."
+  priceAltEn?: string;
   features: string[];
   featuresEn?: string[];
-  badge?: string; // np. „Bestseller"
+  badge?: string; // np. „Bestseller", „Wkrótce"
+  badgeEn?: string;
+  soon?: boolean; // true → produkt zapowiedziany, jeszcze nie do kupienia
   buyUrl?: string; // zewnętrzny link płatności; brak → zamówienie przez formularz
 };
 
 export const solutions: Solution[] = [
   {
-    id: "landing",
-    name: "Landing na start",
-    nameEn: "Landing Starter",
+    id: "interior-app",
+    name: "Aplikacja do projektowania wnętrz",
+    nameEn: "Interior Design App",
     description:
-      "Gotowy, jednostronicowy landing pod firmę lub produkt. Konfigurowalny, responsywny, z formularzem kontaktowym.",
+      "Aplikacja web + mobilna do projektowania i aranżacji wnętrz — planowanie pomieszczeń, rozmieszczanie mebli i wyposażenia oraz wizualizacja efektu.",
     descriptionEn:
-      "A ready one-page landing for a company or product. Configurable, responsive, with a contact form.",
-    price: 490,
-    badge: "Bestseller",
+      "A web + mobile app for designing and arranging interiors — plan rooms, place furniture and fittings, and preview the result.",
+    price: 45000,
+    priceNote: "na własność",
+    priceNoteEn: "one-time, you own it",
+    priceAlt: "lub 200 zł / mies. w subskrypcji",
+    priceAltEn: "or 200 zł / mo subscription",
+    badge: "Wkrótce",
+    badgeEn: "Coming soon",
+    soon: true,
     features: [
-      "Gotowy one-page",
-      "Sekcje: hero, oferta, kontakt",
-      "Formularz kontaktowy",
-      "Responsywny (RWD)",
-      "Wdrożenie w cenie",
+      "Wersja webowa i mobilna",
+      "Projektowanie i aranżacja wnętrz",
+      "Planowanie pomieszczeń i rozmieszczanie wyposażenia",
+      "Kod na własność albo model abonamentowy",
+      "Wdrożenie i wsparcie techniczne",
     ],
     featuresEn: [
-      "Ready one-page site",
-      "Sections: hero, offer, contact",
-      "Contact form",
-      "Responsive (RWD)",
-      "Deployment included",
-    ],
-  },
-  {
-    id: "portfolio",
-    name: "Portfolio Pro",
-    nameEn: "Portfolio Pro",
-    description:
-      "Szablon portfolio (jak ten serwis) do szybkiej personalizacji — projekty, blog i wycena w jednym.",
-    descriptionEn:
-      "A portfolio template (like this site) for quick personalization — projects, blog and quote in one.",
-    price: 690,
-    features: [
-      "Ciemny motyw z akcentem",
-      "Sekcja projektów z kategoriami",
-      "Blog gotowy do pisania",
-      "Kalkulator wyceny",
-      "Gotowy do wdrożenia",
-    ],
-    featuresEn: [
-      "Dark theme with accent",
-      "Projects with categories",
-      "Blog ready to write",
-      "Quote calculator",
-      "Ready to deploy",
-    ],
-  },
-  {
-    id: "sklep-starter",
-    name: "Sklep Starter",
-    nameEn: "Store Starter",
-    description:
-      "Gotowy motyw sklepu internetowego do szybkiego startu sprzedaży online.",
-    descriptionEn:
-      "A ready online-store theme for a fast start selling online.",
-    price: 1490,
-    features: [
-      "Katalog i koszyk",
-      "Integracja płatności",
-      "Panel treści (CMS)",
-      "Responsywny (RWD)",
-      "Wdrożenie na serwer",
-    ],
-    featuresEn: [
-      "Catalog & cart",
-      "Payment integration",
-      "CMS content panel",
-      "Responsive (RWD)",
-      "Deployment",
+      "Web and mobile version",
+      "Design and arrange interiors",
+      "Room planning and item placement",
+      "Own the code or pay monthly",
+      "Deployment and technical support",
     ],
   },
 ];

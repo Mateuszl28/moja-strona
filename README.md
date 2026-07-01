@@ -1,14 +1,15 @@
 # Portfolio — Mateusz Łagocki
 
-Profesjonalne portfolio programisty zbudowane w Next.js 14, TypeScript i Tailwind CSS.
+Portfolio frontend developera zbudowane w Next.js 14 (App Router), TypeScript i Tailwind CSS.
 
 ## Stack
 
 - **Next.js 14** (App Router)
 - **TypeScript**
-- **Tailwind CSS** + animacje
+- **Tailwind CSS** — style
 - **Framer Motion** — animacje
 - **Lucide React** — ikony
+- **Web3Forms** — obsługa formularza kontaktowego (bez backendu)
 
 ## Uruchomienie lokalne
 
@@ -17,7 +18,7 @@ npm install
 npm run dev
 ```
 
-Otwórz [http://localhost:3000](http://localhost:3000) w przeglądarce.
+Otwórz [http://localhost:3000](http://localhost:3000).
 
 ## Build produkcyjny
 
@@ -26,45 +27,55 @@ npm run build
 npm start
 ```
 
+## Konfiguracja (zmienne środowiskowe)
+
+Skopiuj `.env.local.example` jako `.env.local` i uzupełnij:
+
+| Zmienna | Opis |
+|---------|------|
+| `NEXT_PUBLIC_WEB3FORMS_KEY` | Klucz dostępu z [web3forms.com](https://web3forms.com) — formularz kontaktowy (klucz jest publiczny, trafia do klienta). |
+| `NEXT_PUBLIC_SITE_URL` | Bazowy URL strony (SEO, OG, sitemap). Produkcja: `https://programujzmateuszem.pl`. |
+
 ## Struktura
 
 ```
 .
 ├── app/
-│   ├── layout.tsx      # główny layout
-│   ├── page.tsx        # strona główna
-│   └── globals.css     # style globalne
+│   ├── layout.tsx          # layout, metadata SEO, JSON-LD
+│   ├── page.tsx            # strona główna
+│   ├── template.tsx        # animacja przejść między stronami
+│   ├── globals.css         # style globalne + zmienne motywu
+│   ├── icon.tsx            # favicon (next/og)
+│   ├── opengraph-image.tsx # obrazek OG (next/og)
+│   ├── sitemap.ts / robots.ts
+│   ├── projekty/page.tsx   # lista projektów
+│   └── kontakt/page.tsx    # formularz + dane kontaktowe
 ├── components/
-│   ├── Navbar.tsx
-│   ├── Hero.tsx
-│   ├── About.tsx
-│   ├── Skills.tsx
-│   ├── Projects.tsx
-│   ├── Contact.tsx
-│   ├── Footer.tsx
-│   └── BackgroundBlobs.tsx
-└── public/
+│   ├── Nav.tsx             # nawigacja
+│   ├── Footer.tsx          # stopka
+│   ├── Landing.tsx         # sekcja hero (strona główna)
+│   ├── ProjectsGrid.tsx    # siatka projektów
+│   ├── ProjectCard.tsx     # pojedyncza karta projektu
+│   ├── ContactForm.tsx     # formularz kontaktowy (Web3Forms)
+│   ├── CTA.tsx             # sekcja call-to-action
+│   └── Reveal.tsx          # animacja wejścia przy scrollu
+└── lib/
+    └── projects.ts         # lista projektów (edytuj tutaj)
 ```
 
 ## Co dostosować
 
-Wszystkie miejsca, gdzie warto wpisać własne dane:
-
 | Plik | Co zmienić |
 |------|-----------|
-| `components/Hero.tsx` | Hasło powitalne, social linki |
-| `components/About.tsx` | Tekst "o mnie" |
-| `components/Skills.tsx` | Lista technologii i poziomów |
-| `components/Projects.tsx` | Tablica `projects` — twoje projekty + linki |
-| `components/Contact.tsx` | Email, GitHub, LinkedIn |
-| `components/Footer.tsx` | Social linki w stopce |
-| `app/layout.tsx` | Metadata strony (SEO) |
+| `lib/projects.ts` | Lista projektów — tytuły, opisy, tagi, linki |
+| `components/Landing.tsx` | Hasło na stronie głównej |
+| `app/kontakt/page.tsx`, `components/Footer.tsx` | E-mail, GitHub |
+| `app/layout.tsx` | Metadata SEO, JSON-LD |
+| `app/globals.css` + `tailwind.config.ts` | Kolory motywu (akcent `#c98a4b`) |
 
 ## Deploy
 
-Najłatwiej na [Vercel](https://vercel.com) — wystarczy podłączyć repo GitHuba.
-
-```bash
-npm i -g vercel
-vercel
-```
+Aplikacja działa jako proces Next.js (`npm start`, port 3000) za reverse proxy nginx na VPS.
+Konfiguracja serwera: [`deploy/nginx-portfolio.conf`](deploy/nginx-portfolio.conf) — zawiera
+TLS (Let's Encrypt), przekierowanie HTTP→HTTPS, nagłówki bezpieczeństwa, gzip i cache statyków
+wraz z instrukcją uruchomienia certbota.

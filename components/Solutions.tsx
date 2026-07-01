@@ -10,27 +10,36 @@ const orderSummary = (
   en: boolean,
   name: string,
   price: number,
-  features: string[]
+  features: string[],
+  soon: boolean
 ) =>
   en
     ? [
-        "Ready-made solution order",
+        soon ? "Enquiry about an upcoming product" : "Ready-made solution order",
         `• Product: ${name} (${zl(price)})`,
         `• Includes: ${features.join(", ")}`,
       ].join("\n")
     : [
-        "Zamówienie gotowego rozwiązania",
+        soon
+          ? "Zapytanie o zapowiadany produkt"
+          : "Zamówienie gotowego rozwiązania",
         `• Produkt: ${name} (${zl(price)})`,
         `• Zawiera: ${features.join(", ")}`,
       ].join("\n");
 
 export default function Solutions({ en = false }: { en?: boolean }) {
   const t = en
-    ? { empty: "Ready-made solutions are coming soon.", buy: "Buy now", order: "Order" }
+    ? {
+        empty: "Ready-made solutions are coming soon.",
+        buy: "Buy now",
+        order: "Order",
+        ask: "Ask about availability",
+      }
     : {
         empty: "Gotowe rozwiązania pojawią się tutaj wkrótce.",
         buy: "Kup teraz",
         order: "Zamawiam",
+        ask: "Zapytaj o dostępność",
       };
   const contactHref = en ? "/en/contact" : "/kontakt";
 
@@ -50,6 +59,9 @@ export default function Solutions({ en = false }: { en?: boolean }) {
         const name = en ? s.nameEn ?? s.name : s.name;
         const description = en ? s.descriptionEn ?? s.description : s.description;
         const features = en ? s.featuresEn ?? s.features : s.features;
+        const badge = en ? s.badgeEn ?? s.badge : s.badge;
+        const priceNote = en ? s.priceNoteEn ?? s.priceNote : s.priceNote;
+        const priceAlt = en ? s.priceAltEn ?? s.priceAlt : s.priceAlt;
         return (
           <Reveal key={s.id} delay={i * 0.06} className="h-full">
             <div
@@ -59,9 +71,9 @@ export default function Solutions({ en = false }: { en?: boolean }) {
                   : "border-[var(--line)] bg-[var(--surface)]"
               }`}
             >
-              {s.badge && (
+              {badge && (
                 <span className="absolute -top-3 left-6 rounded-full bg-accent px-3 py-1 text-xs font-medium text-[var(--paper)]">
-                  {s.badge}
+                  {badge}
                 </span>
               )}
 
@@ -70,9 +82,21 @@ export default function Solutions({ en = false }: { en?: boolean }) {
                 {description}
               </p>
 
-              <p className="mt-5 text-3xl font-semibold tracking-tight">
-                {zl(s.price)}
-              </p>
+              <div className="mt-5">
+                <p className="flex flex-wrap items-baseline gap-x-2 text-3xl font-semibold tracking-tight">
+                  {zl(s.price)}
+                  {priceNote && (
+                    <span className="text-sm font-normal text-[var(--ink-soft)]">
+                      {priceNote}
+                    </span>
+                  )}
+                </p>
+                {priceAlt && (
+                  <p className="mt-1 text-sm text-[var(--ink-soft)]">
+                    {priceAlt}
+                  </p>
+                )}
+              </div>
 
               <ul className="mt-6 flex-1 space-y-2.5 border-t border-[var(--line)] pt-5 text-sm">
                 {features.map((f) => (
@@ -103,12 +127,12 @@ export default function Solutions({ en = false }: { en?: boolean }) {
                   onClick={() =>
                     sessionStorage.setItem(
                       "wycena_summary",
-                      orderSummary(en, name, s.price, features)
+                      orderSummary(en, name, s.price, features, !!s.soon)
                     )
                   }
                   className="group mt-7 inline-flex items-center justify-center gap-2 rounded-full border border-[var(--line)] px-5 py-3 text-sm font-medium text-[var(--ink)] transition-colors hover:border-accent/40"
                 >
-                  {t.order}
+                  {s.soon ? t.ask : t.order}
                   <ArrowUpRight
                     size={16}
                     className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"

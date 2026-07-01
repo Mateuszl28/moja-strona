@@ -5,7 +5,7 @@ import Reveal from "@/components/Reveal";
 export const metadata: Metadata = {
   title: "Sklep",
   description:
-    "Gotowe rozwiązania do kupienia — landingi, szablony i motywy do szybkiego startu.",
+    "Gotowe rozwiązania i autorskie aplikacje — m.in. aplikacja do projektowania wnętrz. Wkrótce dostępne.",
   alternates: { canonical: "/sklep" },
 };
 
@@ -21,8 +21,9 @@ export default function SklepPage() {
             Gotowe rozwiązania
           </h1>
           <p className="mt-5 max-w-xl text-lg leading-relaxed text-[var(--ink-soft)]">
-            Nie chcesz czekać na projekt od zera? Wybierz gotowca — szybki start,
-            gotowy do personalizacji i&nbsp;wdrożenia.
+            Autorskie aplikacje i&nbsp;gotowe rozwiązania. Pierwszy produkt —
+            aplikacja do projektowania wnętrz — pojawi się tu wkrótce. Chcesz
+            wiedzieć pierwszy? Zapytaj o&nbsp;dostępność.
           </p>
         </Reveal>
       </section>
