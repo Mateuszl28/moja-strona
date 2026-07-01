@@ -80,4 +80,14 @@ export const projects: Project[] = [
     year: "2026",
     featured: true,
   },
+  {
+    title: "Enova Cleaner",
+    description:
+      "Narzędzie konsolowe automatyzujące archiwizację i retencję kopii zapasowych baz danych w Azure Blob Storage — przenosi miesięczne kopie do archiwum i usuwa starsze kopie dzienne. Opakowuje AzCopy.",
+    category: "Rozwiązania",
+    tags: ["C#", ".NET", "Azure"],
+    repo: "https://github.com/Mateuszl28/Enova_cleaner",
+    year: "2026",
+    featured: true,
+  },
 ];
