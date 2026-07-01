@@ -16,7 +16,7 @@ import {
 // Zaokrąglanie widełek do 10 zł (ceny bywają niskie — 100 zł by je zawyżało).
 const round10 = (n: number) => Math.round(n / 10) * 10;
 
-export default function QuoteCalculator() {
+export default function QuoteCalculator({ en = false }: { en?: boolean }) {
   const [typeId, setTypeId] = useState<string>(projectTypes[0].id);
   const [pages, setPages] = useState<number>(1);
   const [features, setFeatures] = useState<string[]>([]);
@@ -28,6 +28,75 @@ export default function QuoteCalculator() {
   const design = designOptions.find((d) => d.id === designId)!;
   const timeline = timelineOptions.find((t) => t.id === timelineId)!;
 
+  // Etykieta wg języka (fallback do PL).
+  const lbl = (o: { label: string; labelEn?: string }) =>
+    en && o.labelEn ? o.labelEn : o.label;
+
+  const ui = en
+    ? {
+        projectType: "Project type",
+        from: "from",
+        pages: "Number of pages",
+        pagesHint: (p: string) => `First page included, each extra +${p}.`,
+        addons: "Add-ons",
+        tbd: "to be decided",
+        design: "Design",
+        timeline: "Timeline",
+        estimate: "Estimated quote",
+        time: (w: number) => `Estimated time: ~${w} weeks`,
+        tbdNote: "+ items to be decided (e.g. SEO)",
+        send: "Send inquiry",
+        copied: "Copied — paste it in the form",
+        copy: "Copy summary",
+        disclaimer:
+          "This estimate is rough and depends on the details. We'll confirm the final price and timeline in a short call.",
+        extraPages: (n: number) => `Extra pages (+${n})`,
+        express: (p: number) => `Express (+${p}%)`,
+        sumHeader: "Quote request",
+        sType: "Type",
+        sPages: "Pages",
+        sFeatures: "Features",
+        sNone: "no add-ons",
+        sDesign: "Design",
+        sTimeline: "Timeline",
+        sQuote: "Estimated quote",
+        sTbd: "+ items to be decided",
+        sRough: "(rough)",
+        sTime: (w: number) => `Estimated time: ~${w} weeks`,
+      }
+    : {
+        projectType: "Rodzaj projektu",
+        from: "od",
+        pages: "Liczba podstron",
+        pagesHint: (p: string) =>
+          `Pierwsza podstrona w cenie bazowej, każda kolejna +${p}.`,
+        addons: "Dodatkowe funkcje",
+        tbd: "do ustalenia",
+        design: "Projekt graficzny",
+        timeline: "Termin realizacji",
+        estimate: "Szacowana wycena",
+        time: (w: number) => `Szacowany czas: ok. ${w} tyg.`,
+        tbdNote: "+ pozycje do ustalenia (np. SEO)",
+        send: "Wyślij zapytanie",
+        copied: "Skopiowano — wklej w formularzu",
+        copy: "Kopiuj podsumowanie",
+        disclaimer:
+          "Wycena jest orientacyjna i zależy od szczegółów. Ostateczną kwotę i termin ustalamy po krótkiej rozmowie.",
+        extraPages: (n: number) => `Podstrony (+${n})`,
+        express: (p: number) => `Ekspres (+${p}%)`,
+        sumHeader: "Zapytanie o wycenę",
+        sType: "Rodzaj",
+        sPages: "Podstrony",
+        sFeatures: "Funkcje",
+        sNone: "brak dodatkowych",
+        sDesign: "Grafika",
+        sTimeline: "Termin",
+        sQuote: "Szacowana wycena",
+        sTbd: "+ pozycje do ustalenia",
+        sRough: "(orientacyjnie)",
+        sTime: (w: number) => `Szacowany czas: ok. ${w} tyg.`,
+      };
+
   const toggleFeature = (id: string) =>
     setFeatures((prev) =>
       prev.includes(id) ? prev.filter((f) => f !== id) : [...prev, id]
@@ -36,29 +105,26 @@ export default function QuoteCalculator() {
   const { low, high, weeks, lines, hasTbd } = useMemo(() => {
     const extraPages = Math.max(0, pages - INCLUDED_PAGES);
     const lines: { label: string; price: number; note?: string }[] = [
-      { label: type.label, price: type.base },
+      { label: lbl(type), price: type.base },
     ];
     if (extraPages > 0) {
-      lines.push({
-        label: `Podstrony (+${extraPages})`,
-        price: extraPages * PAGE_PRICE,
-      });
+      lines.push({ label: ui.extraPages(extraPages), price: extraPages * PAGE_PRICE });
     }
     for (const f of featuresList) {
       if (!features.includes(f.id)) continue;
       lines.push(
         f.tbd
-          ? { label: f.label, price: 0, note: "do ustalenia" }
-          : { label: f.label, price: f.price }
+          ? { label: lbl(f), price: 0, note: ui.tbd }
+          : { label: lbl(f), price: f.price }
       );
     }
-    if (design.price > 0) lines.push({ label: design.label, price: design.price });
+    if (design.price > 0) lines.push({ label: lbl(design), price: design.price });
 
     const subtotal = lines.reduce((sum, l) => sum + l.price, 0);
     const surcharge = subtotal * (timeline.mult - 1);
     if (surcharge > 0) {
       lines.push({
-        label: `Ekspres (+${Math.round((timeline.mult - 1) * 100)}%)`,
+        label: ui.express(Math.round((timeline.mult - 1) * 100)),
         price: surcharge,
       });
     }
@@ -70,29 +136,29 @@ export default function QuoteCalculator() {
     const hasTbd = featuresList.some((f) => features.includes(f.id) && f.tbd);
 
     return { low: round10(total), high: round10(total * 1.25), weeks, lines, hasTbd };
-  }, [type, pages, features, design, timeline, designId]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [type, pages, features, design, timeline, designId, en]);
 
   const summaryText = useMemo(() => {
     const parts = [
-      `Rodzaj: ${type.label}`,
-      `Podstrony: ${pages}`,
-      `Funkcje: ${
+      `${ui.sType}: ${lbl(type)}`,
+      `${ui.sPages}: ${pages}`,
+      `${ui.sFeatures}: ${
         features.length
           ? featuresList
               .filter((f) => features.includes(f.id))
-              .map((f) => f.label)
+              .map((f) => lbl(f))
               .join(", ")
-          : "brak dodatkowych"
+          : ui.sNone
       }`,
-      `Grafika: ${design.label}`,
-      `Termin: ${timeline.label}`,
-      `Szacowana wycena: ${zl(low)} – ${zl(high)}${
-        hasTbd ? " + pozycje do ustalenia" : ""
-      } (orientacyjnie)`,
-      `Szacowany czas: ok. ${weeks} tyg.`,
+      `${ui.sDesign}: ${lbl(design)}`,
+      `${ui.sTimeline}: ${lbl(timeline)}`,
+      `${ui.sQuote}: ${zl(low)} – ${zl(high)}${hasTbd ? ` ${ui.sTbd}` : ""} ${ui.sRough}`,
+      ui.sTime(weeks),
     ];
-    return "Zapytanie o wycenę\n" + parts.map((p) => `• ${p}`).join("\n");
-  }, [type, pages, features, design, timeline, low, high, weeks, hasTbd]);
+    return ui.sumHeader + "\n" + parts.map((p) => `• ${p}`).join("\n");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [type, pages, features, design, timeline, low, high, weeks, hasTbd, en]);
 
   const copySummary = async () => {
     try {
@@ -100,17 +166,18 @@ export default function QuoteCalculator() {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch {
-      /* schowek niedostępny — trudno, użytkownik ma link do kontaktu */
+      /* schowek niedostępny — użytkownik ma link do kontaktu */
     }
   };
+
+  const contactHref = en ? "/en/contact" : "/kontakt";
 
   return (
     <div className="grid gap-6 lg:grid-cols-[1.35fr_1fr] lg:items-start">
       {/* ── FORMULARZ ── */}
       <div className="space-y-8">
-        {/* Rodzaj projektu */}
         <fieldset>
-          <legend className="mb-3 text-sm font-medium">Rodzaj projektu</legend>
+          <legend className="mb-3 text-sm font-medium">{ui.projectType}</legend>
           <div className="grid gap-3 sm:grid-cols-2">
             {projectTypes.map((t) => {
               const active = t.id === typeId;
@@ -126,12 +193,12 @@ export default function QuoteCalculator() {
                       : "border-[var(--line)] bg-[var(--surface)] hover:border-accent/30 hover:bg-[var(--surface-hover)]"
                   }`}
                 >
-                  <span className="block font-medium">{t.label}</span>
+                  <span className="block font-medium">{lbl(t)}</span>
                   <span className="mt-1 block text-sm text-[var(--ink-soft)]">
-                    {t.desc}
+                    {en ? t.descEn : t.desc}
                   </span>
                   <span className="mt-2 block font-mono text-xs text-accent">
-                    od {zl(t.base)}
+                    {ui.from} {zl(t.base)}
                   </span>
                 </button>
               );
@@ -139,10 +206,9 @@ export default function QuoteCalculator() {
           </div>
         </fieldset>
 
-        {/* Liczba podstron */}
         <div>
           <label htmlFor="pages" className="mb-3 block text-sm font-medium">
-            Liczba podstron
+            {ui.pages}
           </label>
           <div className="flex items-center gap-3">
             <input
@@ -155,17 +221,17 @@ export default function QuoteCalculator() {
               className="h-1 w-full max-w-xs cursor-pointer appearance-none rounded-full bg-[var(--paper-soft)] accent-accent"
             />
             <span className="w-16 font-mono text-sm tabular-nums text-[var(--ink-soft)]">
-              {pages}{pages >= 20 ? "+" : ""}
+              {pages}
+              {pages >= 20 ? "+" : ""}
             </span>
           </div>
           <p className="mt-2 text-xs text-[var(--ink-soft)]">
-            Pierwsza podstrona w cenie bazowej, każda kolejna +{zl(PAGE_PRICE)}.
+            {ui.pagesHint(zl(PAGE_PRICE))}
           </p>
         </div>
 
-        {/* Funkcje */}
         <fieldset>
-          <legend className="mb-3 text-sm font-medium">Dodatkowe funkcje</legend>
+          <legend className="mb-3 text-sm font-medium">{ui.addons}</legend>
           <div className="grid gap-2 sm:grid-cols-2">
             {featuresList.map((f) => {
               const active = features.includes(f.id);
@@ -194,9 +260,9 @@ export default function QuoteCalculator() {
                   >
                     {active && <Check size={12} strokeWidth={3} />}
                   </span>
-                  <span className="flex-1">{f.label}</span>
+                  <span className="flex-1">{lbl(f)}</span>
                   <span className="font-mono text-xs text-[var(--ink-soft)]">
-                    {f.tbd ? "do ustalenia" : `+${zl(f.price)}`}
+                    {f.tbd ? ui.tbd : `+${zl(f.price)}`}
                   </span>
                 </label>
               );
@@ -204,9 +270,8 @@ export default function QuoteCalculator() {
           </div>
         </fieldset>
 
-        {/* Grafika */}
         <fieldset>
-          <legend className="mb-3 text-sm font-medium">Projekt graficzny</legend>
+          <legend className="mb-3 text-sm font-medium">{ui.design}</legend>
           <div className="flex flex-wrap gap-2">
             {designOptions.map((d) => {
               const active = d.id === designId;
@@ -222,7 +287,7 @@ export default function QuoteCalculator() {
                       : "border-[var(--line)] text-[var(--ink-soft)] hover:border-accent/30 hover:text-[var(--ink)]"
                   }`}
                 >
-                  {d.label}
+                  {lbl(d)}
                   {d.price > 0 && (
                     <span className="ml-2 font-mono text-xs text-[var(--ink-soft)]">
                       +{zl(d.price)}
@@ -234,9 +299,8 @@ export default function QuoteCalculator() {
           </div>
         </fieldset>
 
-        {/* Termin */}
         <fieldset>
-          <legend className="mb-3 text-sm font-medium">Termin realizacji</legend>
+          <legend className="mb-3 text-sm font-medium">{ui.timeline}</legend>
           <div className="flex flex-wrap gap-2">
             {timelineOptions.map((t) => {
               const active = t.id === timelineId;
@@ -252,7 +316,7 @@ export default function QuoteCalculator() {
                       : "border-[var(--line)] text-[var(--ink-soft)] hover:border-accent/30 hover:text-[var(--ink)]"
                   }`}
                 >
-                  {t.label}
+                  {lbl(t)}
                   {t.mult > 1 && (
                     <span className="ml-2 font-mono text-xs text-[var(--ink-soft)]">
                       +{Math.round((t.mult - 1) * 100)}%
@@ -269,20 +333,13 @@ export default function QuoteCalculator() {
       <div className="lg:sticky lg:top-24">
         <div className="rounded-2xl border border-accent/20 bg-[var(--paper-soft)] p-6 sm:p-7">
           <p className="font-mono text-xs uppercase tracking-[0.16em] text-accent">
-            Szacowana wycena
+            {ui.estimate}
           </p>
           <p className="mt-3 text-3xl font-semibold tracking-tight tabular-nums">
-            {zl(low)}{" "}
-            <span className="text-[var(--ink-soft)]">–</span> {zl(high)}
+            {zl(low)} <span className="text-[var(--ink-soft)]">–</span> {zl(high)}
           </p>
-          <p className="mt-1 text-sm text-[var(--ink-soft)]">
-            Szacowany czas: ok. {weeks} tyg.
-          </p>
-          {hasTbd && (
-            <p className="mt-1 text-sm text-accent">
-              + pozycje do ustalenia (np. SEO)
-            </p>
-          )}
+          <p className="mt-1 text-sm text-[var(--ink-soft)]">{ui.time(weeks)}</p>
+          {hasTbd && <p className="mt-1 text-sm text-accent">{ui.tbdNote}</p>}
 
           <ul className="mt-6 space-y-2 border-t border-[var(--line)] pt-5 text-sm">
             {lines.map((l, i) => (
@@ -297,13 +354,13 @@ export default function QuoteCalculator() {
 
           <div className="mt-6 flex flex-col gap-2.5">
             <Link
-              href="/kontakt"
+              href={contactHref}
               onClick={() =>
                 sessionStorage.setItem("wycena_summary", summaryText)
               }
               className="group inline-flex items-center justify-center gap-2 rounded-full bg-[var(--ink)] px-5 py-3 text-sm font-medium text-[var(--paper)] transition-transform hover:-translate-y-0.5"
             >
-              Wyślij zapytanie
+              {ui.send}
               <ArrowUpRight
                 size={16}
                 className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
@@ -316,19 +373,18 @@ export default function QuoteCalculator() {
             >
               {copied ? (
                 <>
-                  <Check size={15} /> Skopiowano — wklej w formularzu
+                  <Check size={15} /> {ui.copied}
                 </>
               ) : (
                 <>
-                  <Copy size={15} /> Kopiuj podsumowanie
+                  <Copy size={15} /> {ui.copy}
                 </>
               )}
             </button>
           </div>
 
           <p className="mt-5 text-xs leading-relaxed text-[var(--ink-soft)]">
-            Wycena jest orientacyjna i zależy od szczegółów. Ostateczną kwotę i
-            termin ustalamy po krótkiej rozmowie.
+            {ui.disclaimer}
           </p>
         </div>
       </div>

@@ -9,6 +9,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "",
     "/en",
     "/en/projects",
+    "/en/quote",
     "/en/contact",
     "/projekty",
     "/wycena",

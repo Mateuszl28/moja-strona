@@ -81,6 +81,12 @@ export default function EnHome() {
               <ArrowUpRight size={16} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </Link>
             <Link
+              href="/en/quote"
+              className="inline-flex items-center gap-2 rounded-full border border-[var(--line)] px-6 py-3 text-sm font-medium text-[var(--ink)] transition-colors hover:border-accent/40"
+            >
+              Get a quote
+            </Link>
+            <Link
               href="/en/projects"
               className="inline-flex items-center gap-2 rounded-full border border-[var(--line)] px-6 py-3 text-sm font-medium text-[var(--ink)] transition-colors hover:border-accent/40"
             >
