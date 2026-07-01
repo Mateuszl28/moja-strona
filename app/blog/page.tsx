@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import Reveal from "@/components/Reveal";
+import Newsletter from "@/components/Newsletter";
 import { posts, formatDate, readingTime } from "@/lib/posts";
 
 export const metadata: Metadata = {
@@ -74,6 +75,12 @@ export default function BlogPage() {
             ))}
           </div>
         )}
+      </section>
+
+      <section className="mx-auto max-w-content px-6 pb-24">
+        <Reveal>
+          <Newsletter />
+        </Reveal>
       </section>
     </main>
   );

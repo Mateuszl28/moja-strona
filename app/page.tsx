@@ -1,6 +1,7 @@
 import Landing from "@/components/Landing";
 import Services from "@/components/Services";
 import FeaturedProjects from "@/components/FeaturedProjects";
+import Stats from "@/components/Stats";
 import About from "@/components/About";
 import Process from "@/components/Process";
 import WhyMe from "@/components/WhyMe";
@@ -14,6 +15,7 @@ export default function Home() {
       <Landing />
       <Services />
       <FeaturedProjects />
+      <Stats />
       <About />
       <Process />
       <WhyMe />
