@@ -5,7 +5,7 @@ const BASE_URL =
   process.env.NEXT_PUBLIC_SITE_URL || "https://programujzmateuszem.pl";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const routes = ["", "/projekty", "/wycena", "/blog", "/kontakt"];
+  const routes = ["", "/en", "/projekty", "/wycena", "/blog", "/kontakt"];
   const staticRoutes = routes.map((path) => ({
     url: `${BASE_URL}${path}`,
     lastModified: new Date(),

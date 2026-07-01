@@ -44,6 +44,7 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: "/",
+    languages: { "pl-PL": "/", en: "/en" },
     types: {
       "application/rss+xml": [{ url: "/rss.xml", title: "Blog — Mateusz Łagocki" }],
     },

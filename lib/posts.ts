@@ -17,6 +17,48 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "ciemny-motyw-tailwind-jeden-akcent",
+    title: "Ciemny motyw w Tailwind — jeden akcent zamiast tęczy",
+    excerpt:
+      "Jak zrobiłem ciepły, ciemny motyw z jednym amberowym akcentem — zmienne CSS zamiast rozsypanych kolorów, powściągliwie i po ludzku.",
+    date: "2026-07-01",
+    tags: ["Tailwind CSS", "CSS", "Design", "UI"],
+    content: [
+      {
+        type: "p",
+        text: "Domyślny „AI look” strony to tęczowe gradienty (fiolet → róż → pomarańcz), glassmorfizm na wszystkim i pulsujące bloby. Chciałem czegoś odwrotnego: ciemne, ciepłe tło i jeden spokojny akcent.",
+      },
+      { type: "h2", text: "Motyw w zmiennych CSS" },
+      {
+        type: "p",
+        text: "Kolory trzymam w :root jako zmienne — tło, tekst, akcent, linie. Komponenty używają var(...), więc zmiana całego motywu to kilka linii, a nie polowanie po klasach w każdym pliku.",
+      },
+      {
+        type: "code",
+        text: ":root {\n  --paper: #14120f;  /* tło */\n  --ink: #f3f0e9;    /* tekst */\n  --accent: #e0a96d; /* jeden ciepły amber */\n  --line: rgba(243, 240, 233, 0.1);\n}\n\n/* w komponencie */\nclassName=\"bg-[var(--paper)] text-[var(--ink)]\"",
+      },
+      { type: "h2", text: "Jeden akcent, nie tęcza" },
+      {
+        type: "p",
+        text: "Zamiast trzech kolorów w gradiencie — jeden ciepły amber, używany oszczędnie. Nagłówki zostają w bieli, akcent ląduje tylko na detalach: aktywnych linkach, obrysie kart na hover, jednej miękkiej poświacie za hero.",
+      },
+      { type: "h2", text: "Powściągliwe animacje" },
+      {
+        type: "p",
+        text: "Subtelne wejścia treści, miękkie przełączanie zakładek, żadnych pulsujących gadżetów. I zawsze respekt dla osób, które animacji nie chcą:",
+      },
+      {
+        type: "code",
+        text: "@media (prefers-reduced-motion: reduce) {\n  *, *::before, *::after {\n    animation-duration: 0.01ms !important;\n    transition-duration: 0.01ms !important;\n  }\n}",
+      },
+      { type: "h2", text: "Efekt" },
+      {
+        type: "p",
+        text: "Mniej „szablonowo i generycznie”, bardziej jak coś zrobionego przez człowieka. Czasem jeden dobrze dobrany kolor robi więcej niż dziesięć.",
+      },
+    ],
+  },
+  {
     slug: "kalkulator-wyceny-nextjs-bez-backendu",
     title: "Kalkulator wyceny w Next.js — bez backendu",
     excerpt:

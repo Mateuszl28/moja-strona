@@ -31,6 +31,9 @@ export default function Nav() {
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
 
+  const isEn = pathname.startsWith("/en");
+  const langHref = isEn ? "/" : "/en";
+
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
@@ -67,6 +70,14 @@ export default function Nav() {
               </li>
             );
           })}
+          <li className="ml-1 border-l border-[var(--line)] pl-2">
+            <Link
+              href={langHref}
+              className="rounded-full px-3 py-1.5 font-mono text-xs text-[var(--ink-soft)] transition-colors hover:text-[var(--ink)]"
+            >
+              {isEn ? "PL" : "EN"}
+            </Link>
+          </li>
         </ul>
 
         {/* Hamburger (mobile) */}
@@ -107,6 +118,15 @@ export default function Nav() {
                 </li>
               );
             })}
+            <li>
+              <Link
+                href={langHref}
+                onClick={() => setOpen(false)}
+                className="block rounded-lg px-3.5 py-2.5 font-mono text-[var(--ink-soft)] transition-colors hover:text-[var(--ink)]"
+              >
+                {isEn ? "Polski" : "English"}
+              </Link>
+            </li>
           </ul>
         </div>
       )}
