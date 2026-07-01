@@ -37,6 +37,12 @@ export const metadata: Metadata = {
     description:
       "Portfolio Mateusza Łagockiego — frontend developer. React, Next.js, TypeScript.",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Mateusz Łagocki — Frontend Developer",
+    description:
+      "Portfolio Mateusza Łagockiego — frontend developer. React, Next.js, TypeScript.",
+  },
   robots: {
     index: true,
     follow: true,
