@@ -4,6 +4,7 @@ import FeaturedProjects from "@/components/FeaturedProjects";
 import About from "@/components/About";
 import Process from "@/components/Process";
 import WhyMe from "@/components/WhyMe";
+import Testimonials from "@/components/Testimonials";
 import CTA from "@/components/CTA";
 
 export default function Home() {
@@ -15,6 +16,7 @@ export default function Home() {
       <About />
       <Process />
       <WhyMe />
+      <Testimonials />
       <CTA />
     </main>
   );

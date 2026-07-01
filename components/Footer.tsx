@@ -24,6 +24,9 @@ export default function Footer() {
           <Link href="/wycena" className="transition-colors hover:text-[var(--ink)]">
             Wycena
           </Link>
+          <Link href="/blog" className="transition-colors hover:text-[var(--ink)]">
+            Blog
+          </Link>
           <Link href="/kontakt" className="transition-colors hover:text-[var(--ink)]">
             Kontakt
           </Link>
@@ -46,8 +49,14 @@ export default function Footer() {
         </nav>
       </div>
 
-      <div className="mx-auto max-w-content px-6 pb-8 text-xs text-[var(--ink-soft)]">
-        © 2026 Mateusz Łagocki
+      <div className="mx-auto flex max-w-content flex-wrap items-center justify-between gap-2 px-6 pb-8 text-xs text-[var(--ink-soft)]">
+        <span>© 2026 Mateusz Łagocki</span>
+        <Link
+          href="/polityka-prywatnosci"
+          className="transition-colors hover:text-[var(--ink)]"
+        >
+          Polityka prywatności
+        </Link>
       </div>
     </footer>
   );
