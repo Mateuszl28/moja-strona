@@ -23,4 +23,26 @@ export type Project = {
 
 // Edytuj tę listę, żeby dodać/zmienić projekty.
 // Każdy projekt musi mieć `category` z listy powyżej. featured: true => też na stronie głównej.
-export const projects: Project[] = [];
+export const projects: Project[] = [
+  {
+    title: "Vibe — sklep streetwear",
+    description:
+      "Sklep ze streetwearem premium (bluzy, koszulki z bawełny). Katalog z filtrowaniem, koszyk, płatności BLIK/Przelewy24 i pełny proces zakupowy.",
+    category: "Sklepy www",
+    tags: ["JavaScript", "HTML & CSS", "E-commerce"],
+    href: "https://www.vibeleszno.com",
+    repo: "https://github.com/Mateuszl28/Vibe",
+    year: "2026",
+    featured: true,
+  },
+  {
+    title: "Nawia — biżuteria",
+    description:
+      "Sklep marki biżuterii inspirowanej księżycem — ręcznie robione naszyjniki ze stali chirurgicznej i naturalnych kamieni. Koszyk, ulubione i konto użytkownika.",
+    category: "Sklepy www",
+    tags: ["Next.js", "React", "E-commerce"],
+    href: "https://nawiabizuteria.pl",
+    year: "2026",
+    featured: true,
+  },
+];
