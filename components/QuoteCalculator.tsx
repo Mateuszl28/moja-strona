@@ -50,15 +50,15 @@ const PAGE_PRICE = 80; // za każdą podstronę ponad pierwszą
 const INCLUDED_PAGES = 1;
 
 const featuresList = [
-  { id: "form", label: "Formularz kontaktowy", price: 80 },
-  { id: "cms", label: "System CMS (samodzielna edycja treści)", price: 300 },
-  { id: "blog", label: "Blog / aktualności", price: 200 },
-  { id: "i18n", label: "Wielojęzyczność", price: 250 },
-  { id: "payments", label: "Integracja płatności", price: 350 },
-  { id: "auth", label: "Konta użytkowników / logowanie", price: 400 },
-  { id: "seo", label: "Optymalizacja SEO", price: 200 },
-  { id: "anim", label: "Zaawansowane animacje", price: 150 },
-  { id: "content", label: "Przygotowanie treści i grafik", price: 200 },
+  { id: "form", label: "Formularz kontaktowy", price: 50 },
+  { id: "cms", label: "System CMS (samodzielna edycja treści)", price: 150 },
+  { id: "blog", label: "Blog / aktualności", price: 100 },
+  { id: "i18n", label: "Wielojęzyczność", price: 120 },
+  { id: "payments", label: "Integracja płatności", price: 200 },
+  { id: "auth", label: "Konta użytkowników / logowanie", price: 250 },
+  { id: "seo", label: "Optymalizacja SEO", price: 100 },
+  { id: "anim", label: "Zaawansowane animacje", price: 80 },
+  { id: "content", label: "Przygotowanie treści i grafik", price: 120 },
 ] as const;
 
 const designOptions = [
