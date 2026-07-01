@@ -21,6 +21,9 @@ export default function Footer() {
           <Link href="/projekty" className="transition-colors hover:text-[var(--ink)]">
             Projekty
           </Link>
+          <Link href="/wycena" className="transition-colors hover:text-[var(--ink)]">
+            Wycena
+          </Link>
           <Link href="/kontakt" className="transition-colors hover:text-[var(--ink)]">
             Kontakt
           </Link>

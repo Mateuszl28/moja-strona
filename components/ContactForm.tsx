@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Loader2, Send, Check } from "lucide-react";
 
 type Status = "idle" | "loading" | "ok" | "error";
@@ -8,6 +8,17 @@ type Status = "idle" | "loading" | "ok" | "error";
 export default function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState<string>("");
+  const messageRef = useRef<HTMLTextAreaElement>(null);
+
+  // Prefill: jeśli klient przyszedł z /wycena („Wyślij zapytanie"), wstaw
+  // podsumowanie wyceny do wiadomości i wyczyść, żeby nie wróciło przy odświeżeniu.
+  useEffect(() => {
+    const saved = sessionStorage.getItem("wycena_summary");
+    if (saved && messageRef.current) {
+      messageRef.current.value = saved;
+      sessionStorage.removeItem("wycena_summary");
+    }
+  }, []);
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -88,6 +99,7 @@ export default function ContactForm() {
       <label className="grid gap-1.5 text-sm">
         <span className="text-[var(--ink-soft)]">Wiadomość</span>
         <textarea
+          ref={messageRef}
           name="message"
           required
           rows={4}

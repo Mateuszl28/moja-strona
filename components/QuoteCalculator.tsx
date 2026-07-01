@@ -298,6 +298,9 @@ export default function QuoteCalculator() {
           <div className="mt-6 flex flex-col gap-2.5">
             <Link
               href="/kontakt"
+              onClick={() =>
+                sessionStorage.setItem("wycena_summary", summaryText)
+              }
               className="group inline-flex items-center justify-center gap-2 rounded-full bg-[var(--ink)] px-5 py-3 text-sm font-medium text-[var(--paper)] transition-transform hover:-translate-y-0.5"
             >
               Wyślij zapytanie
