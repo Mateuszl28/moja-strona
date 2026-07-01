@@ -1,15 +1,26 @@
 import { ArrowUpRight, Github } from "lucide-react";
 import type { Project } from "@/lib/projects";
+import { categoryEn } from "@/lib/projects";
 
-export default function ProjectCard({ project: p }: { project: Project }) {
+export default function ProjectCard({
+  project: p,
+  en = false,
+}: {
+  project: Project;
+  en?: boolean;
+}) {
+  const codeLabel = en ? "Code" : "Kod";
   // Normalizacja: wiele repo (p.repos) albo skrót p.repo → jednolita lista linków.
-  const repoLinks = p.repos ?? (p.repo ? [{ label: "Kod", href: p.repo }] : []);
+  const repoLinks = p.repos ?? (p.repo ? [{ label: codeLabel, href: p.repo }] : []);
+  const description = en ? p.descriptionEn ?? p.description : p.description;
+  const category = en ? categoryEn[p.category] : p.category;
+  const liveLabel = p.hrefLabel ?? (en ? "Live" : "Zobacz na żywo");
 
   return (
     <article className="group flex h-full flex-col rounded-2xl border border-[var(--line)] bg-[var(--surface)] p-6 backdrop-blur-sm transition-all hover:-translate-y-1 hover:border-accent/30 hover:bg-[var(--surface-hover)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.4)]">
       <div className="mb-4 flex items-center justify-between gap-3">
         <span className="font-mono text-xs uppercase tracking-[0.13em] text-accent">
-          {p.category}
+          {category}
         </span>
         <span className="font-mono text-xs text-[var(--ink-soft)]">{p.year}</span>
       </div>
@@ -17,7 +28,7 @@ export default function ProjectCard({ project: p }: { project: Project }) {
       <h3 className="text-lg font-medium transition-colors group-hover:text-accent">
         {p.title}
       </h3>
-      <p className="mt-2 flex-1 text-sm text-[var(--ink-soft)]">{p.description}</p>
+      <p className="mt-2 flex-1 text-sm text-[var(--ink-soft)]">{description}</p>
 
       <ul className="mt-5 flex flex-wrap gap-1.5">
         {p.tags.map((t) => (
@@ -39,7 +50,7 @@ export default function ProjectCard({ project: p }: { project: Project }) {
               rel="noreferrer"
               className="inline-flex items-center gap-1 font-medium text-[var(--ink)] transition-colors hover:text-accent"
             >
-              {p.hrefLabel ?? "Zobacz na żywo"}
+              {liveLabel}
               <ArrowUpRight size={15} />
             </a>
           )}
