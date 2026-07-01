@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import ProjectsGrid from "@/components/ProjectsGrid";
+import ProjectsBrowser from "@/components/ProjectsBrowser";
 import CTA from "@/components/CTA";
 import Reveal from "@/components/Reveal";
 import { projects } from "@/lib/projects";
@@ -55,7 +55,7 @@ export default function ProjektyPage() {
       </section>
 
       <section className="mx-auto max-w-content px-6 pb-8">
-        <ProjectsGrid items={projects} />
+        <ProjectsBrowser items={projects} />
       </section>
 
       <CTA />
