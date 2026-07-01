@@ -3,6 +3,7 @@ import Packages from "@/components/Packages";
 import QuoteCalculator from "@/components/QuoteCalculator";
 import Faq from "@/components/Faq";
 import Reveal from "@/components/Reveal";
+import { faqs } from "@/lib/faq";
 
 export const metadata: Metadata = {
   title: "Wycena",
@@ -11,9 +12,24 @@ export const metadata: Metadata = {
   alternates: { canonical: "/wycena" },
 };
 
+// Dane strukturalne FAQ — szansa na rich results w Google.
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
+
 export default function WycenaPage() {
   return (
     <main className="pt-28">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <section className="mx-auto max-w-content px-6 pb-12 pt-8">
         <Reveal>
           <p className="font-mono text-xs uppercase tracking-[0.18em] text-accent">
