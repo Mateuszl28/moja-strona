@@ -3,7 +3,7 @@ import type { Project } from "@/lib/projects";
 
 export default function ProjectCard({ project: p }: { project: Project }) {
   return (
-    <article className="group flex h-full flex-col rounded-2xl border border-[var(--line)] bg-white/70 p-6 backdrop-blur-sm transition-all hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(28,27,25,0.07)]">
+    <article className="group flex h-full flex-col rounded-2xl border border-[var(--line)] bg-[var(--surface)] p-6 backdrop-blur-sm transition-all hover:-translate-y-1 hover:border-accent/30 hover:bg-[var(--surface-hover)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.4)]">
       <div className="mb-4 flex items-center justify-between">
         <span className="font-mono text-xs text-[var(--ink-soft)]">{p.year}</span>
       </div>

@@ -1,5 +1,5 @@
-import type { Metadata } from "next";
-import { Inter, JetBrains_Mono, Space_Grotesk } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
@@ -16,17 +16,15 @@ const display = Space_Grotesk({
   display: "swap",
 });
 
-const mono = JetBrains_Mono({
-  subsets: ["latin", "latin-ext"],
-  variable: "--font-mono",
-  display: "swap",
-});
-
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "http://85.215.197.199";
+const BASE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL || "https://programujzmateuszem.pl";
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
-  title: "Mateusz Łagocki — Frontend Developer",
+  title: {
+    default: "Mateusz Łagocki — Frontend Developer",
+    template: "%s — Mateusz Łagocki",
+  },
   description:
     "Portfolio Mateusza Łagockiego — frontend developer. React, Next.js, TypeScript, Tailwind.",
   openGraph: {
@@ -46,13 +44,18 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
 };
 
+export const viewport: Viewport = {
+  themeColor: "#14120f",
+  colorScheme: "dark",
+};
+
 const personSchema = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: "Mateusz Łagocki",
   jobTitle: "Frontend Developer",
   url: BASE_URL,
-  email: "lagockimateusz6@gmail.com",
+  email: "kontakt@programujzmateuszem.pl",
   sameAs: ["https://github.com/Mateuszl28"],
   knowsAbout: ["React", "Next.js", "TypeScript", "Tailwind CSS", "JavaScript"],
   description:
@@ -74,7 +77,7 @@ export default function RootLayout({
   return (
     <html
       lang="pl"
-      className={`${inter.variable} ${display.variable} ${mono.variable}`}
+      className={`${inter.variable} ${display.variable}`}
     >
       <head>
         <script

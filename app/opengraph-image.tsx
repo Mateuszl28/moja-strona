@@ -14,16 +14,16 @@ export default function OpengraphImage() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          background: "#faf8f4",
+          background: "#14120f",
           padding: "80px",
           fontFamily: "sans-serif",
         }}
       >
         <div style={{ display: "flex", alignItems: "center" }}>
-          <span style={{ fontSize: 28, fontWeight: 700, color: "#1c1b19" }}>
+          <span style={{ fontSize: 28, fontWeight: 700, color: "#f3f0e9" }}>
             ML
           </span>
-          <span style={{ fontSize: 28, fontWeight: 700, color: "#c98a4b" }}>
+          <span style={{ fontSize: 28, fontWeight: 700, color: "#e0a96d" }}>
             .
           </span>
         </div>
@@ -34,7 +34,7 @@ export default function OpengraphImage() {
               display: "flex",
               fontSize: 62,
               fontWeight: 700,
-              color: "#1c1b19",
+              color: "#f3f0e9",
               lineHeight: 1.1,
               maxWidth: 980,
             }}
@@ -46,7 +46,7 @@ export default function OpengraphImage() {
               display: "flex",
               marginTop: 24,
               fontSize: 30,
-              color: "#c98a4b",
+              color: "#e0a96d",
             }}
           >
             Mateusz Łagocki — Frontend Developer
@@ -57,7 +57,7 @@ export default function OpengraphImage() {
           style={{
             display: "flex",
             fontSize: 24,
-            color: "#6b685e",
+            color: "#9b968a",
             fontFamily: "monospace",
           }}
         >

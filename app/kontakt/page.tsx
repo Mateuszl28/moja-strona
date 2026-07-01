@@ -34,23 +34,24 @@ export default function KontaktPage() {
       <section className="mx-auto max-w-content px-6 pb-16">
         <div className="grid gap-3 lg:grid-cols-[1.2fr_1fr]">
           <Reveal>
-            <div className="rounded-2xl border border-[var(--line)] bg-white/70 p-6 backdrop-blur-sm sm:p-8">
+            <div className="rounded-2xl border border-[var(--line)] bg-[var(--surface)] p-6 backdrop-blur-sm sm:p-8">
               <ContactForm />
             </div>
           </Reveal>
 
           <Reveal delay={0.08}>
-            <div className="flex h-full flex-col justify-between gap-8 rounded-2xl border border-[var(--line)] bg-[var(--ink)] p-6 text-[var(--paper)] sm:p-8">
-              <div>
+            <div className="relative flex h-full flex-col justify-between gap-8 overflow-hidden rounded-2xl border border-accent/20 bg-[var(--paper-soft)] p-6 sm:p-8">
+              <div className="glow-warm pointer-events-none absolute inset-x-0 -top-10 h-40 opacity-70" />
+              <div className="relative">
                 <h2 className="text-xl font-semibold">Dane bezpośrednie</h2>
-                <p className="mt-2 text-sm text-[var(--paper)]/70">
+                <p className="mt-2 text-sm text-[var(--ink-soft)]">
                   Wolisz ominąć formularz? Tu mnie znajdziesz.
                 </p>
               </div>
-              <div className="flex flex-col gap-4 text-sm">
+              <div className="relative flex flex-col gap-4 text-sm">
                 <a
                   href={`mailto:${EMAIL}`}
-                  className="inline-flex items-center gap-3 text-[var(--paper)]/85 transition-colors hover:text-accent"
+                  className="inline-flex items-center gap-3 text-[var(--ink-soft)] transition-colors hover:text-accent"
                 >
                   <Mail size={18} />
                   {EMAIL}
@@ -59,12 +60,12 @@ export default function KontaktPage() {
                   href={GITHUB}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-3 text-[var(--paper)]/85 transition-colors hover:text-accent"
+                  className="inline-flex items-center gap-3 text-[var(--ink-soft)] transition-colors hover:text-accent"
                 >
                   <Github size={18} />
                   @Mateuszl28
                 </a>
-                <span className="inline-flex items-center gap-3 text-[var(--paper)]/85">
+                <span className="inline-flex items-center gap-3 text-[var(--ink-soft)]">
                   <MapPin size={18} />
                   Polska · praca zdalna
                 </span>

@@ -3,12 +3,17 @@
 @tailwind utilities;
 
 :root {
-  --paper: #faf8f4;
-  --paper-soft: #f1ede4;
-  --ink: #1c1b19;
-  --ink-soft: #6b685e;
-  --accent: #c98a4b;
-  --line: rgba(28, 27, 25, 0.1);
+  /* Ciemny, ciepły motyw — jeden amberowy akcent, bez tęczy */
+  --paper: #14120f; /* bazowe tło — ciepła grafitowa czerń */
+  --paper-soft: #201d18; /* wypełnienie chipów / aktywnej nawigacji / ikon */
+  --ink: #f3f0e9; /* główny tekst — ciepła biel */
+  --ink-soft: #9b968a; /* tekst wyciszony */
+  --accent: #e0a96d; /* ciepły amber, rozjaśniony pod ciemne tło */
+  --line: rgba(243, 240, 233, 0.1);
+  /* powierzchnie kart — subtelne rozjaśnienie tła zamiast bieli */
+  --surface: rgba(243, 240, 233, 0.035);
+  --surface-hover: rgba(243, 240, 233, 0.07);
+  color-scheme: dark;
 }
 
 * {
@@ -40,7 +45,7 @@ h3,
 }
 
 ::selection {
-  background: rgba(201, 138, 75, 0.22);
+  background: rgba(224, 169, 109, 0.26);
   color: var(--ink);
 }
 
@@ -65,17 +70,61 @@ a {
   }
 }
 
-@layer utilities {
-  .text-accent {
-    color: var(--accent);
+/* Przejścia stron i wejścia treści — CSS zamiast framer-motion (mniejszy bundle, start
+   od pierwszego renderu zamiast po hydracji JS). */
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
   }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.page-enter {
+  animation: page-enter 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.fade-rise {
+  animation: fade-rise 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Scroll-reveal — IntersectionObserver ustawia data-shown="true" (komponent Reveal). */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+[data-reveal][data-shown="true"] {
+  opacity: 1;
+  transform: none;
+}
+
+@layer utilities {
+  /* .text-accent generuje Tailwind z koloru `accent` (#e0a96d) — bez duplikatu tutaj */
 
   /* ciepła, miękka poświata — jeden akcent, bez tęczy */
   .glow-warm {
     background: radial-gradient(
       60% 50% at 50% 0%,
-      rgba(201, 138, 75, 0.16) 0%,
-      rgba(201, 138, 75, 0) 70%
+      rgba(224, 169, 109, 0.14) 0%,
+      rgba(224, 169, 109, 0) 70%
     );
   }
 
@@ -92,7 +141,7 @@ a {
 
   .dotted {
     background-image: radial-gradient(
-      rgba(28, 27, 25, 0.07) 1px,
+      rgba(243, 240, 233, 0.05) 1px,
       transparent 1px
     );
     background-size: 22px 22px;

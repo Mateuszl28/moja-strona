@@ -8,25 +8,25 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // single, warm accent — calm and human
+        // single, warm accent — calm and human (zsynchronizowany z --accent w globals.css)
         accent: {
           DEFAULT: "#e0a96d",
-          soft: "#ecc79b",
-          strong: "#d0905a",
+          soft: "#efc79a",
+          strong: "#c98a4b",
         },
         ink: {
-          DEFAULT: "#1c1b19",
-          soft: "#3a382f",
+          DEFAULT: "#f3f0e9",
+          soft: "#9b968a",
         },
         paper: {
-          DEFAULT: "#faf8f4",
-          soft: "#f1ede4",
+          DEFAULT: "#14120f",
+          soft: "#201d18",
         },
       },
       fontFamily: {
         sans: ["var(--font-inter)", "system-ui", "sans-serif"],
         display: ["var(--font-display)", "var(--font-inter)", "sans-serif"],
-        mono: ["var(--font-mono)", "monospace"],
+        mono: ["ui-monospace", "SFMono-Regular", "Menlo", "Consolas", "monospace"],
       },
       maxWidth: {
         content: "64rem",

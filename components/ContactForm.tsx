@@ -17,9 +17,14 @@ export default function ContactForm() {
     const form = e.currentTarget;
     const data = Object.fromEntries(new FormData(form).entries());
 
-    const accessKey =
-      process.env.NEXT_PUBLIC_WEB3FORMS_KEY ||
-      "d2b0fd15-e2b2-416e-ae64-86b9c9e10586";
+    const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_KEY;
+    if (!accessKey) {
+      setStatus("error");
+      setError(
+        "Formularz nie jest skonfigurowany. Napisz proszę bezpośrednio na maila."
+      );
+      return;
+    }
 
     try {
       const res = await fetch("https://api.web3forms.com/submit", {
@@ -47,7 +52,7 @@ export default function ContactForm() {
   if (status === "ok") {
     return (
       <div className="flex items-center gap-3 rounded-xl border border-[var(--line)] bg-[var(--paper-soft)] px-5 py-6 text-[var(--ink)]">
-        <span className="flex h-9 w-9 items-center justify-center rounded-full bg-green-500/15 text-green-600">
+        <span className="flex h-9 w-9 items-center justify-center rounded-full bg-green-500/15 text-green-400">
           <Check size={18} />
         </span>
         <div>
@@ -92,7 +97,7 @@ export default function ContactForm() {
       </label>
 
       {status === "error" && (
-        <p className="text-sm text-red-600">{error}</p>
+        <p className="text-sm text-red-400">{error}</p>
       )}
 
       <button
