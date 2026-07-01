@@ -6,6 +6,8 @@ export const categories = [
   "Aplikacje mobilne",
   "Sterowniki",
   "Rozwiązania",
+  "Hackatony",
+  "Rekrutacja",
 ] as const;
 
 export type Category = (typeof categories)[number];
