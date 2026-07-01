@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import PostBody from "@/components/PostBody";
 import { posts, getPost, formatDate, readingTime } from "@/lib/posts";
 
@@ -30,6 +30,11 @@ export function generateMetadata({
 export default function PostPage({ params }: { params: { slug: string } }) {
   const post = getPost(params.slug);
   if (!post) notFound();
+
+  const sorted = [...posts].sort((a, b) => b.date.localeCompare(a.date));
+  const idx = sorted.findIndex((p) => p.slug === post.slug);
+  const newer = idx > 0 ? sorted[idx - 1] : null;
+  const older = idx < sorted.length - 1 ? sorted[idx + 1] : null;
 
   const schema = {
     "@context": "https://schema.org",
@@ -95,6 +100,39 @@ export default function PostPage({ params }: { params: { slug: string } }) {
         <div className="mt-10">
           <PostBody blocks={post.content} />
         </div>
+
+        {(older || newer) && (
+          <nav className="mt-14 grid gap-3 border-t border-[var(--line)] pt-8 sm:grid-cols-2">
+            {older ? (
+              <Link
+                href={`/blog/${older.slug}`}
+                className="group rounded-xl border border-[var(--line)] bg-[var(--surface)] p-5 transition-colors hover:border-accent/30"
+              >
+                <span className="inline-flex items-center gap-1.5 font-mono text-xs text-[var(--ink-soft)]">
+                  <ArrowLeft size={14} /> Starszy wpis
+                </span>
+                <span className="mt-2 block font-medium transition-colors group-hover:text-accent">
+                  {older.title}
+                </span>
+              </Link>
+            ) : (
+              <span className="hidden sm:block" />
+            )}
+            {newer && (
+              <Link
+                href={`/blog/${newer.slug}`}
+                className="group rounded-xl border border-[var(--line)] bg-[var(--surface)] p-5 text-right transition-colors hover:border-accent/30"
+              >
+                <span className="inline-flex items-center gap-1.5 font-mono text-xs text-[var(--ink-soft)]">
+                  Nowszy wpis <ArrowRight size={14} />
+                </span>
+                <span className="mt-2 block font-medium transition-colors group-hover:text-accent">
+                  {newer.title}
+                </span>
+              </Link>
+            )}
+          </nav>
+        )}
       </article>
     </main>
   );
