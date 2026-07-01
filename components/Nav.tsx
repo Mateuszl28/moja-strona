@@ -5,13 +5,23 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 
-const links = [
+const linksPl = [
   { href: "/", label: "Start" },
   { href: "/projekty", label: "Projekty" },
   { href: "/wycena", label: "Wycena" },
   { href: "/blog", label: "Blog" },
   { href: "/kontakt", label: "Kontakt" },
 ];
+
+const linksEn = [
+  { href: "/en", label: "Home" },
+  { href: "/en/projects", label: "Projects" },
+  { href: "/en/quote", label: "Quote" },
+  { href: "/en/contact", label: "Contact" },
+];
+
+// Trasy-korzenie dopasowywane dokładnie (żeby /en nie było aktywne na /en/quote).
+const ROOTS = ["/", "/en"];
 
 export default function Nav() {
   const pathname = usePathname();
@@ -29,9 +39,11 @@ export default function Nav() {
   useEffect(() => setOpen(false), [pathname]);
 
   const isActive = (href: string) =>
-    href === "/" ? pathname === "/" : pathname.startsWith(href);
+    ROOTS.includes(href) ? pathname === href : pathname.startsWith(href);
 
   const isEn = pathname.startsWith("/en");
+  const links = isEn ? linksEn : linksPl;
+  const homeHref = isEn ? "/en" : "/";
   const langHref = isEn ? "/" : "/en";
 
   return (
@@ -44,7 +56,7 @@ export default function Nav() {
     >
       <nav className="mx-auto flex max-w-content items-center justify-between px-6 py-4">
         <Link
-          href="/"
+          href={homeHref}
           onClick={() => setOpen(false)}
           className="font-mono text-sm tracking-tight"
         >
