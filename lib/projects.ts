@@ -10,13 +10,16 @@ export const categories = [
 
 export type Category = (typeof categories)[number];
 
+export type RepoLink = { label: string; href: string };
+
 export type Project = {
   title: string;
   description: string;
   category: Category; // do której zakładki trafia projekt
   tags: string[];
   href?: string; // link na żywo (demo)
-  repo?: string; // link do repozytorium
+  repo?: string; // pojedyncze repo (skrót — pokaże się jako „Kod")
+  repos?: RepoLink[]; // wiele repo z etykietami (np. Linux / Windows)
   year: string;
   featured?: boolean;
 };
@@ -41,6 +44,25 @@ export const projects: Project[] = [
     category: "Sklepy www",
     tags: ["Next.js", "React", "E-commerce"],
     href: "https://nawiabizuteria.pl",
+    year: "2026",
+    featured: true,
+  },
+  {
+    title: "Sterownik drukarki P15",
+    description:
+      "Sterownik do drukarki P15 działający na Linuksie i Windowsie — obsługa urządzenia napisana w .NET (C#).",
+    category: "Sterowniki",
+    tags: [".NET", "C#", "Windows / Linux"],
+    repos: [
+      {
+        label: "Kod (Linux)",
+        href: "https://github.com/Mateuszl28/Printer_P15-Linux",
+      },
+      {
+        label: "Kod (Windows)",
+        href: "https://github.com/Mateuszl28/Printer_P15-Windows",
+      },
+    ],
     year: "2026",
     featured: true,
   },
