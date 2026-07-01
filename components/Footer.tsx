@@ -24,6 +24,7 @@ export default function Footer() {
   const isEn = pathname.startsWith("/en");
   const nav = isEn ? navEn : navPl;
   const homeHref = isEn ? "/en" : "/";
+  const privacyHref = isEn ? "/en/privacy" : "/polityka-prywatnosci";
   const privacyLabel = isEn ? "Privacy policy" : "Polityka prywatności";
 
   return (
@@ -70,7 +71,7 @@ export default function Footer() {
       <div className="mx-auto flex max-w-content flex-wrap items-center justify-between gap-2 px-6 pb-8 text-xs text-[var(--ink-soft)]">
         <span>© 2026 Mateusz Łagocki</span>
         <Link
-          href="/polityka-prywatnosci"
+          href={privacyHref}
           className="transition-colors hover:text-[var(--ink)]"
         >
           {privacyLabel}
