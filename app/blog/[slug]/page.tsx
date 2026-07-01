@@ -5,6 +5,9 @@ import { ArrowLeft } from "lucide-react";
 import PostBody from "@/components/PostBody";
 import { posts, getPost, formatDate, readingTime } from "@/lib/posts";
 
+const BASE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL || "https://programujzmateuszem.pl";
+
 export function generateStaticParams() {
   return posts.map((p) => ({ slug: p.slug }));
 }
@@ -36,6 +39,22 @@ export default function PostPage({ params }: { params: { slug: string } }) {
     datePublished: post.date,
     keywords: post.tags.join(", "),
     author: { "@type": "Person", name: "Mateusz Łagocki" },
+    url: `${BASE_URL}/blog/${post.slug}`,
+  };
+
+  const breadcrumb = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Start", item: BASE_URL },
+      { "@type": "ListItem", position: 2, name: "Blog", item: `${BASE_URL}/blog` },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: post.title,
+        item: `${BASE_URL}/blog/${post.slug}`,
+      },
+    ],
   };
 
   return (
@@ -44,6 +63,10 @@ export default function PostPage({ params }: { params: { slug: string } }) {
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }}
         />
 
         <Link
