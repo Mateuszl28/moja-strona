@@ -81,6 +81,17 @@ export const projects: Project[] = [
     featured: true,
   },
   {
+    title: "Sentra AI — wykrywanie phishingu",
+    description:
+      "Wklejasz podejrzanego maila, a Sentra analizuje nagłówki, linki i treść heurystykami, po czym Gemini wyjaśnia zagrożenie prostym językiem i pozwala dopytać.",
+    category: "Aplikacje internetowe",
+    tags: ["Next.js", "TypeScript", "Gemini AI"],
+    href: "https://sentra-ai-peach.vercel.app",
+    repo: "https://github.com/Mateuszl28/Sentra_AI",
+    year: "2026",
+    featured: true,
+  },
+  {
     title: "Enova Cleaner",
     description:
       "Narzędzie konsolowe automatyzujące archiwizację i retencję kopii zapasowych baz danych w Azure Blob Storage — przenosi miesięczne kopie do archiwum i usuwa starsze kopie dzienne. Opakowuje AzCopy.",
