@@ -74,7 +74,7 @@ export default function EnHome() {
 
           <div className="fade-rise mt-10 flex flex-wrap gap-3">
             <Link
-              href="/kontakt"
+              href="/en/contact"
               className="group inline-flex items-center gap-2 rounded-full bg-[var(--ink)] px-6 py-3 text-sm font-medium text-[var(--paper)] transition-transform hover:-translate-y-0.5"
             >
               Get in touch
@@ -160,7 +160,7 @@ export default function EnHome() {
             </h2>
             <div className="relative mt-8">
               <Link
-                href="/kontakt"
+                href="/en/contact"
                 className="group inline-flex items-center gap-2 rounded-full bg-[var(--ink)] px-6 py-3 text-sm font-medium text-[var(--paper)] transition-transform hover:-translate-y-0.5"
               >
                 Contact me

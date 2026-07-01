@@ -5,10 +5,55 @@ import { Loader2, Send, Check } from "lucide-react";
 
 type Status = "idle" | "loading" | "ok" | "error";
 
-export default function ContactForm() {
+export default function ContactForm({ en = false }: { en?: boolean }) {
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState<string>("");
   const messageRef = useRef<HTMLTextAreaElement>(null);
+
+  const t = en
+    ? {
+        name: "Name",
+        namePh: "John Smith",
+        email: "E-mail",
+        emailPh: "john@company.com",
+        ptype: "Project type (optional)",
+        select: "— select —",
+        opts: ["Website", "Online store", "Web app", "Mobile app", "Other"],
+        message: "Message",
+        messagePh: "How can I help?",
+        submit: "Send message",
+        sending: "Sending…",
+        okTitle: "Thanks, message sent!",
+        okBody: "I'll reply as soon as I can.",
+        errNoKey: "The form isn't configured. Please email me directly.",
+        errFail: "Couldn't send the message.",
+        errGeneric: "Something went wrong.",
+      }
+    : {
+        name: "Imię",
+        namePh: "Jan Kowalski",
+        email: "E-mail",
+        emailPh: "jan@firma.pl",
+        ptype: "Rodzaj projektu (opcjonalnie)",
+        select: "— wybierz —",
+        opts: [
+          "Strona www",
+          "Sklep internetowy",
+          "Aplikacja internetowa",
+          "Aplikacja mobilna",
+          "Inne",
+        ],
+        message: "Wiadomość",
+        messagePh: "W czym mogę pomóc?",
+        submit: "Wyślij wiadomość",
+        sending: "Wysyłam…",
+        okTitle: "Dzięki, wiadomość wysłana!",
+        okBody: "Odpiszę najszybciej jak się da.",
+        errNoKey:
+          "Formularz nie jest skonfigurowany. Napisz proszę bezpośrednio na maila.",
+        errFail: "Nie udało się wysłać wiadomości.",
+        errGeneric: "Coś poszło nie tak.",
+      };
 
   // Prefill: jeśli klient przyszedł z /wycena („Wyślij zapytanie"), wstaw
   // podsumowanie wyceny do wiadomości i wyczyść, żeby nie wróciło przy odświeżeniu.
@@ -31,9 +76,7 @@ export default function ContactForm() {
     const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_KEY;
     if (!accessKey) {
       setStatus("error");
-      setError(
-        "Formularz nie jest skonfigurowany. Napisz proszę bezpośrednio na maila."
-      );
+      setError(t.errNoKey);
       return;
     }
 
@@ -50,13 +93,13 @@ export default function ContactForm() {
       });
       const body = await res.json().catch(() => ({}));
       if (!res.ok || !body.success) {
-        throw new Error(body.message || "Nie udało się wysłać wiadomości.");
+        throw new Error(body.message || t.errFail);
       }
       setStatus("ok");
       form.reset();
     } catch (err) {
       setStatus("error");
-      setError(err instanceof Error ? err.message : "Coś poszło nie tak.");
+      setError(err instanceof Error ? err.message : t.errGeneric);
     }
   }
 
@@ -67,10 +110,8 @@ export default function ContactForm() {
           <Check size={18} />
         </span>
         <div>
-          <p className="font-medium">Dzięki, wiadomość wysłana!</p>
-          <p className="text-sm text-[var(--ink-soft)]">
-            Odpiszę najszybciej jak się da.
-          </p>
+          <p className="font-medium">{t.okTitle}</p>
+          <p className="text-sm text-[var(--ink-soft)]">{t.okBody}</p>
         </div>
       </div>
     );
@@ -88,44 +129,40 @@ export default function ContactForm() {
         aria-hidden="true"
       />
       <div className="grid gap-4 sm:grid-cols-2">
-        <Field label="Imię" name="name" type="text" placeholder="Jan Kowalski" />
+        <Field label={t.name} name="name" type="text" placeholder={t.namePh} />
         <Field
-          label="E-mail"
+          label={t.email}
           name="email"
           type="email"
-          placeholder="jan@firma.pl"
+          placeholder={t.emailPh}
         />
       </div>
       <label className="grid gap-1.5 text-sm">
-        <span className="text-[var(--ink-soft)]">Rodzaj projektu (opcjonalnie)</span>
+        <span className="text-[var(--ink-soft)]">{t.ptype}</span>
         <select
           name="rodzaj_projektu"
           defaultValue=""
           className="rounded-lg border border-[var(--line)] bg-[var(--paper)] px-3.5 py-2.5 text-[var(--ink)] outline-none transition-colors focus:border-[var(--accent)]"
         >
-          <option value="">— wybierz —</option>
-          <option>Strona www</option>
-          <option>Sklep internetowy</option>
-          <option>Aplikacja internetowa</option>
-          <option>Aplikacja mobilna</option>
-          <option>Inne</option>
+          <option value="">{t.select}</option>
+          {t.opts.map((o) => (
+            <option key={o}>{o}</option>
+          ))}
         </select>
       </label>
       <label className="grid gap-1.5 text-sm">
-        <span className="text-[var(--ink-soft)]">Wiadomość</span>
+        <span className="text-[var(--ink-soft)]">{t.message}</span>
         <textarea
           ref={messageRef}
           name="message"
           required
           rows={4}
-          placeholder="W czym mogę pomóc?"
+          placeholder={t.messagePh}
           className="resize-none rounded-lg border border-[var(--line)] bg-[var(--paper)] px-3.5 py-2.5 text-[var(--ink)] outline-none transition-colors placeholder:text-[var(--ink-soft)]/60 focus:border-[var(--accent)]"
         />
       </label>
 
-      {status === "error" && (
-        <p className="text-sm text-red-400">{error}</p>
-      )}
+      {status === "error" && <p className="text-sm text-red-400">{error}</p>}
 
       <button
         type="submit"
@@ -135,12 +172,12 @@ export default function ContactForm() {
         {status === "loading" ? (
           <>
             <Loader2 size={16} className="animate-spin" />
-            Wysyłam…
+            {t.sending}
           </>
         ) : (
           <>
             <Send size={16} />
-            Wyślij wiadomość
+            {t.submit}
           </>
         )}
       </button>
