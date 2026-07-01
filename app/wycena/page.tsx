@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Packages from "@/components/Packages";
 import QuoteCalculator from "@/components/QuoteCalculator";
 import Faq from "@/components/Faq";
 import Reveal from "@/components/Reveal";
@@ -28,9 +29,25 @@ export default function WycenaPage() {
         </Reveal>
       </section>
 
-      <section className="mx-auto max-w-content px-6 pb-16">
+      <Packages />
+
+      <section className="mx-auto max-w-content px-6 pb-16 pt-8">
+        <Reveal>
+          <p className="font-mono text-xs uppercase tracking-[0.18em] text-accent">
+            Kalkulator
+          </p>
+          <h2 className="mt-4 text-balance text-3xl font-semibold tracking-tight sm:text-4xl">
+            Policz dokładnie
+          </h2>
+          <p className="mt-4 max-w-xl leading-relaxed text-[var(--ink-soft)]">
+            Złóż wycenę z&nbsp;klocków — rodzaj projektu, podstrony i&nbsp;funkcje.
+            Kwota liczy się na&nbsp;bieżąco.
+          </p>
+        </Reveal>
         <Reveal delay={0.06}>
-          <QuoteCalculator />
+          <div className="mt-10">
+            <QuoteCalculator />
+          </div>
         </Reveal>
       </section>
 
