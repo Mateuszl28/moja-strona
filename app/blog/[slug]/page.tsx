@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import PostBody from "@/components/PostBody";
-import { posts, getPost, formatDate } from "@/lib/posts";
+import { posts, getPost, formatDate, readingTime } from "@/lib/posts";
 
 export function generateStaticParams() {
   return posts.map((p) => ({ slug: p.slug }));
@@ -59,6 +59,8 @@ export default function PostPage({ params }: { params: { slug: string } }) {
 
         <div className="mt-8 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-xs text-[var(--ink-soft)]">
           <span>{formatDate(post.date)}</span>
+          <span className="h-1 w-1 rounded-full bg-[var(--ink-soft)]/40" />
+          <span>{readingTime(post)} min czytania</span>
           <span className="h-1 w-1 rounded-full bg-[var(--ink-soft)]/40" />
           <span>{post.tags.join(" · ")}</span>
         </div>

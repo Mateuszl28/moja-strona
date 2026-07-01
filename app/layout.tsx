@@ -42,7 +42,12 @@ export const metadata: Metadata = {
     follow: true,
     googleBot: { index: true, follow: true, "max-image-preview": "large" },
   },
-  alternates: { canonical: "/" },
+  alternates: {
+    canonical: "/",
+    types: {
+      "application/rss+xml": [{ url: "/rss.xml", title: "Blog — Mateusz Łagocki" }],
+    },
+  },
 };
 
 export const viewport: Viewport = {

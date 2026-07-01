@@ -79,6 +79,15 @@ export const posts: Post[] = [
 
 export const getPost = (slug: string) => posts.find((p) => p.slug === slug);
 
+// Szacowany czas czytania (~200 słów/min) z całej treści wpisu.
+export const readingTime = (post: Post) => {
+  const words = post.content.reduce((n, b) => {
+    const text = b.type === "ul" ? b.items.join(" ") : b.text;
+    return n + text.split(/\s+/).filter(Boolean).length;
+  }, 0);
+  return Math.max(1, Math.round(words / 200));
+};
+
 export const formatDate = (iso: string) =>
   new Intl.DateTimeFormat("pl-PL", { dateStyle: "long" }).format(
     new Date(iso + "T00:00:00")

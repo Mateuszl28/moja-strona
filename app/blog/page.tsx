@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import Reveal from "@/components/Reveal";
-import { posts, formatDate } from "@/lib/posts";
+import { posts, formatDate, readingTime } from "@/lib/posts";
 
 export const metadata: Metadata = {
   title: "Blog",
@@ -47,7 +47,7 @@ export default function BlogPage() {
                   className="group flex flex-col gap-2 py-7 transition-colors"
                 >
                   <span className="font-mono text-xs text-[var(--ink-soft)]">
-                    {formatDate(post.date)}
+                    {formatDate(post.date)} · {readingTime(post)} min czytania
                   </span>
                   <h2 className="flex items-start justify-between gap-4 text-xl font-medium transition-colors group-hover:text-accent">
                     {post.title}
