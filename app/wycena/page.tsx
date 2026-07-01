@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import QuoteCalculator from "@/components/QuoteCalculator";
+import Faq from "@/components/Faq";
 import Reveal from "@/components/Reveal";
 
 export const metadata: Metadata = {
@@ -27,11 +28,13 @@ export default function WycenaPage() {
         </Reveal>
       </section>
 
-      <section className="mx-auto max-w-content px-6 pb-24">
+      <section className="mx-auto max-w-content px-6 pb-16">
         <Reveal delay={0.06}>
           <QuoteCalculator />
         </Reveal>
       </section>
+
+      <Faq />
     </main>
   );
 }
