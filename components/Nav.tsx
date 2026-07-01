@@ -9,6 +9,7 @@ const linksPl = [
   { href: "/", label: "Start" },
   { href: "/projekty", label: "Projekty" },
   { href: "/wycena", label: "Wycena" },
+  { href: "/sklep", label: "Sklep" },
   { href: "/blog", label: "Blog" },
   { href: "/kontakt", label: "Kontakt" },
 ];
