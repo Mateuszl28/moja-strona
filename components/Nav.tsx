@@ -18,6 +18,7 @@ const linksEn = [
   { href: "/en", label: "Home" },
   { href: "/en/projects", label: "Projects" },
   { href: "/en/quote", label: "Quote" },
+  { href: "/en/shop", label: "Shop" },
   { href: "/en/contact", label: "Contact" },
 ];
 
