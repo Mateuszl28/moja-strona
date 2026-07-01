@@ -49,17 +49,19 @@ const projectTypes = [
 const PAGE_PRICE = 80; // za każdą podstronę ponad pierwszą
 const INCLUDED_PAGES = 1;
 
-const featuresList = [
+// tbd:true => „do ustalenia" — nie dolicza kwoty, wycena zależy od zakresu.
+type Feature = { id: string; label: string; price: number; tbd?: boolean };
+const featuresList: readonly Feature[] = [
   { id: "form", label: "Formularz kontaktowy", price: 50 },
   { id: "cms", label: "System CMS (samodzielna edycja treści)", price: 150 },
   { id: "blog", label: "Blog / aktualności", price: 100 },
   { id: "i18n", label: "Wielojęzyczność", price: 120 },
   { id: "payments", label: "Integracja płatności", price: 200 },
   { id: "auth", label: "Konta użytkowników / logowanie", price: 250 },
-  { id: "seo", label: "Optymalizacja SEO", price: 100 },
+  { id: "seo", label: "Optymalizacja SEO", price: 0, tbd: true },
   { id: "anim", label: "Zaawansowane animacje", price: 80 },
   { id: "content", label: "Przygotowanie treści i grafik", price: 120 },
-] as const;
+];
 
 const designOptions = [
   { id: "have", label: "Mam gotowy projekt graficzny", price: 0 },
@@ -94,9 +96,9 @@ export default function QuoteCalculator() {
       prev.includes(id) ? prev.filter((f) => f !== id) : [...prev, id]
     );
 
-  const { low, high, weeks, lines } = useMemo(() => {
+  const { low, high, weeks, lines, hasTbd } = useMemo(() => {
     const extraPages = Math.max(0, pages - INCLUDED_PAGES);
-    const lines: { label: string; price: number }[] = [
+    const lines: { label: string; price: number; note?: string }[] = [
       { label: type.label, price: type.base },
     ];
     if (extraPages > 0) {
@@ -106,7 +108,12 @@ export default function QuoteCalculator() {
       });
     }
     for (const f of featuresList) {
-      if (features.includes(f.id)) lines.push({ label: f.label, price: f.price });
+      if (!features.includes(f.id)) continue;
+      lines.push(
+        f.tbd
+          ? { label: f.label, price: 0, note: "do ustalenia" }
+          : { label: f.label, price: f.price }
+      );
     }
     if (design.price > 0) lines.push({ label: design.label, price: design.price });
 
@@ -123,7 +130,9 @@ export default function QuoteCalculator() {
     const weeks =
       type.weeks + Math.ceil(features.length / 3) + (designId === "custom" ? 1 : 0);
 
-    return { low: round10(total), high: round10(total * 1.25), weeks, lines };
+    const hasTbd = featuresList.some((f) => features.includes(f.id) && f.tbd);
+
+    return { low: round10(total), high: round10(total * 1.25), weeks, lines, hasTbd };
   }, [type, pages, features, design, timeline, designId]);
 
   const summaryText = useMemo(() => {
@@ -140,11 +149,13 @@ export default function QuoteCalculator() {
       }`,
       `Grafika: ${design.label}`,
       `Termin: ${timeline.label}`,
-      `Szacowana wycena: ${zl(low)} – ${zl(high)} (orientacyjnie)`,
+      `Szacowana wycena: ${zl(low)} – ${zl(high)}${
+        hasTbd ? " + pozycje do ustalenia" : ""
+      } (orientacyjnie)`,
       `Szacowany czas: ok. ${weeks} tyg.`,
     ];
     return "Zapytanie o wycenę\n" + parts.map((p) => `• ${p}`).join("\n");
-  }, [type, pages, features, design, timeline, low, high, weeks]);
+  }, [type, pages, features, design, timeline, low, high, weeks, hasTbd]);
 
   const copySummary = async () => {
     try {
@@ -248,7 +259,7 @@ export default function QuoteCalculator() {
                   </span>
                   <span className="flex-1">{f.label}</span>
                   <span className="font-mono text-xs text-[var(--ink-soft)]">
-                    +{zl(f.price)}
+                    {f.tbd ? "do ustalenia" : `+${zl(f.price)}`}
                   </span>
                 </label>
               );
@@ -330,13 +341,18 @@ export default function QuoteCalculator() {
           <p className="mt-1 text-sm text-[var(--ink-soft)]">
             Szacowany czas: ok. {weeks} tyg.
           </p>
+          {hasTbd && (
+            <p className="mt-1 text-sm text-accent">
+              + pozycje do ustalenia (np. SEO)
+            </p>
+          )}
 
           <ul className="mt-6 space-y-2 border-t border-[var(--line)] pt-5 text-sm">
             {lines.map((l, i) => (
               <li key={i} className="flex items-baseline justify-between gap-4">
                 <span className="text-[var(--ink-soft)]">{l.label}</span>
                 <span className="shrink-0 font-mono tabular-nums">
-                  {zl(l.price)}
+                  {l.note ?? zl(l.price)}
                 </span>
               </li>
             ))}
