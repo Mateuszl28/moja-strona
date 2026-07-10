@@ -118,6 +118,38 @@ a {
   animation: soft-in 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
+/* Ruchomy pasek promocyjny (marquee) — tor przesuwa się o −50%, druga kopia daje
+   bezszwową pętlę. Pauza po najechaniu, żeby dało się przeczytać. */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.promo-track {
+  animation: marquee 26s linear infinite;
+}
+
+.promo-viewport:hover .promo-track {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* Bez ruchu: zatrzymaj i wyśrodkuj pojedynczą kopię (druga jest aria-hidden). */
+  .promo-track {
+    animation: none;
+    transform: none;
+    width: 100%;
+    justify-content: center;
+  }
+  .promo-track > [aria-hidden="true"] {
+    display: none;
+  }
+}
+
 /* Scroll-reveal — IntersectionObserver ustawia data-shown="true" (komponent Reveal). */
 [data-reveal] {
   opacity: 0;

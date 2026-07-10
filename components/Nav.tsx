@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
+import PromoBar from "./PromoBar";
 
 const linksPl = [
   { href: "/", label: "Start" },
@@ -58,6 +59,7 @@ export default function Nav() {
           : "border-b border-transparent"
       }`}
     >
+      <PromoBar />
       <nav className="mx-auto flex max-w-content items-center justify-between px-6 py-4">
         <Link
           href={homeHref}
