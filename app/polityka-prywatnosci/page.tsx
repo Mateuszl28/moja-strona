@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { company } from "@/lib/company";
 
 export const metadata: Metadata = {
   title: "Polityka prywatności",
@@ -37,13 +38,20 @@ export default function PolitykaPrywatnosciPage() {
 
         <Section title="Administrator danych">
           <p>
-            Administratorem danych jest Mateusz Łagocki. W sprawach dotyczących
-            prywatności napisz na:{" "}
+            Administratorem danych jest {company.legalName}, {company.addressLine},
+            NIP&nbsp;{company.nip}. W sprawach dotyczących prywatności napisz na:{" "}
             <a
               href={`mailto:${EMAIL}`}
               className="text-[var(--ink)] underline underline-offset-4 hover:text-accent"
             >
               {EMAIL}
+            </a>{" "}
+            lub zadzwoń:{" "}
+            <a
+              href={`tel:${company.phoneE164}`}
+              className="text-[var(--ink)] underline underline-offset-4 hover:text-accent"
+            >
+              {company.phoneDisplay}
             </a>
             .
           </p>

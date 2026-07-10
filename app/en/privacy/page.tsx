@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { company } from "@/lib/company";
 
 export const metadata: Metadata = {
   title: "Privacy policy",
@@ -46,13 +47,21 @@ export default function EnPrivacyPage() {
 
         <Section title="Data controller">
           <p>
-            The data controller is Mateusz Łagocki. For anything about privacy,
-            email me at{" "}
+            The data controller is {company.legalName}, {company.addressLine},
+            Poland, VAT&nbsp;ID&nbsp;(NIP)&nbsp;{company.nip}. For anything about
+            privacy, email me at{" "}
             <a
               href={`mailto:${EMAIL}`}
               className="text-[var(--ink)] underline underline-offset-4 hover:text-accent"
             >
               {EMAIL}
+            </a>{" "}
+            or call{" "}
+            <a
+              href={`tel:${company.phoneE164}`}
+              className="text-[var(--ink)] underline underline-offset-4 hover:text-accent"
+            >
+              {company.phoneDisplay}
             </a>
             .
           </p>

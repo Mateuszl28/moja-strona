@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
-import { Github, Mail, MapPin, CalendarClock } from "lucide-react";
+import { Github, Mail, MapPin, Phone, CalendarClock } from "lucide-react";
 import ContactForm from "@/components/ContactForm";
 import Reveal from "@/components/Reveal";
+import { company } from "@/lib/company";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -66,6 +67,13 @@ export default function EnContactPage() {
                   {EMAIL}
                 </a>
                 <a
+                  href={`tel:${company.phoneE164}`}
+                  className="inline-flex items-center gap-3 text-[var(--ink-soft)] transition-colors hover:text-accent"
+                >
+                  <Phone size={18} />
+                  {company.phoneDisplay}
+                </a>
+                <a
                   href={GITHUB}
                   target="_blank"
                   rel="noreferrer"
@@ -74,9 +82,9 @@ export default function EnContactPage() {
                   <Github size={18} />
                   @Mateuszl28
                 </a>
-                <span className="inline-flex items-center gap-3 text-[var(--ink-soft)]">
-                  <MapPin size={18} />
-                  Poland · remote
+                <span className="inline-flex items-start gap-3 text-[var(--ink-soft)]">
+                  <MapPin size={18} className="mt-0.5 shrink-0" />
+                  {company.addressLine}
                 </span>
 
                 <a
@@ -89,6 +97,14 @@ export default function EnContactPage() {
                 <p className="text-xs text-[var(--ink-soft)]">
                   I usually reply within 24 hours.
                 </p>
+
+                <div className="mt-2 border-t border-[var(--line)] pt-4 text-xs leading-relaxed text-[var(--ink-soft)]">
+                  <p className="font-medium text-[var(--ink)]">
+                    {company.legalName}
+                  </p>
+                  <p className="mt-1">{company.addressLine}, Poland</p>
+                  <p>VAT ID (NIP): {company.nip}</p>
+                </div>
               </div>
             </div>
           </Reveal>

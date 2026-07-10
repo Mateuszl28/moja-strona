@@ -4,6 +4,7 @@ import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import BackToTop from "@/components/BackToTop";
+import { company } from "@/lib/company";
 
 const inter = Inter({
   subsets: ["latin", "latin-ext"],
@@ -84,6 +85,27 @@ const websiteSchema = {
   author: { "@type": "Person", name: "Mateusz Łagocki" },
 };
 
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: company.legalName,
+  legalName: company.legalName,
+  url: BASE_URL,
+  email: company.email,
+  telephone: company.phoneE164,
+  taxID: company.nip,
+  vatID: `PL${company.nip}`,
+  founder: { "@type": "Person", name: company.owner },
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: company.address.street,
+    postalCode: company.address.postalCode,
+    addressLocality: company.address.city,
+    addressCountry: company.address.country,
+  },
+  sameAs: ["https://github.com/Mateuszl28"],
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
@@ -100,6 +122,10 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
         />
       </head>
       <body className="grain">

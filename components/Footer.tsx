@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Github, Mail } from "lucide-react";
+import { company } from "@/lib/company";
 
 const navPl = [
   { href: "/", label: "Start" },
@@ -70,8 +71,11 @@ export default function Footer() {
         </nav>
       </div>
 
-      <div className="mx-auto flex max-w-content flex-wrap items-center justify-between gap-2 px-6 pb-8 text-xs text-[var(--ink-soft)]">
-        <span>© 2026 Mateusz Łagocki</span>
+      <div className="mx-auto flex max-w-content flex-wrap items-center justify-between gap-x-4 gap-y-2 px-6 pb-8 text-xs text-[var(--ink-soft)]">
+        <span>
+          © 2026 {company.legalName} · {company.addressLine} · NIP:{" "}
+          {company.nip}
+        </span>
         <Link
           href={privacyHref}
           className="transition-colors hover:text-[var(--ink)]"
