@@ -51,6 +51,9 @@ export type OrderRow = {
   title: string;
   details: string;
   budget: number | null;
+  product_id: number | null; // zamówienie produktu ze sklepu (albo null = zapytanie własne)
+  product_name: string | null;
+  amount: number | null; // kwota do zapłaty po rabacie (PLN)
   status: OrderStatus;
   created_at: string;
   updated_at: string;
@@ -62,6 +65,16 @@ export type MessageRow = {
   user_id: number;
   body: string;
   created_at: string;
+};
+
+export type OrderItemRow = {
+  id: number;
+  order_id: number;
+  product_id: number | null;
+  name: string;
+  unit_price: number; // cena po rabacie za sztukę (PLN)
+  qty: number;
+  line_total: number;
 };
 
 const DB_PATH =
@@ -126,9 +139,29 @@ function createConnection(): Database.Database {
       created_at  TEXT NOT NULL
     );
 
+    CREATE TABLE IF NOT EXISTS order_items (
+      id          INTEGER PRIMARY KEY AUTOINCREMENT,
+      order_id    INTEGER NOT NULL REFERENCES orders(id) ON DELETE CASCADE,
+      product_id  INTEGER,
+      name        TEXT NOT NULL,
+      unit_price  INTEGER NOT NULL,
+      qty         INTEGER NOT NULL DEFAULT 1,
+      line_total  INTEGER NOT NULL
+    );
+
     CREATE INDEX IF NOT EXISTS idx_orders_user ON orders(user_id);
     CREATE INDEX IF NOT EXISTS idx_messages_order ON messages(order_id);
+    CREATE INDEX IF NOT EXISTS idx_order_items_order ON order_items(order_id);
   `);
+
+  // Migracje: dodaj kolumny produktu do istniejącej tabeli orders (idempotentnie).
+  const orderCols = db.prepare("PRAGMA table_info(orders)").all() as {
+    name: string;
+  }[];
+  const hasCol = (c: string) => orderCols.some((x) => x.name === c);
+  if (!hasCol("product_id")) db.exec("ALTER TABLE orders ADD COLUMN product_id INTEGER");
+  if (!hasCol("product_name")) db.exec("ALTER TABLE orders ADD COLUMN product_name TEXT");
+  if (!hasCol("amount")) db.exec("ALTER TABLE orders ADD COLUMN amount INTEGER");
 
   return db;
 }

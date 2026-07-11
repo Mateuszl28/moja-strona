@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { X } from "lucide-react";
+import { isPromoActive, promoText } from "@/lib/promo";
 
 const STORAGE_KEY = "promo-15-dismissed";
 
@@ -16,10 +17,9 @@ export default function PromoBar() {
     setDismissed(localStorage.getItem(STORAGE_KEY) === "1");
   }, []);
 
-  if (dismissed) return null;
+  if (!isPromoActive() || dismissed) return null;
 
-  const message = isEn ? "−15% on everything" : "−15% na wszystko";
-  const note = isEn ? "Limited-time offer" : "Promocja ograniczona czasowo";
+  const { message, note } = promoText(isEn);
 
   // Jedna „porcja" treści — powtarzana, by wypełnić szeroki ekran i płynnie zapętlić.
   const unit = (

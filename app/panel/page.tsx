@@ -7,6 +7,7 @@ import { listOrdersByUser } from "@/lib/orders";
 import NewOrderForm from "@/components/NewOrderForm";
 import StatusBadge from "@/components/StatusBadge";
 import LogoutButton from "@/components/LogoutButton";
+import { zl } from "@/lib/pricing";
 
 export const metadata: Metadata = {
   title: "Panel",
@@ -83,7 +84,11 @@ export default async function PanelPage() {
                       <p className="truncate font-medium">{o.title}</p>
                       <p className="mt-0.5 text-xs text-[var(--ink-soft)]">
                         {fmtDate(o.created_at)}
-                        {o.budget ? ` · budżet ${o.budget} zł` : ""}
+                        {o.amount != null
+                          ? ` · ${zl(o.amount)}`
+                          : o.budget
+                            ? ` · budżet ${o.budget} zł`
+                            : ""}
                       </p>
                     </div>
                     <div className="flex shrink-0 items-center gap-3">

@@ -110,6 +110,15 @@ export function getProductById(id: number): ShopProduct | undefined {
   return r ? rowToProduct(r) : undefined;
 }
 
+// Produkt po publicznym slugu (strona /sklep/[slug]). Tylko aktywne.
+export function getProductBySlug(slug: string): ShopProduct | undefined {
+  seedProductsIfEmpty();
+  const r = db
+    .prepare("SELECT * FROM products WHERE slug = ? AND active = 1")
+    .get(slug) as ProductRow | undefined;
+  return r ? rowToProduct(r) : undefined;
+}
+
 export type ProductInput = {
   slug: string;
   name: string;

@@ -5,6 +5,7 @@ import { getSession } from "@/lib/auth";
 import {
   getOrder,
   listMessages,
+  listOrderItems,
   ORDER_STATUSES,
   STATUS_LABEL,
 } from "@/lib/orders";
@@ -14,6 +15,7 @@ import StatusBadge from "@/components/StatusBadge";
 import OrderThread from "@/components/OrderThread";
 import MessageForm from "@/components/MessageForm";
 import SubmitButton from "@/components/SubmitButton";
+import { zl } from "@/lib/pricing";
 
 function fmtDate(iso: string) {
   return new Date(iso).toLocaleDateString("pl-PL", {
@@ -34,6 +36,7 @@ export default async function AdminOrderPage({
 
   const client = getUserById(order.user_id);
   const messages = listMessages(order.id);
+  const items = listOrderItems(order.id);
 
   return (
     <div className="mx-auto max-w-2xl">
@@ -52,8 +55,43 @@ export default async function AdminOrderPage({
       <p className="mt-2 text-xs text-[var(--ink-soft)]">
         {client ? `${client.name} · ${client.email} · ` : ""}
         {fmtDate(order.created_at)}
-        {order.budget ? ` · budżet ${order.budget} zł` : ""}
+        {order.amount == null && order.budget
+          ? ` · budżet ${order.budget} zł`
+          : ""}
       </p>
+
+      {items.length > 0 ? (
+        <div className="mt-5 rounded-2xl border border-accent/20 bg-accent/[0.06] p-5">
+          <p className="text-sm font-medium">Zamówione produkty</p>
+          <ul className="mt-3 space-y-2 text-sm">
+            {items.map((it) => (
+              <li key={it.id} className="flex items-center justify-between gap-3">
+                <span className="min-w-0 truncate">
+                  {it.name}{" "}
+                  <span className="text-[var(--ink-soft)]">× {it.qty}</span>
+                </span>
+                <span className="tabular-nums">{zl(it.line_total)}</span>
+              </li>
+            ))}
+          </ul>
+          <div className="mt-3 flex items-center justify-between border-t border-[var(--line)] pt-3 font-semibold">
+            <span>Razem</span>
+            <span className="text-lg tabular-nums">{zl(order.amount ?? 0)}</span>
+          </div>
+        </div>
+      ) : (
+        order.amount != null && (
+          <div className="mt-5 flex flex-wrap items-center gap-x-2 gap-y-1 rounded-2xl border border-accent/20 bg-accent/[0.06] px-5 py-4 text-sm">
+            <span className="font-medium">Zamówienie produktu</span>
+            {order.product_name && (
+              <span className="text-[var(--ink-soft)]">· {order.product_name}</span>
+            )}
+            <span className="ml-auto text-lg font-semibold tracking-tight">
+              {zl(order.amount)}
+            </span>
+          </div>
+        )
+      )}
 
       {order.details && (
         <div className="mt-6 rounded-2xl border border-[var(--line)] bg-[var(--surface)] px-5 py-4">

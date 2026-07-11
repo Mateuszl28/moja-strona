@@ -12,18 +12,23 @@ import {
 import { createUser, getUserByEmail } from "./users";
 import {
   createOrder,
+  createOrderWithItems,
   getOrder,
   addMessage,
   updateOrderStatus,
 } from "./orders";
+import { parseCart } from "./cart";
 import {
   createProduct,
   updateProduct,
   deleteProduct,
+  getProductBySlug,
   type ProductInput,
 } from "./products";
 import { ORDER_STATUSES } from "./orders";
 import type { OrderStatus } from "./db";
+import { applyPromo } from "./promo";
+import { zl } from "./pricing";
 
 export type FormState = { error?: string; ok?: boolean };
 
@@ -114,6 +119,102 @@ export async function createOrderAction(
   revalidatePath("/panel");
   revalidatePath("/admin/zamowienia");
   return { ok: true };
+}
+
+// Zamówienie gotowego produktu ze sklepu → realne zamówienie w panelu,
+// wycenione po cenie promocyjnej. Niezalogowany → logowanie z powrotem.
+export async function orderProductAction(formData: FormData): Promise<void> {
+  const slug = String(formData.get("slug") ?? "").trim();
+  const product = getProductBySlug(slug);
+  if (!product || product.soon || product.price <= 0) redirect("/sklep");
+
+  const session = await getSession();
+  if (!session) redirect(`/login?next=${encodeURIComponent(`/sklep/${slug}`)}`);
+
+  const promo = applyPromo(product.price);
+  const details = [
+    `Zamówienie ze sklepu: ${product.name}`,
+    promo.active
+      ? `• Cena: ${zl(promo.final)} (promocja −${promo.percent}%, zamiast ${zl(promo.original)})`
+      : `• Cena: ${zl(promo.final)}`,
+    product.features.length ? `• Zawiera: ${product.features.join(", ")}` : "",
+  ]
+    .filter(Boolean)
+    .join("\n");
+
+  const id = createOrder({
+    userId: session.id,
+    title: `Zamówienie: ${product.name}`,
+    details,
+    productId: product.id,
+    productName: product.name,
+    amount: promo.final,
+  });
+  revalidatePath("/panel");
+  revalidatePath("/admin/zamowienia");
+  redirect(`/panel/zamowienia/${id}`);
+}
+
+// Checkout koszyka. Zwraca wynik (bez redirectu), żeby klient mógł wyczyścić
+// koszyk i przejść dalej. Ceny liczone z bazy — dane z klienta są niezaufane.
+export type CheckoutResult = {
+  error?: string;
+  needLogin?: boolean;
+  orderId?: number;
+};
+
+export async function checkoutAction(
+  itemsJson: string
+): Promise<CheckoutResult> {
+  const raw = parseCart(itemsJson);
+  if (raw.length === 0) return { error: "Koszyk jest pusty." };
+
+  const session = await getSession();
+  if (!session) return { needLogin: true };
+
+  const items: {
+    productId: number;
+    name: string;
+    unitPrice: number;
+    qty: number;
+  }[] = [];
+  for (const ci of raw) {
+    const p = getProductBySlug(ci.slug);
+    if (!p || p.soon || p.price <= 0) continue; // pomiń „Wkrótce"/nieaktywne
+    items.push({
+      productId: p.id,
+      name: p.name,
+      unitPrice: applyPromo(p.price).final,
+      qty: ci.qty,
+    });
+  }
+  if (items.length === 0)
+    return { error: "Brak produktów dostępnych do zamówienia." };
+
+  const amount = items.reduce((a, it) => a + it.unitPrice * it.qty, 0);
+  const totalQty = items.reduce((a, it) => a + it.qty, 0);
+  const productName =
+    items.length === 1
+      ? items[0].name
+      : `${items[0].name} + ${items.length - 1} inny(ch)`;
+  const details = [
+    "Zamówienie ze sklepu (koszyk):",
+    ...items.map((it) => `• ${it.name} × ${it.qty} — ${zl(it.unitPrice * it.qty)}`),
+    `Razem: ${zl(amount)}`,
+  ].join("\n");
+
+  const orderId = createOrderWithItems({
+    userId: session.id,
+    title: `Zamówienie (${totalQty} szt.)`,
+    details,
+    productName,
+    amount,
+    items,
+  });
+  revalidatePath("/panel");
+  revalidatePath("/admin");
+  revalidatePath("/admin/zamowienia");
+  return { orderId };
 }
 
 export async function sendMessageAction(formData: FormData): Promise<void> {

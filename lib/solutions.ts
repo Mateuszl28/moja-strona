@@ -32,6 +32,32 @@ export type Solution = {
 
 export const solutions: Solution[] = [
   {
+    id: "landing-starter",
+    name: "Strona-wizytówka — gotowy pakiet",
+    nameEn: "Landing page — ready-made package",
+    description:
+      "Jednostronicowa strona-wizytówka na dopracowanym szablonie — Twoje treści, kolory i logo. Responsywna, szybka i gotowa do wdrożenia w kilka dni.",
+    descriptionEn:
+      "A polished one-page landing on a ready-made template — your content, colors and logo. Responsive, fast and live in a few days.",
+    price: 1200,
+    priceNote: "za wdrożenie",
+    priceNoteEn: "one-time setup",
+    features: [
+      "Gotowy, dopracowany szablon pod Twoją treść",
+      "Responsywność (telefon, tablet, desktop)",
+      "Formularz kontaktowy i podstawowe SEO",
+      "Wdrożenie na Twojej domenie",
+      "Wersja polska lub angielska",
+    ],
+    featuresEn: [
+      "Ready, polished template for your content",
+      "Responsive (phone, tablet, desktop)",
+      "Contact form and basic SEO",
+      "Deployment on your domain",
+      "Polish or English version",
+    ],
+  },
+  {
     id: "interior-app",
     name: "Aplikacja do projektowania wnętrz",
     nameEn: "Interior Design App",

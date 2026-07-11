@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import PromoBar from "./PromoBar";
+import CartIcon from "./CartIcon";
 
 const linksPl = [
   { href: "/", label: "Start" },
@@ -96,19 +97,25 @@ export default function Nav() {
               {isEn ? "PL" : "EN"}
             </Link>
           </li>
+          <li>
+            <CartIcon />
+          </li>
         </ul>
 
-        {/* Hamburger (mobile) */}
-        <button
-          type="button"
-          onClick={() => setOpen((v) => !v)}
-          aria-expanded={open}
-          aria-controls="mobile-menu"
-          aria-label={open ? "Zamknij menu" : "Otwórz menu"}
-          className="inline-flex h-9 w-9 items-center justify-center rounded-lg text-[var(--ink-soft)] transition-colors hover:text-[var(--ink)] sm:hidden"
-        >
-          {open ? <X size={20} /> : <Menu size={20} />}
-        </button>
+        {/* Prawa strona (mobile): koszyk + hamburger */}
+        <div className="flex items-center gap-0.5 sm:hidden">
+          <CartIcon />
+          <button
+            type="button"
+            onClick={() => setOpen((v) => !v)}
+            aria-expanded={open}
+            aria-controls="mobile-menu"
+            aria-label={open ? "Zamknij menu" : "Otwórz menu"}
+            className="inline-flex h-9 w-9 items-center justify-center rounded-lg text-[var(--ink-soft)] transition-colors hover:text-[var(--ink)]"
+          >
+            {open ? <X size={20} /> : <Menu size={20} />}
+          </button>
+        </div>
       </nav>
 
       {/* Panel mobilny */}

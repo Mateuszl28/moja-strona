@@ -5,6 +5,8 @@ import { Check, ArrowUpRight, ShoppingCart } from "lucide-react";
 import Reveal from "./Reveal";
 import type { ShopProduct } from "@/lib/products";
 import { zl } from "@/lib/pricing";
+import { applyPromo } from "@/lib/promo";
+import { useCart } from "./CartProvider";
 
 const orderSummary = (
   en: boolean,
@@ -34,20 +36,22 @@ export default function Solutions({
   en?: boolean;
   items?: ShopProduct[];
 }) {
+  const { add } = useCart();
   const t = en
     ? {
         empty: "Ready-made solutions are coming soon.",
         buy: "Buy now",
-        order: "Order",
+        add: "Add to cart",
         ask: "Ask about availability",
       }
     : {
         empty: "Gotowe rozwiązania pojawią się tutaj wkrótce.",
         buy: "Kup teraz",
-        order: "Zamawiam",
+        add: "Do koszyka",
         ask: "Zapytaj o dostępność",
       };
   const contactHref = en ? "/en/contact" : "/kontakt";
+  const shopHref = en ? "/en/shop" : "/sklep";
 
   if (items.length === 0) {
     return (
@@ -68,6 +72,9 @@ export default function Solutions({
         const badge = en ? s.badgeEn ?? s.badge : s.badge;
         const priceNote = en ? s.priceNoteEn ?? s.priceNote : s.priceNote;
         const priceAlt = en ? s.priceAltEn ?? s.priceAlt : s.priceAlt;
+        const promo = applyPromo(s.price);
+        const showPromo = promo.active && !s.soon;
+        const href = `${shopHref}/${s.slug}`;
         return (
           <Reveal key={s.id} delay={i * 0.06} className="h-full">
             <div
@@ -83,14 +90,31 @@ export default function Solutions({
                 </span>
               )}
 
-              <h3 className="text-lg font-semibold">{name}</h3>
+              <h3 className="text-lg font-semibold">
+                <Link
+                  href={href}
+                  className="transition-colors hover:text-accent"
+                >
+                  {name}
+                </Link>
+              </h3>
               <p className="mt-2 text-sm leading-relaxed text-[var(--ink-soft)]">
                 {description}
               </p>
 
               <div className="mt-5">
+                {showPromo && (
+                  <div className="mb-1 flex items-center gap-2">
+                    <span className="text-sm text-[var(--ink-soft)] line-through">
+                      {zl(promo.original)}
+                    </span>
+                    <span className="rounded-full bg-accent/15 px-2 py-0.5 text-xs font-semibold text-accent">
+                      −{promo.percent}%
+                    </span>
+                  </div>
+                )}
                 <p className="flex flex-wrap items-baseline gap-x-2 text-3xl font-semibold tracking-tight">
-                  {zl(s.price)}
+                  {zl(showPromo ? promo.final : s.price)}
                   {priceNote && (
                     <span className="text-sm font-normal text-[var(--ink-soft)]">
                       {priceNote}
@@ -127,23 +151,34 @@ export default function Solutions({
                   <ShoppingCart size={16} />
                   {t.buy}
                 </a>
-              ) : (
+              ) : s.soon ? (
                 <Link
                   href={contactHref}
                   onClick={() =>
                     sessionStorage.setItem(
                       "wycena_summary",
-                      orderSummary(en, name, s.price, features, !!s.soon)
+                      orderSummary(en, name, s.price, features, true)
                     )
                   }
                   className="group mt-7 inline-flex items-center justify-center gap-2 rounded-full border border-[var(--line)] px-5 py-3 text-sm font-medium text-[var(--ink)] transition-colors hover:border-accent/40"
                 >
-                  {s.soon ? t.ask : t.order}
+                  {t.ask}
                   <ArrowUpRight
                     size={16}
                     className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                   />
                 </Link>
+              ) : (
+                <button
+                  type="button"
+                  onClick={() =>
+                    add({ slug: s.slug, name, price: s.price })
+                  }
+                  className="mt-7 inline-flex items-center justify-center gap-2 rounded-full bg-[var(--ink)] px-5 py-3 text-sm font-medium text-[var(--paper)] transition-transform hover:-translate-y-0.5"
+                >
+                  <ShoppingCart size={16} />
+                  {t.add}
+                </button>
               )}
             </div>
           </Reveal>

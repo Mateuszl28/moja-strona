@@ -1,8 +1,11 @@
 import type { MetadataRoute } from "next";
 import { posts } from "@/lib/posts";
+import { getShopProducts } from "@/lib/products";
 
 const BASE_URL =
   process.env.NEXT_PUBLIC_SITE_URL || "https://programujzmateuszem.pl";
+
+export const dynamic = "force-dynamic";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const routes = [
@@ -32,5 +35,26 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  return [...staticRoutes, ...postRoutes];
+  // Strony produktów (PL + EN). Odporne na brak bazy przy buildzie.
+  let productRoutes: MetadataRoute.Sitemap = [];
+  try {
+    productRoutes = getShopProducts().flatMap((p) => [
+      {
+        url: `${BASE_URL}/sklep/${p.slug}`,
+        lastModified: new Date(),
+        changeFrequency: "monthly" as const,
+        priority: 0.7,
+      },
+      {
+        url: `${BASE_URL}/en/shop/${p.slug}`,
+        lastModified: new Date(),
+        changeFrequency: "monthly" as const,
+        priority: 0.7,
+      },
+    ]);
+  } catch {
+    productRoutes = [];
+  }
+
+  return [...staticRoutes, ...postRoutes, ...productRoutes];
 }
