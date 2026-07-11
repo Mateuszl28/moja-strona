@@ -46,7 +46,7 @@ export default function RegulaminPage() {
         <Section title="1. Sprzedawca">
           <p>
             Sklep prowadzi <strong>{company.legalName}</strong>,{" "}
-            {company.addressLine}, NIP&nbsp;{company.nip} („Sprzedawca").
+            {company.addressLine}, NIP&nbsp;{company.nip} („Sprzedawca&rdquo;).
             Kontakt: e-mail{" "}
             <a
               href={`mailto:${company.email}`}
