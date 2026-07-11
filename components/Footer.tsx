@@ -29,6 +29,8 @@ export default function Footer() {
   const homeHref = isEn ? "/en" : "/";
   const privacyHref = isEn ? "/en/privacy" : "/polityka-prywatnosci";
   const privacyLabel = isEn ? "Privacy policy" : "Polityka prywatności";
+  const termsHref = isEn ? "/en/terms" : "/regulamin";
+  const termsLabel = isEn ? "Terms" : "Regulamin";
 
   return (
     <footer className="border-t border-[var(--line)]">
@@ -76,12 +78,20 @@ export default function Footer() {
           © 2026 {company.legalName} · {company.addressLine} · NIP:{" "}
           {company.nip}
         </span>
-        <Link
-          href={privacyHref}
-          className="transition-colors hover:text-[var(--ink)]"
-        >
-          {privacyLabel}
-        </Link>
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
+          <Link
+            href={termsHref}
+            className="transition-colors hover:text-[var(--ink)]"
+          >
+            {termsLabel}
+          </Link>
+          <Link
+            href={privacyHref}
+            className="transition-colors hover:text-[var(--ink)]"
+          >
+            {privacyLabel}
+          </Link>
+        </div>
       </div>
     </footer>
   );

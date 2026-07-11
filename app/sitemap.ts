@@ -15,11 +15,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/en/quote",
     "/en/shop",
     "/en/contact",
+    "/en/terms",
     "/projekty",
     "/wycena",
     "/sklep",
     "/blog",
     "/kontakt",
+    "/regulamin",
   ];
   const staticRoutes = routes.map((path) => ({
     url: `${BASE_URL}${path}`,

@@ -14,6 +14,7 @@ export default function CartView({ en = false }: { en?: boolean }) {
   const router = useRouter();
   const [pending, startTransition] = useTransition();
   const [error, setError] = useState<string | null>(null);
+  const [accepted, setAccepted] = useState(false);
 
   const t = en
     ? {
@@ -48,9 +49,12 @@ export default function CartView({ en = false }: { en?: boolean }) {
       };
 
   const shopHref = en ? "/en/shop" : "/sklep";
+  const termsHref = en ? "/en/terms" : "/regulamin";
+  const privacyHref = en ? "/en/privacy" : "/polityka-prywatnosci";
   const totals = cartTotals(items);
 
   function checkout() {
+    if (!accepted) return;
     setError(null);
     startTransition(async () => {
       const res = await checkoutAction(JSON.stringify(items));
@@ -186,11 +190,37 @@ export default function CartView({ en = false }: { en?: boolean }) {
                 </p>
               )}
 
+              <label className="mt-5 flex cursor-pointer items-start gap-2.5 text-xs leading-relaxed text-[var(--ink-soft)]">
+                <input
+                  type="checkbox"
+                  checked={accepted}
+                  onChange={(e) => setAccepted(e.target.checked)}
+                  className="mt-0.5 h-4 w-4 shrink-0 accent-[var(--accent)]"
+                />
+                <span>
+                  {en ? "I accept the " : "Akceptuję "}
+                  <Link
+                    href={termsHref}
+                    className="text-[var(--ink)] underline underline-offset-2 hover:text-accent"
+                  >
+                    {en ? "terms" : "regulamin"}
+                  </Link>
+                  {en ? " and the " : " i "}
+                  <Link
+                    href={privacyHref}
+                    className="text-[var(--ink)] underline underline-offset-2 hover:text-accent"
+                  >
+                    {en ? "privacy policy" : "politykę prywatności"}
+                  </Link>
+                  .
+                </span>
+              </label>
+
               <button
                 type="button"
                 onClick={checkout}
-                disabled={pending}
-                className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full bg-[var(--ink)] px-5 py-3 text-sm font-medium text-[var(--paper)] transition-all hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60"
+                disabled={pending || !accepted}
+                className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full bg-[var(--ink)] px-5 py-3 text-sm font-medium text-[var(--paper)] transition-all hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60"
               >
                 <ShoppingCart size={16} />
                 {pending ? t.checkingOut : t.checkout}
