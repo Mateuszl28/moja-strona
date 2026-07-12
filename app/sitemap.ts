@@ -7,6 +7,10 @@ const BASE_URL =
 
 export const dynamic = "force-dynamic";
 
+// Stała data modyfikacji stron statycznych — crawler nie traktuje ich jako
+// „zmienione dziś" przy każdym odczycie sitemapy.
+const STATIC_LAST_MOD = new Date("2026-07-12T00:00:00Z");
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const routes = [
     "",
@@ -25,7 +29,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
   const staticRoutes = routes.map((path) => ({
     url: `${BASE_URL}${path}`,
-    lastModified: new Date(),
+    lastModified: STATIC_LAST_MOD,
     changeFrequency: "monthly" as const,
     priority: path === "" ? 1 : 0.8,
   }));
@@ -43,13 +47,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     productRoutes = getShopProducts().flatMap((p) => [
       {
         url: `${BASE_URL}/sklep/${p.slug}`,
-        lastModified: new Date(),
+        lastModified: STATIC_LAST_MOD,
         changeFrequency: "monthly" as const,
         priority: 0.7,
       },
       {
         url: `${BASE_URL}/en/shop/${p.slug}`,
-        lastModified: new Date(),
+        lastModified: STATIC_LAST_MOD,
         changeFrequency: "monthly" as const,
         priority: 0.7,
       },

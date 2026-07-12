@@ -5,7 +5,19 @@ const BASE_URL =
 
 export default function robots(): MetadataRoute.Robots {
   return {
-    rules: { userAgent: "*", allow: "/" },
+    rules: {
+      userAgent: "*",
+      allow: "/",
+      // Ścieżki bez wartości SEO — nie marnuj budżetu crawlowania.
+      disallow: [
+        "/panel",
+        "/admin",
+        "/login",
+        "/register",
+        "/koszyk",
+        "/en/cart",
+      ],
+    },
     sitemap: `${BASE_URL}/sitemap.xml`,
   };
 }

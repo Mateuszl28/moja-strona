@@ -52,7 +52,7 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: "/",
-    languages: { "pl-PL": "/", en: "/en" },
+    languages: { "pl-PL": "/", en: "/en", "x-default": "/" },
     types: {
       "application/rss+xml": [{ url: "/rss.xml", title: "Blog — Mateusz Łagocki" }],
     },
@@ -92,10 +92,19 @@ const organizationSchema = {
   name: company.legalName,
   legalName: company.legalName,
   url: BASE_URL,
+  logo: `${BASE_URL}/icon`,
   email: company.email,
   telephone: company.phoneE164,
   taxID: company.nip,
   vatID: `PL${company.nip}`,
+  contactPoint: {
+    "@type": "ContactPoint",
+    telephone: company.phoneE164,
+    email: company.email,
+    contactType: "customer service",
+    areaServed: "PL",
+    availableLanguage: ["pl", "en"],
+  },
   founder: { "@type": "Person", name: company.owner },
   address: {
     "@type": "PostalAddress",

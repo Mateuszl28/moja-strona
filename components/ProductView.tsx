@@ -5,6 +5,9 @@ import { zl } from "@/lib/pricing";
 import { applyPromo } from "@/lib/promo";
 import AddToCartButton from "./AddToCartButton";
 
+const BASE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL || "https://programujzmateuszem.pl";
+
 // Widok pojedynczego produktu (serwerowy). Wspólny dla /sklep/[slug] i /en/shop/[slug].
 export default function ProductView({
   product,
@@ -46,8 +49,35 @@ export default function ProductView({
   const shopHref = en ? "/en/shop" : "/sklep";
   const contactHref = en ? "/en/contact" : "/kontakt";
 
+  const url = `${BASE_URL}${shopHref}/${product.slug}`;
+  const offerPrice = showPromo ? promo.final : product.price;
+  const productSchema = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name,
+    description,
+    sku: product.slug,
+    brand: { "@type": "Brand", name: "Mateusz Łagocki Software Studio" },
+    url,
+    ...(offerPrice > 0 && {
+      offers: {
+        "@type": "Offer",
+        price: offerPrice,
+        priceCurrency: "PLN",
+        availability: product.soon
+          ? "https://schema.org/PreOrder"
+          : "https://schema.org/InStock",
+        url,
+      },
+    }),
+  };
+
   return (
     <main className="pt-28">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
+      />
       <div className="mx-auto max-w-content px-6 pb-24 pt-8">
         <Link
           href={shopHref}
