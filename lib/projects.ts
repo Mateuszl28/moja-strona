@@ -44,6 +44,18 @@ export type Project = {
 // Każdy projekt musi mieć `category` z listy powyżej. featured: true => też na stronie głównej.
 export const projects: Project[] = [
   {
+    title: "Własnem Perfect Home",
+    description:
+      "Wizytówka firmy wykończeniowo-remontowej — wykończenia wnętrz, remonty łazienek premium i profesjonalne sprzątanie. Galeria realizacji, opis 4-etapowego procesu, opinie klientów, FAQ i formularz wyceny. W pełni responsywna.",
+    descriptionEn:
+      "Business site for an interior finishing and renovation company — interior fit-outs, premium bathroom remodels and professional cleaning. Project gallery, a 4-step process breakdown, client reviews, FAQ and a quote form. Fully responsive.",
+    category: "Strony www",
+    tags: ["Next.js", "React", "Strona www"],
+    href: "https://własnemperfecthome.pl",
+    year: "2026",
+    featured: true,
+  },
+  {
     title: "Vibe — sklep streetwear",
     description:
       "Sklep ze streetwearem premium (bluzy, koszulki z bawełny). Katalog z filtrowaniem, koszyk, płatności BLIK/Przelewy24 i pełny proces zakupowy.",
