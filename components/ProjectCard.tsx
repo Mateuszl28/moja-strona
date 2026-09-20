@@ -1,6 +1,7 @@
 import { ArrowUpRight, Github } from "lucide-react";
 import type { Project } from "@/lib/projects";
 import { categoryEn } from "@/lib/projects";
+import ProjectShots from "./ProjectShots";
 
 export default function ProjectCard({
   project: p,
@@ -29,6 +30,10 @@ export default function ProjectCard({
         {p.title}
       </h3>
       <p className="mt-2 flex-1 text-sm text-[var(--ink-soft)]">{description}</p>
+
+      {p.shots && p.shots.length > 0 && (
+        <ProjectShots shots={p.shots} title={p.title} en={en} />
+      )}
 
       <ul className="mt-5 flex flex-wrap gap-1.5">
         {p.tags.map((t) => (

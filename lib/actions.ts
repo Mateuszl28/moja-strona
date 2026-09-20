@@ -18,6 +18,7 @@ import {
   updateOrderStatus,
 } from "./orders";
 import { parseCart } from "./cart";
+import { notifyNewOrder } from "./notify";
 import {
   createProduct,
   updateProduct,
@@ -211,6 +212,15 @@ export async function checkoutAction(
     amount,
     items,
   });
+
+  await notifyNewOrder({
+    id: orderId,
+    title: `Zamówienie (${totalQty} szt.)`,
+    amount,
+    itemsSummary: items.map((it) => `• ${it.name} × ${it.qty}`).join("\n"),
+    customer: `${session.name} <${session.email}>`,
+  });
+
   revalidatePath("/panel");
   revalidatePath("/admin");
   revalidatePath("/admin/zamowienia");
