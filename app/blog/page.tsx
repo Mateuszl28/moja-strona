@@ -19,7 +19,7 @@ export default function BlogPage() {
     <main className="pt-28">
       <section className="mx-auto max-w-content px-6 pb-12 pt-8">
         <Reveal>
-          <p className="font-mono text-xs uppercase tracking-[0.18em] text-accent">
+          <p className="eyebrow">
             Blog
           </p>
           <h1 className="mt-4 text-balance text-5xl font-semibold leading-[1.04] tracking-tight sm:text-6xl">
@@ -47,14 +47,14 @@ export default function BlogPage() {
                   href={`/blog/${post.slug}`}
                   className="group flex flex-col gap-2 py-7 transition-colors"
                 >
-                  <span className="font-mono text-xs text-[var(--ink-soft)]">
+                  <span className="text-sm tabular-nums text-[var(--ink-soft)]">
                     {formatDate(post.date)} · {readingTime(post)} min czytania
                   </span>
                   <h2 className="flex items-start justify-between gap-4 text-xl font-medium transition-colors group-hover:text-accent">
                     {post.title}
                     <ArrowUpRight
                       size={20}
-                      className="mt-1 shrink-0 text-[var(--ink-soft)] transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent"
+                      className="mt-1 shrink-0 text-[var(--ink-soft)] transition-all group-hover:translate-x-0.5 group-hover:text-accent"
                     />
                   </h2>
                   <p className="max-w-2xl text-sm leading-relaxed text-[var(--ink-soft)]">
@@ -64,7 +64,7 @@ export default function BlogPage() {
                     {post.tags.map((t) => (
                       <li
                         key={t}
-                        className="rounded-md bg-[var(--paper-soft)] px-2 py-1 font-mono text-xs text-[var(--ink-soft)]"
+                        className="rounded-md bg-[var(--paper-soft)] px-2 py-1 text-sm tabular-nums text-[var(--ink-soft)]"
                       >
                         {t}
                       </li>

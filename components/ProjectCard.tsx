@@ -18,15 +18,13 @@ export default function ProjectCard({
   const liveLabel = p.hrefLabel ?? (en ? "Live" : "Zobacz na żywo");
 
   return (
-    <article className="group flex h-full flex-col rounded-2xl border border-[var(--line)] bg-[var(--surface)] p-6 backdrop-blur-sm transition-all hover:-translate-y-1 hover:border-accent/30 hover:bg-[var(--surface-hover)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.4)]">
+    <article className="group flex h-full flex-col rounded-2xl border border-[var(--line)] bg-[var(--surface)] p-6 transition-colors hover:border-ink/40">
       <div className="mb-4 flex items-center justify-between gap-3">
-        <span className="font-mono text-xs uppercase tracking-[0.13em] text-accent">
-          {category}
-        </span>
-        <span className="font-mono text-xs text-[var(--ink-soft)]">{p.year}</span>
+        <span className="text-sm text-[var(--ink-soft)]">{category}</span>
+        <span className="text-sm tabular-nums text-[var(--ink-soft)]">{p.year}</span>
       </div>
 
-      <h3 className="text-lg font-medium transition-colors group-hover:text-accent">
+      <h3 className="text-xl leading-snug">
         {p.title}
       </h3>
       <p className="mt-2 flex-1 text-sm text-[var(--ink-soft)]">{description}</p>
@@ -35,16 +33,7 @@ export default function ProjectCard({
         <ProjectShots shots={p.shots} title={p.title} en={en} />
       )}
 
-      <ul className="mt-5 flex flex-wrap gap-1.5">
-        {p.tags.map((t) => (
-          <li
-            key={t}
-            className="rounded-md bg-[var(--paper-soft)] px-2 py-1 font-mono text-xs text-[var(--ink-soft)]"
-          >
-            {t}
-          </li>
-        ))}
-      </ul>
+      <p className="mt-5 text-sm text-[var(--ink-soft)]">{p.tags.join(" · ")}</p>
 
       {(p.href || repoLinks.length > 0) && (
         <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-2 border-t border-[var(--line)] pt-4 text-sm">

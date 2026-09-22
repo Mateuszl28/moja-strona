@@ -16,7 +16,7 @@ export default function AdminProductsPage() {
         </h1>
         <Link
           href="/admin/produkty/nowy"
-          className="inline-flex items-center gap-1.5 rounded-full bg-[var(--ink)] px-4 py-2 text-sm font-medium text-[var(--paper)] transition-transform hover:-translate-y-0.5"
+          className="inline-flex items-center gap-1.5 rounded-full bg-[var(--ink)] px-4 py-2 text-sm font-medium text-[var(--paper)] transition-transform"
         >
           <Plus size={16} />
           Nowy produkt
@@ -65,7 +65,7 @@ export default function AdminProductsPage() {
                   <input type="hidden" name="id" value={p.id} />
                   <button
                     type="submit"
-                    className="inline-flex items-center gap-1.5 rounded-full border border-[var(--line)] px-3 py-1.5 text-sm text-[var(--ink-soft)] transition-colors hover:border-red-500/40 hover:text-red-300"
+                    className="inline-flex items-center gap-1.5 rounded-full border border-[var(--line)] px-3 py-1.5 text-sm text-[var(--ink-soft)] transition-colors hover:border-red-500/40 hover:text-red-700"
                   >
                     <Trash2 size={14} />
                     Usuń

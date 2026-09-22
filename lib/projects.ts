@@ -40,6 +40,7 @@ export type Project = {
   repo?: string; // pojedyncze repo (skrót — pokaże się jako „Kod")
   repos?: RepoLink[]; // wiele repo z etykietami (np. Linux / Windows)
   shots?: Shot[]; // zrzuty ekranu — miniatury w karcie + podgląd po kliknięciu
+  cover?: string; // zrzut strony głównej (2:1) — duży podgląd na stronie głównej
   year: string;
   featured?: boolean;
 };
@@ -56,6 +57,7 @@ export const projects: Project[] = [
     category: "Strony www",
     tags: ["Next.js", "React", "Strona www"],
     href: "https://własnemperfecthome.pl",
+    cover: "/projekty/covers/wlasnem-perfect-home.webp",
     year: "2026",
     featured: true,
   },
@@ -68,6 +70,7 @@ export const projects: Project[] = [
     category: "Sklepy www",
     tags: ["JavaScript", "HTML & CSS", "E-commerce"],
     href: "https://www.vibeleszno.com",
+    cover: "/projekty/covers/vibe.webp",
     year: "2026",
     featured: true,
   },
@@ -80,6 +83,7 @@ export const projects: Project[] = [
     category: "Sklepy www",
     tags: ["Next.js", "React", "E-commerce"],
     href: "https://nawiabizuteria.pl",
+    cover: "/projekty/covers/nawia.webp",
     year: "2026",
     featured: true,
   },
@@ -126,6 +130,7 @@ export const projects: Project[] = [
     category: "Aplikacje internetowe",
     tags: ["Next.js", "TypeScript", "Gemini AI"],
     href: "https://sentra-ai-peach.vercel.app",
+    cover: "/projekty/covers/sentra-ai.webp",
     repo: "https://github.com/Mateuszl28/Sentra_AI",
     year: "2026",
     featured: true,

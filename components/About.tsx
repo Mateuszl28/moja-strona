@@ -1,9 +1,10 @@
 import Reveal from "./Reveal";
+import SectionHead from "./SectionHead";
 
 // Stack oparty na realnych projektach (portfolio, sklepy, sterownik P15) — bez pasków %.
 const stack: { group: string; items: string[] }[] = [
   {
-    group: "Frontend",
+    group: "Na co dzień",
     items: ["React", "Next.js", "TypeScript", "Tailwind CSS", "JavaScript"],
   },
   {
@@ -15,52 +16,39 @@ const stack: { group: string; items: string[] }[] = [
 export default function About() {
   return (
     <section className="mx-auto max-w-content px-6 py-20 sm:py-28">
-      <div className="grid gap-12 md:grid-cols-[0.85fr_1.15fr] md:gap-16">
-        <Reveal>
-          <p className="font-mono text-xs uppercase tracking-[0.18em] text-accent">
-            O mnie
-          </p>
-          <h2 className="mt-4 text-balance text-3xl font-semibold leading-tight tracking-tight sm:text-4xl">
-            Buduję rzeczy, które trafiają do ludzi.
-          </h2>
-        </Reveal>
+      <SectionHead
+        label="O mnie"
+        title="Buduję rzeczy, które trafiają do ludzi."
+      />
 
-        <Reveal delay={0.08}>
-          <div className="space-y-4 text-[var(--ink-soft)]">
-            <p className="text-lg leading-relaxed">
-              Jestem Mateusz — frontend developer z&nbsp;Polski. Najlepiej czuję
+      <Reveal delay={0.06}>
+        <div className="mt-12 grid gap-12 md:ml-[calc(13rem+2rem)] md:grid-cols-[1.4fr_1fr]">
+          <div className="space-y-5 text-lg leading-relaxed">
+            <p>
+              Jestem Mateusz, frontend developer z&nbsp;Polski. Najlepiej czuję
               się w&nbsp;React, Next.js i&nbsp;TypeScript, gdzie mogę zadbać
-              o&nbsp;detal, dostępność i&nbsp;czysty, czytelny kod.
+              o&nbsp;detal, dostępność i&nbsp;czytelny kod.
             </p>
-            <p className="leading-relaxed">
-              Nie zostaję tylko przy interfejsie — zbudowałem działające sklepy
+            <p className="text-[var(--ink-soft)]">
+              Nie zostaję tylko przy interfejsie. Zbudowałem działające sklepy
               internetowe, a&nbsp;nawet sterowniki drukarki w&nbsp;.NET na Linux
               i&nbsp;Windows. Lubię rozumieć całość i&nbsp;dowozić rzeczy, które
               realnie działają.
             </p>
           </div>
 
-          <div className="mt-8 grid gap-6 sm:grid-cols-2">
+          <dl className="space-y-8 text-sm">
             {stack.map(({ group, items }) => (
-              <div key={group}>
-                <p className="font-mono text-xs uppercase tracking-[0.14em] text-[var(--ink-soft)]">
-                  {group}
-                </p>
-                <ul className="mt-3 flex flex-wrap gap-1.5">
-                  {items.map((t) => (
-                    <li
-                      key={t}
-                      className="rounded-md border border-[var(--line)] bg-[var(--paper-soft)] px-2.5 py-1 font-mono text-xs text-[var(--ink)] transition-colors hover:border-accent/40"
-                    >
-                      {t}
-                    </li>
-                  ))}
-                </ul>
+              <div key={group} className="border-t border-[var(--line)] pt-4">
+                <dt className="text-[var(--ink-soft)]">{group}</dt>
+                <dd className="mt-2 text-base leading-relaxed">
+                  {items.join(", ")}
+                </dd>
               </div>
             ))}
-          </div>
-        </Reveal>
-      </div>
+          </dl>
+        </div>
+      </Reveal>
     </section>
   );
 }

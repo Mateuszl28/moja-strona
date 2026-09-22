@@ -108,7 +108,7 @@ export default function AdminOrdersPage({
                   <StatusBadge status={o.status} />
                   <ArrowUpRight
                     size={16}
-                    className="text-[var(--ink-soft)] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                    className="text-[var(--ink-soft)] transition-transform group-hover:translate-x-0.5"
                   />
                 </div>
               </Link>

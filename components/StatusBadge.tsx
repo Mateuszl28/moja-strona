@@ -2,9 +2,9 @@ import type { OrderStatus } from "@/lib/db";
 import { STATUS_LABEL, STATUS_LABEL_EN } from "@/lib/orders";
 
 const STYLES: Record<OrderStatus, string> = {
-  new: "border-blue-400/30 bg-blue-400/10 text-blue-300",
+  new: "border-blue-400/30 bg-blue-400/10 text-blue-700",
   in_progress: "border-accent/40 bg-accent/10 text-accent",
-  done: "border-emerald-400/30 bg-emerald-400/10 text-emerald-300",
+  done: "border-emerald-400/30 bg-emerald-400/10 text-emerald-700",
   cancelled: "border-[var(--line)] bg-[var(--surface)] text-[var(--ink-soft)]",
 };
 

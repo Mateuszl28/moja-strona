@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Packages from "@/components/Packages";
+import Audits from "@/components/Audits";
 import QuoteCalculator from "@/components/QuoteCalculator";
 import Reveal from "@/components/Reveal";
 
@@ -18,7 +19,7 @@ export default function EnQuotePage() {
     <main className="pt-28">
       <section className="mx-auto max-w-content px-6 pb-12 pt-8">
         <Reveal>
-          <p className="font-mono text-xs uppercase tracking-[0.18em] text-accent">
+          <p className="eyebrow">
             Quote
           </p>
           <h1 className="mt-4 text-balance text-5xl font-semibold leading-[1.04] tracking-tight sm:text-6xl">
@@ -33,9 +34,11 @@ export default function EnQuotePage() {
 
       <Packages en />
 
+      <Audits en />
+
       <section className="mx-auto max-w-content px-6 pb-16 pt-8">
         <Reveal>
-          <p className="font-mono text-xs uppercase tracking-[0.18em] text-accent">
+          <p className="eyebrow">
             Calculator
           </p>
           <h2 className="mt-4 text-balance text-3xl font-semibold tracking-tight sm:text-4xl">

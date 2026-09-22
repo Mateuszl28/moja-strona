@@ -34,16 +34,16 @@ export default function ProjectsBrowser({ items }: { items: Project[] }) {
               role="tab"
               aria-selected={isActive}
               onClick={() => setActive(t)}
-              className={`inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-sm transition-colors ${
+              className={`inline-flex items-center gap-1.5 rounded-full border px-4 py-1.5 text-sm transition-colors ${
                 isActive
-                  ? "border-accent/40 bg-accent/15 text-[var(--ink)]"
-                  : "border-[var(--line)] text-[var(--ink-soft)] hover:border-accent/30 hover:text-[var(--ink)]"
+                  ? "border-[var(--ink)] bg-[var(--ink)] text-[var(--paper)]"
+                  : "border-[var(--line)] text-[var(--ink-soft)] hover:border-[var(--ink)] hover:text-[var(--ink)]"
               }`}
             >
               {t}
               <span
                 className={`tabular-nums text-xs ${
-                  isActive ? "text-accent" : "text-[var(--ink-soft)]/55"
+                  isActive ? "text-paper/60" : "text-ink-soft/60"
                 }`}
               >
                 {countFor(t)}

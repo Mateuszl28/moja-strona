@@ -133,7 +133,7 @@ export default function ProjectShots({
         ))}
       </ul>
 
-      {/* Podgląd portalem do <body>: karta ma transform i backdrop-blur, więc
+      {/* Podgląd portalem do <body>: karta ma transform i, więc
           position: fixed liczyłoby się względem karty, a nie okna. */}
       {mounted && overlay ? createPortal(overlay, document.body) : null}
     </>

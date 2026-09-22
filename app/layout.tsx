@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Space_Grotesk } from "next/font/google";
+import { Instrument_Sans, Bricolage_Grotesque } from "next/font/google";
 import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
@@ -7,13 +7,13 @@ import BackToTop from "@/components/BackToTop";
 import CartProvider from "@/components/CartProvider";
 import { company } from "@/lib/company";
 
-const inter = Inter({
+const body = Instrument_Sans({
   subsets: ["latin", "latin-ext"],
-  variable: "--font-inter",
+  variable: "--font-body",
   display: "swap",
 });
 
-const display = Space_Grotesk({
+const display = Bricolage_Grotesque({
   subsets: ["latin", "latin-ext"],
   variable: "--font-display",
   display: "swap",
@@ -60,8 +60,8 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#14120f",
-  colorScheme: "dark",
+  themeColor: "#f3f0e8",
+  colorScheme: "light",
 };
 
 const personSchema = {
@@ -122,7 +122,7 @@ export default function RootLayout({
   return (
     <html
       lang="pl"
-      className={`${inter.variable} ${display.variable}`}
+      className={`${body.variable} ${display.variable}`}
     >
       <head>
         <script
@@ -138,7 +138,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
         />
       </head>
-      <body className="grain">
+      <body>
         <CartProvider>
           <a
             href="#main-content"

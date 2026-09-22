@@ -85,11 +85,11 @@ export default function PostPage({ params }: { params: { slug: string } }) {
           Wszystkie wpisy
         </Link>
 
-        <div className="mt-8 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-xs text-[var(--ink-soft)]">
+        <div className="mt-8 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm tabular-nums text-[var(--ink-soft)]">
           <span>{formatDate(post.date)}</span>
-          <span className="h-1 w-1 rounded-full bg-[var(--ink-soft)]/40" />
+          <span className="h-1 w-1 rounded-full bg-ink-soft/40" />
           <span>{readingTime(post)} min czytania</span>
-          <span className="h-1 w-1 rounded-full bg-[var(--ink-soft)]/40" />
+          <span className="h-1 w-1 rounded-full bg-ink-soft/40" />
           <span>{post.tags.join(" · ")}</span>
         </div>
 
@@ -108,7 +108,7 @@ export default function PostPage({ params }: { params: { slug: string } }) {
                 href={`/blog/${older.slug}`}
                 className="group rounded-xl border border-[var(--line)] bg-[var(--surface)] p-5 transition-colors hover:border-accent/30"
               >
-                <span className="inline-flex items-center gap-1.5 font-mono text-xs text-[var(--ink-soft)]">
+                <span className="inline-flex items-center gap-1.5 text-sm tabular-nums text-[var(--ink-soft)]">
                   <ArrowLeft size={14} /> Starszy wpis
                 </span>
                 <span className="mt-2 block font-medium transition-colors group-hover:text-accent">
@@ -123,7 +123,7 @@ export default function PostPage({ params }: { params: { slug: string } }) {
                 href={`/blog/${newer.slug}`}
                 className="group rounded-xl border border-[var(--line)] bg-[var(--surface)] p-5 text-right transition-colors hover:border-accent/30"
               >
-                <span className="inline-flex items-center gap-1.5 font-mono text-xs text-[var(--ink-soft)]">
+                <span className="inline-flex items-center gap-1.5 text-sm tabular-nums text-[var(--ink-soft)]">
                   Nowszy wpis <ArrowRight size={14} />
                 </span>
                 <span className="mt-2 block font-medium transition-colors group-hover:text-accent">

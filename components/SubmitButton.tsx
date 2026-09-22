@@ -18,7 +18,7 @@ export default function SubmitButton({
       disabled={pending}
       className={
         className ??
-        "inline-flex items-center justify-center gap-2 rounded-full bg-[var(--ink)] px-5 py-3 text-sm font-medium text-[var(--paper)] transition-all hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60"
+        "inline-flex items-center justify-center gap-2 rounded-full bg-[var(--ink)] px-5 py-3 text-sm font-medium text-[var(--paper)] transition-all disabled:cursor-not-allowed disabled:opacity-60"
       }
     >
       {pending ? pendingLabel ?? "Chwila…" : children}

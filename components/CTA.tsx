@@ -1,28 +1,33 @@
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Reveal from "./Reveal";
 
 export default function CTA() {
   return (
-    <section className="mx-auto max-w-content px-6 py-20">
+    <section className="mx-auto max-w-content px-6 py-20 sm:py-28">
       <Reveal>
-        <div className="relative overflow-hidden rounded-3xl border border-accent/20 bg-[var(--paper-soft)] px-8 py-14 text-center sm:py-20">
-          <div className="glow-warm absolute inset-x-0 -top-10 h-60 opacity-90" />
-          <h2 className="relative mx-auto max-w-xl text-balance text-2xl font-semibold leading-snug sm:text-3xl">
-            Masz projekt albo szukasz frontendowca?
-            <span className="text-accent"> Zbudujmy coś razem.</span>
+        <div className="border-t border-[var(--ink)] pt-10">
+          <h2 className="max-w-[16ch] text-balance text-[clamp(2.5rem,6vw,5rem)] leading-[0.98]">
+            Masz projekt? Porozmawiajmy o&nbsp;nim
+            <span className="text-accent">.</span>
           </h2>
-          <div className="relative mt-8">
+          <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4">
             <Link
               href="/kontakt"
-              className="group inline-flex items-center gap-2 rounded-full bg-[var(--ink)] px-6 py-3 text-sm font-medium text-[var(--paper)] transition-transform hover:-translate-y-0.5"
+              className="group inline-flex items-center gap-2 rounded-full bg-[var(--ink)] px-6 py-3 text-sm font-medium text-[var(--paper)] transition-colors hover:bg-accent"
             >
               Napisz do mnie
-              <ArrowUpRight
+              <ArrowRight
                 size={16}
-                className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                className="transition-transform group-hover:translate-x-0.5"
               />
             </Link>
+            <a
+              href="mailto:kontakt@programujzmateuszem.pl"
+              className="link-underline text-sm font-medium"
+            >
+              kontakt@programujzmateuszem.pl
+            </a>
           </div>
         </div>
       </Reveal>

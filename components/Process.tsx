@@ -1,4 +1,5 @@
 import Reveal from "./Reveal";
+import SectionHead from "./SectionHead";
 
 const steps = [
   {
@@ -30,29 +31,28 @@ const steps = [
 
 export default function Process() {
   return (
-    <section className="mx-auto max-w-content px-6 py-20 sm:py-24">
-      <Reveal>
-        <p className="font-mono text-xs uppercase tracking-[0.18em] text-accent">
-          Jak pracuję
-        </p>
-        <h2 className="mt-4 text-balance text-3xl font-semibold tracking-tight sm:text-4xl">
-          Od pomysłu do wdrożenia
-        </h2>
-      </Reveal>
+    <section className="my-10 bg-[#171512] text-[#f3f0e8] [--ink-soft:rgba(243,240,232,0.6)] [--ink:#f3f0e8] [--line:rgba(243,240,232,0.15)]">
+      <div className="mx-auto max-w-content px-6 py-20 sm:py-28">
+      <SectionHead label="Jak pracuję" title="Od pomysłu do wdrożenia" />
 
-      <ol className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+      <ol className="mt-12 grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-5">
         {steps.map((s, i) => (
-          <Reveal key={s.n} delay={i * 0.05} className="h-full">
-            <li className="flex h-full flex-col rounded-2xl border border-[var(--line)] bg-[var(--surface)] p-5 transition-colors hover:border-accent/30">
-              <span className="font-mono text-sm text-accent">{s.n}</span>
-              <h3 className="mt-3 font-medium">{s.title}</h3>
-              <p className="mt-1.5 text-sm leading-relaxed text-[var(--ink-soft)]">
-                {s.desc}
-              </p>
-            </li>
-          </Reveal>
+          <li key={s.n}>
+            <Reveal delay={i * 0.05}>
+              <div className="border-t border-[var(--line)] pt-4">
+                <span className="font-display text-4xl text-accent-soft tabular-nums">
+                  {s.n}
+                </span>
+                <h3 className="mt-6 text-lg">{s.title}</h3>
+                <p className="mt-1.5 text-sm leading-relaxed text-[var(--ink-soft)]">
+                  {s.desc}
+                </p>
+              </div>
+            </Reveal>
+          </li>
         ))}
       </ol>
+      </div>
     </section>
   );
 }

@@ -4,8 +4,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
-import PromoBar from "./PromoBar";
 import CartIcon from "./CartIcon";
+import Logo from "./Logo";
 
 const linksPl = [
   { href: "/", label: "Start" },
@@ -51,37 +51,38 @@ export default function Nav() {
   const links = isEn ? linksEn : linksPl;
   const homeHref = isEn ? "/en" : "/";
   const langHref = isEn ? "/" : "/en";
+  const contactHref = isEn ? "/en/contact" : "/kontakt";
 
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
         scrolled || open
-          ? "border-b border-[var(--line)] bg-[var(--paper)]/85 backdrop-blur"
+          ? "border-b border-[var(--line)] bg-[var(--paper)]"
           : "border-b border-transparent"
       }`}
     >
-      <PromoBar />
       <nav className="mx-auto flex max-w-content items-center justify-between px-6 py-4">
         <Link
           href={homeHref}
           onClick={() => setOpen(false)}
-          className="font-mono text-sm tracking-tight"
+          aria-label="Mateusz Łagocki — strona główna"
         >
-          ML<span className="text-accent">.</span>
+          <Logo />
         </Link>
 
         {/* Desktop */}
-        <ul className="hidden items-center gap-1 text-sm sm:flex">
-          {links.map((l) => {
+        <ul className="hidden items-center gap-1 text-sm md:flex">
+          {links.filter((l) => l.href !== contactHref).map((l) => {
             const active = isActive(l.href);
             return (
               <li key={l.href}>
                 <Link
                   href={l.href}
-                  className={`rounded-full px-3.5 py-1.5 transition-colors duration-200 ${
+                  aria-current={active ? "page" : undefined}
+                  className={`relative px-3 py-1.5 transition-colors duration-200 ${
                     active
-                      ? "bg-[var(--paper-soft)] text-[var(--ink)]"
-                      : "text-[var(--ink-soft)] hover:bg-[var(--paper-soft)]/60 hover:text-[var(--ink)]"
+                      ? "text-[var(--ink)] after:absolute after:inset-x-3 after:-bottom-0.5 after:h-px after:bg-[var(--ink)]"
+                      : "text-[var(--ink-soft)] hover:text-[var(--ink)]"
                   }`}
                 >
                   {l.label}
@@ -89,10 +90,10 @@ export default function Nav() {
               </li>
             );
           })}
-          <li className="ml-1 border-l border-[var(--line)] pl-2">
+          <li className="ml-2 border-l border-[var(--line)] pl-2">
             <Link
               href={langHref}
-              className="rounded-full px-3 py-1.5 font-mono text-xs text-[var(--ink-soft)] transition-colors hover:text-[var(--ink)]"
+              className="px-3 py-1.5 text-xs font-medium text-[var(--ink-soft)] transition-colors hover:text-[var(--ink)]"
             >
               {isEn ? "PL" : "EN"}
             </Link>
@@ -100,10 +101,18 @@ export default function Nav() {
           <li>
             <CartIcon />
           </li>
+          <li className="ml-2">
+            <Link
+              href={contactHref}
+              className="inline-flex items-center rounded-full bg-[var(--ink)] px-4 py-2 text-sm font-medium text-[var(--paper)] transition-colors hover:bg-accent"
+            >
+              {isEn ? "Contact" : "Napisz do mnie"}
+            </Link>
+          </li>
         </ul>
 
         {/* Prawa strona (mobile): koszyk + hamburger */}
-        <div className="flex items-center gap-0.5 sm:hidden">
+        <div className="flex items-center gap-0.5 md:hidden">
           <CartIcon />
           <button
             type="button"
@@ -122,9 +131,9 @@ export default function Nav() {
       {open && (
         <div
           id="mobile-menu"
-          className="soft-in border-t border-[var(--line)] bg-[var(--paper)]/95 backdrop-blur sm:hidden"
+          className="soft-in border-t border-[var(--line)] bg-[var(--paper)] md:hidden"
         >
-          <ul className="mx-auto flex max-w-content flex-col gap-1 px-4 py-3 text-sm">
+          <ul className="mx-auto flex max-w-content flex-col px-6 py-4">
             {links.map((l) => {
               const active = isActive(l.href);
               return (
@@ -132,10 +141,11 @@ export default function Nav() {
                   <Link
                     href={l.href}
                     onClick={() => setOpen(false)}
-                    className={`block rounded-lg px-3.5 py-2.5 transition-colors ${
+                    aria-current={active ? "page" : undefined}
+                    className={`block border-b border-[var(--line)] py-3 font-display text-2xl transition-colors ${
                       active
-                        ? "bg-[var(--paper-soft)] text-[var(--ink)]"
-                        : "text-[var(--ink-soft)] hover:bg-[var(--paper-soft)]/60 hover:text-[var(--ink)]"
+                        ? "text-[var(--ink)]"
+                        : "text-[var(--ink-soft)] hover:text-[var(--ink)]"
                     }`}
                   >
                     {l.label}
@@ -147,7 +157,7 @@ export default function Nav() {
               <Link
                 href={langHref}
                 onClick={() => setOpen(false)}
-                className="block rounded-lg px-3.5 py-2.5 font-mono text-[var(--ink-soft)] transition-colors hover:text-[var(--ink)]"
+                className="block py-3 text-sm text-[var(--ink-soft)] transition-colors hover:text-[var(--ink)]"
               >
                 {isEn ? "Polski" : "English"}
               </Link>

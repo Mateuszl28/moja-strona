@@ -29,7 +29,7 @@ export default function AddToCartButton({
           add({ slug, name, price });
           setAdded(true);
         }}
-        className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[var(--ink)] px-5 py-3 text-sm font-medium text-[var(--paper)] transition-all hover:-translate-y-0.5"
+        className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[var(--ink)] px-5 py-3 text-sm font-medium text-[var(--paper)] transition-all"
       >
         {added ? (
           <>

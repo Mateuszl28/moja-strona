@@ -1,79 +1,92 @@
 import Link from "next/link";
-import {
-  Layout,
-  ShoppingBag,
-  AppWindow,
-  Smartphone,
-  Puzzle,
-  ArrowUpRight,
-  type LucideIcon,
-} from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import Reveal from "./Reveal";
-import { projectTypes, zl } from "@/lib/pricing";
-
-// Ikona per rodzaj usługi (id zgodne z lib/pricing).
-const icons: Record<string, LucideIcon> = {
-  strona: Layout,
-  sklep: ShoppingBag,
-  webapp: AppWindow,
-  mobile: Smartphone,
-  inne: Puzzle,
-};
+import SectionHead from "./SectionHead";
+import { audits, projectTypes, zl } from "@/lib/pricing";
 
 export default function Services() {
   return (
-    <section className="mx-auto max-w-content px-6 py-20 sm:py-24">
-      <Reveal>
-        <p className="font-mono text-xs uppercase tracking-[0.18em] text-accent">
-          Usługi
-        </p>
-        <h2 className="mt-4 text-balance text-3xl font-semibold tracking-tight sm:text-4xl">
-          Co dla Ciebie zbuduję
-        </h2>
-        <p className="mt-4 max-w-xl leading-relaxed text-[var(--ink-soft)]">
-          Od prostej wizytówki po sklep i&nbsp;aplikację. Ceny orientacyjne —
-          dokładną policzysz w&nbsp;kalkulatorze.
-        </p>
-      </Reveal>
+    <section className="mx-auto max-w-content px-6 py-20 sm:py-28">
+      <SectionHead
+        label="Usługi"
+        title="Co mogę dla Ciebie zbudować"
+        aside={
+          <Link
+            href="/wycena"
+            className="link-underline shrink-0 text-sm font-medium"
+          >
+            Policz dokładną wycenę
+          </Link>
+        }
+      >
+        Od prostej wizytówki po sklep i&nbsp;aplikację. Ceny są orientacyjne,
+        dokładną kwotę policzysz w&nbsp;kalkulatorze.
+      </SectionHead>
 
-      <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-        {projectTypes.map((s, i) => {
-          const Icon = icons[s.id] ?? Puzzle;
-          return (
-            <Reveal key={s.id} delay={i * 0.05} className="h-full">
+      <ul className="mt-12 md:ml-[calc(13rem+2rem)]">
+        {projectTypes.map((s, i) => (
+          <li key={s.id} className="border-b border-[var(--line)] first:border-t">
+            <Reveal delay={i * 0.04}>
               <Link
                 href="/wycena"
-                className="group flex h-full flex-col rounded-2xl border border-[var(--line)] bg-[var(--surface)] p-6 transition-all hover:-translate-y-1 hover:border-accent/30 hover:bg-[var(--surface-hover)]"
+                className="group grid items-baseline gap-x-6 gap-y-1 py-5 sm:grid-cols-[1fr_auto]"
               >
-                <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--paper-soft)] text-accent transition-colors group-hover:bg-accent group-hover:text-[var(--paper)]">
-                  <Icon size={20} />
-                </span>
-                <h3 className="mt-5 text-lg font-medium">{s.label}</h3>
-                <p className="mt-1.5 flex-1 text-sm leading-relaxed text-[var(--ink-soft)]">
-                  {s.desc}
-                </p>
-                <span className="mt-5 inline-flex items-center gap-1 font-mono text-xs text-accent">
+                <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:gap-6">
+                  <h3 className="text-xl transition-colors group-hover:text-accent sm:w-56 sm:shrink-0">
+                    {s.label}
+                  </h3>
+                  <p className="text-sm leading-relaxed text-[var(--ink-soft)]">
+                    {s.desc}
+                  </p>
+                </div>
+                <span className="inline-flex items-center gap-1 whitespace-nowrap text-sm tabular-nums">
                   od {zl(s.base)}
                   <ArrowUpRight
-                    size={14}
-                    className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                    size={15}
+                    className="text-[var(--ink-soft)] transition-colors group-hover:text-accent"
                   />
                 </span>
               </Link>
             </Reveal>
-          );
-        })}
-      </div>
+          </li>
+        ))}
+      </ul>
 
-      <Reveal>
-        <Link
-          href="/wycena"
-          className="mt-8 inline-flex items-center gap-2 text-sm font-medium text-[var(--ink)] transition-colors hover:text-accent"
-        >
-          Policz dokładną wycenę
-          <ArrowUpRight size={16} />
-        </Link>
-      </Reveal>
+      <div className="mt-14 md:ml-[calc(13rem+2rem)]">
+        <Reveal>
+          <p className="text-sm text-[var(--ink-soft)]">
+            Audyty istniejących stron (stała cena)
+          </p>
+        </Reveal>
+        <ul className="mt-4">
+          {audits.map((a, i) => (
+            <li key={a.id} className="border-b border-[var(--line)] first:border-t">
+              <Reveal delay={i * 0.04}>
+                <Link
+                  href="/kontakt"
+                  className="group grid items-baseline gap-x-6 gap-y-1 py-5 sm:grid-cols-[1fr_auto]"
+                >
+                  <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:gap-6">
+                    <h3 className="text-xl transition-colors group-hover:text-accent sm:w-56 sm:shrink-0">
+                      {a.label}
+                    </h3>
+                    <p className="text-sm leading-relaxed text-[var(--ink-soft)]">
+                      {a.desc}
+                    </p>
+                  </div>
+                  <span className="inline-flex items-center gap-1 whitespace-nowrap text-sm tabular-nums">
+                    {zl(a.price)}
+                    <ArrowUpRight
+                      size={15}
+                      className="text-[var(--ink-soft)] transition-colors group-hover:text-accent"
+                    />
+                  </span>
+                </Link>
+              </Reveal>
+            </li>
+          ))}
+        </ul>
+      </div>
     </section>
   );
 }

@@ -197,7 +197,7 @@ export default function QuoteCalculator({ en = false }: { en?: boolean }) {
                   <span className="mt-1 block text-sm text-[var(--ink-soft)]">
                     {en ? t.descEn : t.desc}
                   </span>
-                  <span className="mt-2 block font-mono text-xs text-accent">
+                  <span className="mt-2 block text-sm tabular-nums text-accent">
                     {ui.from} {zl(t.base)}
                   </span>
                 </button>
@@ -220,7 +220,7 @@ export default function QuoteCalculator({ en = false }: { en?: boolean }) {
               onChange={(e) => setPages(Number(e.target.value))}
               className="h-1 w-full max-w-xs cursor-pointer appearance-none rounded-full bg-[var(--paper-soft)] accent-accent"
             />
-            <span className="w-16 font-mono text-sm tabular-nums text-[var(--ink-soft)]">
+            <span className="w-16 text-sm tabular-nums text-[var(--ink-soft)]">
               {pages}
               {pages >= 20 ? "+" : ""}
             </span>
@@ -254,14 +254,14 @@ export default function QuoteCalculator({ en = false }: { en?: boolean }) {
                     className={`flex h-4 w-4 shrink-0 items-center justify-center rounded border transition-colors ${
                       active
                         ? "border-accent bg-accent text-[var(--paper)]"
-                        : "border-[var(--ink-soft)]/50"
+                        : "border-ink-soft/50"
                     }`}
                     aria-hidden="true"
                   >
                     {active && <Check size={12} strokeWidth={3} />}
                   </span>
                   <span className="flex-1">{lbl(f)}</span>
-                  <span className="font-mono text-xs text-[var(--ink-soft)]">
+                  <span className="text-sm tabular-nums text-[var(--ink-soft)]">
                     {f.tbd ? ui.tbd : `+${zl(f.price)}`}
                   </span>
                 </label>
@@ -289,7 +289,7 @@ export default function QuoteCalculator({ en = false }: { en?: boolean }) {
                 >
                   {lbl(d)}
                   {d.price > 0 && (
-                    <span className="ml-2 font-mono text-xs text-[var(--ink-soft)]">
+                    <span className="ml-2 text-sm tabular-nums text-[var(--ink-soft)]">
                       +{zl(d.price)}
                     </span>
                   )}
@@ -318,7 +318,7 @@ export default function QuoteCalculator({ en = false }: { en?: boolean }) {
                 >
                   {lbl(t)}
                   {t.mult > 1 && (
-                    <span className="ml-2 font-mono text-xs text-[var(--ink-soft)]">
+                    <span className="ml-2 text-sm tabular-nums text-[var(--ink-soft)]">
                       +{Math.round((t.mult - 1) * 100)}%
                     </span>
                   )}
@@ -332,7 +332,7 @@ export default function QuoteCalculator({ en = false }: { en?: boolean }) {
       {/* ── PODSUMOWANIE (sticky) ── */}
       <div className="lg:sticky lg:top-24">
         <div className="rounded-2xl border border-accent/20 bg-[var(--paper-soft)] p-6 sm:p-7">
-          <p className="font-mono text-xs uppercase tracking-[0.16em] text-accent">
+          <p className="eyebrow">
             {ui.estimate}
           </p>
           <p className="mt-3 text-3xl font-semibold tracking-tight tabular-nums">
@@ -345,7 +345,7 @@ export default function QuoteCalculator({ en = false }: { en?: boolean }) {
             {lines.map((l, i) => (
               <li key={i} className="flex items-baseline justify-between gap-4">
                 <span className="text-[var(--ink-soft)]">{l.label}</span>
-                <span className="shrink-0 font-mono tabular-nums">
+                <span className="shrink-0 tabular-nums">
                   {l.note ?? zl(l.price)}
                 </span>
               </li>
@@ -358,12 +358,12 @@ export default function QuoteCalculator({ en = false }: { en?: boolean }) {
               onClick={() =>
                 sessionStorage.setItem("wycena_summary", summaryText)
               }
-              className="group inline-flex items-center justify-center gap-2 rounded-full bg-[var(--ink)] px-5 py-3 text-sm font-medium text-[var(--paper)] transition-transform hover:-translate-y-0.5"
+              className="group inline-flex items-center justify-center gap-2 rounded-full bg-[var(--ink)] px-5 py-3 text-sm font-medium text-[var(--paper)] transition-transform"
             >
               {ui.send}
               <ArrowUpRight
                 size={16}
-                className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                className="transition-transform group-hover:translate-x-0.5"
               />
             </Link>
             <button

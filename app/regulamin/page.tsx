@@ -33,7 +33,7 @@ export default function RegulaminPage() {
   return (
     <main className="pt-28">
       <article className="mx-auto max-w-3xl px-6 pb-24">
-        <p className="font-mono text-xs uppercase tracking-[0.18em] text-accent">
+        <p className="eyebrow">
           Sklep
         </p>
         <h1 className="mt-4 text-balance text-4xl font-semibold tracking-tight sm:text-5xl">

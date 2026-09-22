@@ -149,7 +149,7 @@ export default function CartView({ en = false }: { en?: boolean }) {
                     type="button"
                     onClick={() => remove(l.slug)}
                     aria-label={t.remove}
-                    className="inline-flex h-8 w-8 items-center justify-center rounded-full text-[var(--ink-soft)] transition-colors hover:text-red-400"
+                    className="inline-flex h-8 w-8 items-center justify-center rounded-full text-[var(--ink-soft)] transition-colors hover:text-red-700"
                   >
                     <Trash2 size={15} />
                   </button>
@@ -185,7 +185,7 @@ export default function CartView({ en = false }: { en?: boolean }) {
               </dl>
 
               {error && (
-                <p className="mt-4 rounded-lg border border-red-500/30 bg-red-500/10 px-3 py-2 text-sm text-red-300">
+                <p className="mt-4 rounded-lg border border-red-500/30 bg-red-500/10 px-3 py-2 text-sm text-red-700">
                   {error}
                 </p>
               )}
@@ -220,7 +220,7 @@ export default function CartView({ en = false }: { en?: boolean }) {
                 type="button"
                 onClick={checkout}
                 disabled={pending || !accepted}
-                className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full bg-[var(--ink)] px-5 py-3 text-sm font-medium text-[var(--paper)] transition-all hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60"
+                className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full bg-[var(--ink)] px-5 py-3 text-sm font-medium text-[var(--paper)] transition-all disabled:cursor-not-allowed disabled:opacity-60"
               >
                 <ShoppingCart size={16} />
                 {pending ? t.checkingOut : t.checkout}

@@ -106,7 +106,7 @@ export default function ContactForm({ en = false }: { en?: boolean }) {
   if (status === "ok") {
     return (
       <div className="flex items-center gap-3 rounded-xl border border-[var(--line)] bg-[var(--paper-soft)] px-5 py-6 text-[var(--ink)]">
-        <span className="flex h-9 w-9 items-center justify-center rounded-full bg-green-500/15 text-green-400">
+        <span className="flex h-9 w-9 items-center justify-center rounded-full bg-green-500/15 text-green-700">
           <Check size={18} />
         </span>
         <div>
@@ -158,16 +158,16 @@ export default function ContactForm({ en = false }: { en?: boolean }) {
           required
           rows={4}
           placeholder={t.messagePh}
-          className="resize-none rounded-lg border border-[var(--line)] bg-[var(--paper)] px-3.5 py-2.5 text-[var(--ink)] outline-none transition-colors placeholder:text-[var(--ink-soft)]/60 focus:border-[var(--accent)]"
+          className="resize-none rounded-lg border border-[var(--line)] bg-[var(--paper)] px-3.5 py-2.5 text-[var(--ink)] outline-none transition-colors placeholder:text-ink-soft/60 focus:border-[var(--accent)]"
         />
       </label>
 
-      {status === "error" && <p className="text-sm text-red-400">{error}</p>}
+      {status === "error" && <p className="text-sm text-red-700">{error}</p>}
 
       <button
         type="submit"
         disabled={status === "loading"}
-        className="inline-flex w-fit items-center gap-2 rounded-full bg-[var(--ink)] px-6 py-3 text-sm text-[var(--paper)] shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md disabled:cursor-not-allowed disabled:opacity-60"
+        className="inline-flex w-fit items-center gap-2 rounded-full bg-[var(--ink)] px-6 py-3 text-sm text-[var(--paper)] shadow-sm transition-all hover:shadow-md disabled:cursor-not-allowed disabled:opacity-60"
       >
         {status === "loading" ? (
           <>
@@ -204,7 +204,7 @@ function Field({
         type={type}
         required
         placeholder={placeholder}
-        className="rounded-lg border border-[var(--line)] bg-[var(--paper)] px-3.5 py-2.5 text-[var(--ink)] outline-none transition-colors placeholder:text-[var(--ink-soft)]/60 focus:border-[var(--accent)]"
+        className="rounded-lg border border-[var(--line)] bg-[var(--paper)] px-3.5 py-2.5 text-[var(--ink)] outline-none transition-colors placeholder:text-ink-soft/60 focus:border-[var(--accent)]"
       />
     </label>
   );

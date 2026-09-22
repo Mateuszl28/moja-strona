@@ -146,7 +146,7 @@ export default function Solutions({
                   href={s.buyUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="group mt-7 inline-flex items-center justify-center gap-2 rounded-full bg-[var(--ink)] px-5 py-3 text-sm font-medium text-[var(--paper)] transition-transform hover:-translate-y-0.5"
+                  className="group mt-7 inline-flex items-center justify-center gap-2 rounded-full bg-[var(--ink)] px-5 py-3 text-sm font-medium text-[var(--paper)] transition-transform"
                 >
                   <ShoppingCart size={16} />
                   {t.buy}
@@ -165,7 +165,7 @@ export default function Solutions({
                   {t.ask}
                   <ArrowUpRight
                     size={16}
-                    className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                    className="transition-transform group-hover:translate-x-0.5"
                   />
                 </Link>
               ) : (
@@ -174,7 +174,7 @@ export default function Solutions({
                   onClick={() =>
                     add({ slug: s.slug, name, price: s.price })
                   }
-                  className="mt-7 inline-flex items-center justify-center gap-2 rounded-full bg-[var(--ink)] px-5 py-3 text-sm font-medium text-[var(--paper)] transition-transform hover:-translate-y-0.5"
+                  className="mt-7 inline-flex items-center justify-center gap-2 rounded-full bg-[var(--ink)] px-5 py-3 text-sm font-medium text-[var(--paper)] transition-transform"
                 >
                   <ShoppingCart size={16} />
                   {t.add}

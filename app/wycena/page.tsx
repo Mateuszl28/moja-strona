@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Packages from "@/components/Packages";
+import Audits from "@/components/Audits";
 import QuoteCalculator from "@/components/QuoteCalculator";
 import Faq from "@/components/Faq";
 import Reveal from "@/components/Reveal";
@@ -32,7 +33,7 @@ export default function WycenaPage() {
       />
       <section className="mx-auto max-w-content px-6 pb-12 pt-8">
         <Reveal>
-          <p className="font-mono text-xs uppercase tracking-[0.18em] text-accent">
+          <p className="eyebrow">
             Wycena
           </p>
           <h1 className="mt-4 text-balance text-5xl font-semibold leading-[1.04] tracking-tight sm:text-6xl">
@@ -47,9 +48,11 @@ export default function WycenaPage() {
 
       <Packages />
 
+      <Audits />
+
       <section className="mx-auto max-w-content px-6 pb-16 pt-8">
         <Reveal>
-          <p className="font-mono text-xs uppercase tracking-[0.18em] text-accent">
+          <p className="eyebrow">
             Kalkulator
           </p>
           <h2 className="mt-4 text-balance text-3xl font-semibold tracking-tight sm:text-4xl">

@@ -3,17 +3,17 @@
 @tailwind utilities;
 
 :root {
-  /* Ciemny, ciepły motyw — jeden amberowy akcent, bez tęczy */
-  --paper: #14120f; /* bazowe tło — ciepła grafitowa czerń */
-  --paper-soft: #201d18; /* wypełnienie chipów / aktywnej nawigacji / ikon */
-  --ink: #f3f0e9; /* główny tekst — ciepła biel */
-  --ink-soft: #9b968a; /* tekst wyciszony */
-  --accent: #e0a96d; /* ciepły amber, rozjaśniony pod ciemne tło */
-  --line: rgba(243, 240, 233, 0.1);
-  /* powierzchnie kart — subtelne rozjaśnienie tła zamiast bieli */
-  --surface: rgba(243, 240, 233, 0.035);
-  --surface-hover: rgba(243, 240, 233, 0.07);
-  color-scheme: dark;
+  /* Jasny, redakcyjny motyw — ciepły papier, prawie czarny tusz, jeden akcent (cegła). */
+  --paper: #f3f0e8; /* tło strony */
+  --paper-soft: #e9e4d8; /* chipy, pola, aktywne elementy */
+  --ink: #171512; /* główny tekst */
+  --ink-soft: #6b665c; /* tekst wyciszony */
+  --accent: #c2410c; /* cegła — jedyny kolor akcentu */
+  --line: rgba(23, 21, 18, 0.14);
+  /* powierzchnie kart — odrobinę jaśniejsze od papieru */
+  --surface: #f8f6f0;
+  --surface-hover: #fbfaf6;
+  color-scheme: light;
 }
 
 * {
@@ -29,7 +29,7 @@ html {
 body {
   background: var(--paper);
   color: var(--ink);
-  font-family: var(--font-inter), system-ui, sans-serif;
+  font-family: var(--font-body), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   line-height: 1.6;
@@ -39,14 +39,14 @@ h1,
 h2,
 h3,
 .font-display {
-  font-family: var(--font-display), var(--font-inter), sans-serif;
-  letter-spacing: -0.025em;
+  font-family: var(--font-display), var(--font-body), sans-serif;
+  letter-spacing: -0.03em;
   font-weight: 600;
 }
 
 ::selection {
-  background: rgba(224, 169, 109, 0.26);
-  color: var(--ink);
+  background: var(--ink);
+  color: var(--paper);
 }
 
 a {
@@ -70,23 +70,20 @@ a {
   }
 }
 
-/* Przejścia stron i wejścia treści — CSS zamiast framer-motion (mniejszy bundle, start
-   od pierwszego renderu zamiast po hydracji JS). */
+/* Przejścia stron i wejścia treści — CSS zamiast framer-motion. Krótkie i ciche. */
 @keyframes page-enter {
   from {
     opacity: 0;
-    transform: translateY(8px);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
   }
 }
 
 @keyframes fade-rise {
   from {
     opacity: 0;
-    transform: translateY(16px);
+    transform: translateY(10px);
   }
   to {
     opacity: 1;
@@ -95,7 +92,7 @@ a {
 }
 
 .page-enter {
-  animation: page-enter 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: page-enter 0.25s ease-out both;
 }
 
 .fade-rise {
@@ -106,54 +103,20 @@ a {
 @keyframes soft-in {
   from {
     opacity: 0;
-    transform: translateY(6px);
   }
   to {
     opacity: 1;
-    transform: none;
   }
 }
 
 .soft-in {
-  animation: soft-in 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-
-/* Ruchomy pasek promocyjny (marquee) — tor przesuwa się o −50%, druga kopia daje
-   bezszwową pętlę. Pauza po najechaniu, żeby dało się przeczytać. */
-@keyframes marquee {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
-}
-
-.promo-track {
-  animation: marquee 26s linear infinite;
-}
-
-.promo-viewport:hover .promo-track {
-  animation-play-state: paused;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  /* Bez ruchu: zatrzymaj i wyśrodkuj pojedynczą kopię (druga jest aria-hidden). */
-  .promo-track {
-    animation: none;
-    transform: none;
-    width: 100%;
-    justify-content: center;
-  }
-  .promo-track > [aria-hidden="true"] {
-    display: none;
-  }
+  animation: soft-in 0.25s ease-out both;
 }
 
 /* Scroll-reveal — IntersectionObserver ustawia data-shown="true" (komponent Reveal). */
 [data-reveal] {
   opacity: 0;
-  transform: translateY(16px);
+  transform: translateY(10px);
   transition:
     opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
     transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
@@ -164,46 +127,35 @@ a {
   transform: none;
 }
 
-@layer utilities {
-  /* .text-accent generuje Tailwind z koloru `accent` (#e0a96d) — bez duplikatu tutaj */
-
-  /* ciepła, miękka poświata — jeden akcent, bez tęczy */
-  .glow-warm {
-    background: radial-gradient(
-      60% 50% at 50% 0%,
-      rgba(224, 169, 109, 0.14) 0%,
-      rgba(224, 169, 109, 0) 70%
-    );
+@layer components {
+  /* Etykieta sekcji — zwykły tekst z krótką kreską, zamiast mono/uppercase. */
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--ink-soft);
   }
-
-  /* subtelna ziarnistość — „papierowy", ludzki charakter */
-  .grain::before {
+  .eyebrow::before {
     content: "";
-    position: fixed;
-    inset: 0;
-    z-index: 1;
-    pointer-events: none;
-    opacity: 0.5;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+    width: 1.25rem;
+    height: 1px;
+    background: currentColor;
   }
+}
 
-  .dotted {
-    background-image: radial-gradient(
-      rgba(243, 240, 233, 0.05) 1px,
-      transparent 1px
-    );
-    background-size: 22px 22px;
-  }
-
+@layer utilities {
   .link-underline {
-    background-image: linear-gradient(var(--accent), var(--accent));
-    background-size: 0% 1px;
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 100% 1px;
     background-position: 0 100%;
     background-repeat: no-repeat;
     transition: background-size 0.3s ease;
   }
 
   .link-underline:hover {
-    background-size: 100% 1px;
+    background-size: 0% 1px;
+    background-position: 100% 100%;
   }
 }

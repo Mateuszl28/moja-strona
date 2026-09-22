@@ -6,13 +6,13 @@ export default function Stats() {
   if (stats.length === 0) return null;
 
   return (
-    <section className="mx-auto max-w-content px-6 py-16">
+    <section className="mx-auto max-w-content px-6 py-12">
       <Reveal>
-        <dl className="grid gap-3 rounded-2xl border border-[var(--line)] bg-[var(--surface)] p-8 sm:grid-cols-2 lg:grid-cols-4">
+        <dl className="grid gap-8 border-y border-[var(--line)] py-10 sm:grid-cols-2 lg:grid-cols-4">
           {stats.map((s) => (
-            <div key={s.label} className="text-center">
-              <dt className="text-4xl font-semibold tracking-tight">{s.value}</dt>
-              <dd className="mt-1 text-sm text-[var(--ink-soft)]">{s.label}</dd>
+            <div key={s.label}>
+              <dt className="font-display text-5xl tabular-nums">{s.value}</dt>
+              <dd className="mt-2 text-sm text-[var(--ink-soft)]">{s.label}</dd>
             </div>
           ))}
         </dl>

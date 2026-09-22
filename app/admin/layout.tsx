@@ -29,14 +29,14 @@ export default async function AdminLayout({
     <div className="mx-auto max-w-content px-6 pb-24 pt-28">
       <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[var(--line)] pb-5">
         <div className="flex flex-wrap items-center gap-1">
-          <span className="mr-3 font-mono text-xs uppercase tracking-[0.18em] text-accent">
+          <span className="mr-3 eyebrow">
             Admin
           </span>
           {links.map((l) => (
             <Link
               key={l.href}
               href={l.href}
-              className="rounded-full px-3.5 py-1.5 text-sm text-[var(--ink-soft)] transition-colors hover:bg-[var(--paper-soft)]/60 hover:text-[var(--ink)]"
+              className="rounded-full px-3.5 py-1.5 text-sm text-[var(--ink-soft)] transition-colors hover:bg-paper-soft/60 hover:text-[var(--ink)]"
             >
               {l.label}
             </Link>

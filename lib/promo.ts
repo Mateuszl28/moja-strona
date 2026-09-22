@@ -1,5 +1,5 @@
 // ─────────────────────────────────────────────────────────────────────────
-//  PROMOCJA — jedno źródło prawdy. Steruje paskiem (PromoBar), cenami w
+//  PROMOCJA — jedno źródło prawdy. Steruje cenami i etykietami w
 //  sklepie oraz kwotą zamówienia produktu. Wyłączenie: active = false.
 //  Czysty moduł (bez bazy) — bezpieczny w komponentach klienta i serwera.
 // ─────────────────────────────────────────────────────────────────────────
@@ -31,7 +31,7 @@ export function applyPromo(price: number): PricedPromo {
   return { active, percent: PROMO.percent, original: price, final, saved: price - final };
 }
 
-// Treść paska/etykiet — spójna między PromoBar a sklepem.
+// Treść paska/etykiet — spójna w całym sklepie.
 export function promoText(en: boolean): { message: string; note: string } {
   return en
     ? { message: `−${PROMO.percent}% on everything`, note: "Limited-time offer" }

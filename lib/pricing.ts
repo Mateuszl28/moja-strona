@@ -52,6 +52,26 @@ export const projectTypes = [
   },
 ] as const;
 
+// Audyty — stała cena, osobno od kalkulatora (nie składa się ich z klocków).
+export const audits = [
+  {
+    id: "audyt-bezpieczenstwa",
+    label: "Audyt bezpieczeństwa",
+    labelEn: "Security audit",
+    desc: "Przegląd strony lub aplikacji pod kątem luk, z raportem i listą poprawek",
+    descEn: "Review of your site or app for vulnerabilities, with a report and a fix list",
+    price: 3000,
+  },
+  {
+    id: "audyt-seo",
+    label: "Audyt SEO",
+    labelEn: "SEO audit",
+    desc: "Analiza widoczności w Google i konkretne rekomendacje do wdrożenia",
+    descEn: "Google visibility analysis with concrete, actionable recommendations",
+    price: 800,
+  },
+] as const;
+
 export const PAGE_PRICE = 80; // za każdą podstronę ponad pierwszą
 export const INCLUDED_PAGES = 1;
 

@@ -43,12 +43,12 @@ export default function LoginForm({ next }: { next?: string }) {
       </div>
 
       {state.error && (
-        <p className="rounded-lg border border-red-500/30 bg-red-500/10 px-3 py-2 text-sm text-red-300">
+        <p className="rounded-lg border border-red-500/30 bg-red-500/10 px-3 py-2 text-sm text-red-700">
           {state.error}
         </p>
       )}
 
-      <SubmitButton pendingLabel="Logowanie…" className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-[var(--ink)] px-5 py-3 text-sm font-medium text-[var(--paper)] transition-all hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60">
+      <SubmitButton pendingLabel="Logowanie…" className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-[var(--ink)] px-5 py-3 text-sm font-medium text-[var(--paper)] transition-all disabled:cursor-not-allowed disabled:opacity-60">
         Zaloguj się
       </SubmitButton>
 

@@ -6,7 +6,7 @@ import { RotateCcw, Home } from "lucide-react";
 export default function Error({ reset }: { error: Error; reset: () => void }) {
   return (
     <main className="mx-auto flex min-h-[72vh] max-w-content flex-col items-center justify-center px-6 text-center">
-      <p className="font-mono text-sm uppercase tracking-[0.18em] text-accent">
+      <p className="eyebrow">
         Błąd
       </p>
       <h1 className="mt-4 text-balance text-4xl font-semibold tracking-tight sm:text-5xl">
@@ -20,7 +20,7 @@ export default function Error({ reset }: { error: Error; reset: () => void }) {
         <button
           type="button"
           onClick={reset}
-          className="inline-flex items-center gap-2 rounded-full bg-[var(--ink)] px-5 py-3 text-sm font-medium text-[var(--paper)] transition-transform hover:-translate-y-0.5"
+          className="inline-flex items-center gap-2 rounded-full bg-[var(--ink)] px-5 py-3 text-sm font-medium text-[var(--paper)] transition-transform"
         >
           <RotateCcw size={16} />
           Spróbuj ponownie

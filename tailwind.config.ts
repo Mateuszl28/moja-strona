@@ -8,28 +8,34 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // single, warm accent — calm and human (zsynchronizowany z --accent w globals.css)
+        // jeden akcent — cegła (zsynchronizowany z --accent w globals.css)
         accent: {
-          DEFAULT: "#e0a96d",
-          soft: "#efc79a",
-          strong: "#c98a4b",
+          DEFAULT: "#c2410c",
+          soft: "#ea7a4b",
+          strong: "#9a3412",
         },
         ink: {
-          DEFAULT: "#f3f0e9",
-          soft: "#9b968a",
+          DEFAULT: "#171512",
+          soft: "#6b665c",
         },
         paper: {
-          DEFAULT: "#14120f",
-          soft: "#201d18",
+          DEFAULT: "#f3f0e8",
+          soft: "#e9e4d8",
         },
       },
       fontFamily: {
-        sans: ["var(--font-inter)", "system-ui", "sans-serif"],
-        display: ["var(--font-display)", "var(--font-inter)", "sans-serif"],
+        sans: ["var(--font-body)", "system-ui", "sans-serif"],
+        display: ["var(--font-display)", "var(--font-body)", "sans-serif"],
         mono: ["ui-monospace", "SFMono-Regular", "Menlo", "Consolas", "monospace"],
       },
+      // mniejsze promienie — mniej „bąbelkowego" wyglądu szablonów
+      borderRadius: {
+        xl: "0.5rem",
+        "2xl": "0.625rem",
+        "3xl": "0.875rem",
+      },
       maxWidth: {
-        content: "64rem",
+        content: "72rem",
       },
     },
   },

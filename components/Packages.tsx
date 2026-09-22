@@ -128,7 +128,7 @@ export default function Packages({ en = false }: { en?: boolean }) {
   return (
     <section className="mx-auto max-w-content px-6 py-12">
       <Reveal>
-        <p className="font-mono text-xs uppercase tracking-[0.18em] text-accent">
+        <p className="eyebrow">
           {t.eyebrow}
         </p>
         <h2 className="mt-4 text-balance text-3xl font-semibold tracking-tight sm:text-4xl">
@@ -190,14 +190,14 @@ export default function Packages({ en = false }: { en?: boolean }) {
                   }
                   className={`group mt-7 inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-medium transition-all ${
                     p.highlighted
-                      ? "bg-[var(--ink)] text-[var(--paper)] hover:-translate-y-0.5"
+                      ? "bg-[var(--ink)] text-[var(--paper)]"
                       : "border border-[var(--line)] text-[var(--ink)] hover:border-accent/40"
                   }`}
                 >
                   {t.choose(name)}
                   <ArrowUpRight
                     size={16}
-                    className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                    className="transition-transform group-hover:translate-x-0.5"
                   />
                 </Link>
               </div>

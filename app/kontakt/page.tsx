@@ -26,7 +26,7 @@ export default function KontaktPage() {
     <main className="pt-28">
       <section className="mx-auto max-w-content px-6 pb-12 pt-8">
         <Reveal>
-          <p className="font-mono text-xs uppercase tracking-[0.18em] text-accent">
+          <p className="eyebrow">
             Kontakt
           </p>
           <h1 className="mt-4 text-balance text-5xl font-semibold leading-[1.04] tracking-tight sm:text-6xl">
@@ -42,14 +42,13 @@ export default function KontaktPage() {
       <section className="mx-auto max-w-content px-6 pb-16">
         <div className="grid gap-3 lg:grid-cols-[1.2fr_1fr]">
           <Reveal>
-            <div className="rounded-2xl border border-[var(--line)] bg-[var(--surface)] p-6 backdrop-blur-sm sm:p-8">
+            <div className="rounded-2xl border border-[var(--line)] bg-[var(--surface)] p-6 sm:p-8">
               <ContactForm />
             </div>
           </Reveal>
 
           <Reveal delay={0.08}>
             <div className="relative flex h-full flex-col justify-between gap-8 overflow-hidden rounded-2xl border border-accent/20 bg-[var(--paper-soft)] p-6 sm:p-8">
-              <div className="glow-warm pointer-events-none absolute inset-x-0 -top-10 h-40 opacity-70" />
               <div className="relative">
                 <h2 className="text-xl font-semibold">Dane bezpośrednie</h2>
                 <p className="mt-2 text-sm text-[var(--ink-soft)]">
@@ -87,7 +86,7 @@ export default function KontaktPage() {
 
                 <a
                   href={CALL_MAILTO}
-                  className="group mt-3 inline-flex items-center justify-center gap-2 rounded-full bg-[var(--ink)] px-5 py-3 font-medium text-[var(--paper)] transition-transform hover:-translate-y-0.5"
+                  className="group mt-3 inline-flex items-center justify-center gap-2 rounded-full bg-[var(--ink)] px-5 py-3 font-medium text-[var(--paper)] transition-transform"
                 >
                   <CalendarClock size={16} />
                   Umów rozmowę

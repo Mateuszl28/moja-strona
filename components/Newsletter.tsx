@@ -51,7 +51,7 @@ export default function Newsletter() {
       </p>
 
       {status === "ok" ? (
-        <div className="mt-5 inline-flex items-center gap-2 text-sm text-green-400">
+        <div className="mt-5 inline-flex items-center gap-2 text-sm text-green-700">
           <Check size={16} /> Zapisano — dzięki!
         </div>
       ) : (
@@ -66,20 +66,20 @@ export default function Newsletter() {
               name="email"
               required
               placeholder="twoj@email.pl"
-              className="w-full rounded-full border border-[var(--line)] bg-[var(--paper)] py-2.5 pl-10 pr-4 text-sm text-[var(--ink)] outline-none transition-colors placeholder:text-[var(--ink-soft)]/60 focus:border-[var(--accent)]"
+              className="w-full rounded-full border border-[var(--line)] bg-[var(--paper)] py-2.5 pl-10 pr-4 text-sm text-[var(--ink)] outline-none transition-colors placeholder:text-ink-soft/60 focus:border-[var(--accent)]"
             />
           </div>
           <button
             type="submit"
             disabled={status === "loading"}
-            className="inline-flex items-center justify-center gap-2 rounded-full bg-[var(--ink)] px-5 py-2.5 text-sm font-medium text-[var(--paper)] transition-transform hover:-translate-y-0.5 disabled:opacity-60"
+            className="inline-flex items-center justify-center gap-2 rounded-full bg-[var(--ink)] px-5 py-2.5 text-sm font-medium text-[var(--paper)] transition-transform disabled:opacity-60"
           >
             {status === "loading" ? <Loader2 size={16} className="animate-spin" /> : "Zapisz się"}
           </button>
         </form>
       )}
 
-      {status === "error" && <p className="mt-3 text-sm text-red-400">{error}</p>}
+      {status === "error" && <p className="mt-3 text-sm text-red-700">{error}</p>}
     </div>
   );
 }

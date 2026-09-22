@@ -1,110 +1,112 @@
 import Link from "next/link";
-import { ArrowUpRight, FolderGit2, Mail } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import SiteShot from "./SiteShot";
+import { projects } from "@/lib/projects";
+
+// Prawdziwe, działające realizacje ze zrzutem — kolaż pod nagłówkiem.
+const shots = projects.filter((p) => p.cover && p.href).slice(0, 3);
 
 // Komponent serwerowy — treść hero jest w HTML od razu (lepszy LCP). Animacja wejścia
-// to CSS (.fade-rise) ze staggerem przez animation-delay, bez framer-motion ani "use client".
+// to CSS (.fade-rise) ze staggerem przez animation-delay, bez "use client".
 export default function Landing() {
+  const [main, ...side] = shots;
+
   return (
-    <section className="relative mx-auto max-w-content px-6 pt-32 sm:pt-40">
-      <div className="glow-warm pointer-events-none absolute inset-x-0 -top-10 h-[460px]" />
+    <section className="mx-auto max-w-content px-6 pb-16 pt-32 sm:pb-24 sm:pt-40">
+      <p
+        className="fade-rise flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-[var(--ink-soft)]"
+        style={{ animationDelay: "0s" }}
+      >
+        <span className="inline-flex items-center gap-2 font-medium text-[var(--ink)]">
+          <span className="h-2 w-2 rounded-full bg-accent" />
+          Przyjmuję nowe projekty
+        </span>
+        <span aria-hidden>/</span>
+        <span>Mateusz Łagocki, frontend developer</span>
+      </p>
 
-      <div className="relative z-[2]">
-        <div
-          className="fade-rise inline-flex items-center gap-2.5 rounded-full border border-[var(--line)] bg-[var(--surface)] px-3.5 py-1.5 font-mono text-xs uppercase tracking-[0.18em] text-[var(--ink-soft)]"
-          style={{ animationDelay: "0s" }}
-        >
-          <span className="h-1.5 w-1.5 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.7)]" />
-          Dostępny do współpracy
-        </div>
-
+      <div className="mt-8 grid items-end gap-10 lg:grid-cols-[1fr_20rem]">
         <h1
-          className="fade-rise mt-8 max-w-4xl text-balance text-5xl font-semibold leading-[1.02] tracking-tight sm:text-7xl"
-          style={{ animationDelay: "0.09s" }}
+          className="fade-rise text-balance text-[clamp(2.75rem,7.5vw,6.5rem)] font-semibold leading-[0.95]"
+          style={{ animationDelay: "0.08s" }}
         >
-          Buduję przejrzyste, szybkie strony i&nbsp;aplikacje
-          <span className="text-accent"> we frontendzie</span>.
+          Strony i&nbsp;sklepy, które pracują na Twój biznes
+          <span className="text-accent">.</span>
         </h1>
 
-        <p
-          className="fade-rise mt-7 max-w-xl text-lg leading-relaxed text-[var(--ink-soft)]"
-          style={{ animationDelay: "0.18s" }}
-        >
-          Jestem Mateusz — frontend developer. React, Next.js i&nbsp;TypeScript,
-          z naciskiem na detal, dostępność i&nbsp;czysty kod.
-        </p>
-
         <div
-          className="fade-rise mt-9 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-[var(--ink-soft)]"
-          style={{ animationDelay: "0.27s" }}
+          className="fade-rise lg:pb-3"
+          style={{ animationDelay: "0.16s" }}
         >
-          <span>Polska, zdalnie</span>
-          <span className="h-1 w-1 rounded-full bg-[var(--ink-soft)]/40" />
-          <span className="font-mono text-xs">React / Next.js / TypeScript</span>
-        </div>
-
-        {/* hub — przejścia na podstrony */}
-        <div
-          className="fade-rise mt-14 grid gap-4 border-t border-[var(--line)] pt-12 sm:grid-cols-2"
-          style={{ animationDelay: "0.36s" }}
-        >
-          <NavTile
-            href="/projekty"
-            n="01"
-            icon={<FolderGit2 size={20} />}
-            title="Projekty"
-            desc="Zobacz, co zbudowałem — wybrane prace i eksperymenty."
-          />
-          <NavTile
-            href="/kontakt"
-            n="02"
-            icon={<Mail size={20} />}
-            title="Kontakt"
-            desc="Masz projekt lub pytanie? Napisz — odpisuję szybko."
-          />
+          <p className="text-lg leading-relaxed">
+            Projektuję i&nbsp;koduję w&nbsp;React i&nbsp;Next.js. Rozmawiasz
+            bezpośrednio z&nbsp;osobą, która pisze kod, bez agencji
+            i&nbsp;pośredników.
+          </p>
+          <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-3">
+            <Link
+              href="/kontakt"
+              className="group inline-flex items-center gap-2 rounded-full bg-[var(--ink)] px-6 py-3 text-sm font-medium text-[var(--paper)] transition-colors hover:bg-accent"
+            >
+              Porozmawiajmy
+              <ArrowRight
+                size={16}
+                className="transition-transform group-hover:translate-x-0.5"
+              />
+            </Link>
+            <Link href="/wycena" className="link-underline text-sm font-medium">
+              Sprawdź ceny
+            </Link>
+          </div>
         </div>
       </div>
+
+      {main && (
+        <div
+          className="fade-rise mt-16 grid gap-4 md:grid-cols-12"
+          style={{ animationDelay: "0.26s" }}
+        >
+          <a
+            href={main.href}
+            target="_blank"
+            rel="noreferrer"
+            className="group md:col-span-8"
+            aria-label={`${main.title} — otwórz stronę`}
+          >
+            <SiteShot
+              src={main.cover!}
+              href={main.href}
+              alt={`Strona ${main.title}`}
+              priority
+              sizes="(min-width: 768px) 66vw, 100vw"
+            />
+          </a>
+          <div className="grid gap-4 md:col-span-4 md:grid-rows-2">
+            {side.map((p) => (
+              <a
+                key={p.title}
+                href={p.href}
+                target="_blank"
+                rel="noreferrer"
+                className="group min-h-0"
+                aria-label={`${p.title} — otwórz stronę`}
+              >
+                <SiteShot
+                  src={p.cover!}
+                  href={p.href}
+                  alt={`Strona ${p.title}`}
+                  sizes="(min-width: 768px) 33vw, 100vw"
+                  fill
+                />
+              </a>
+            ))}
+          </div>
+          <p className="text-sm text-[var(--ink-soft)] md:col-span-12">
+            Na zrzutach: {shots.map((p) => p.title).join(", ")}. Wszystkie działają,
+            możesz je kliknąć.
+          </p>
+        </div>
+      )}
     </section>
-  );
-}
-
-function NavTile({
-  href,
-  n,
-  icon,
-  title,
-  desc,
-}: {
-  href: string;
-  n: string;
-  icon: React.ReactNode;
-  title: string;
-  desc: string;
-}) {
-  return (
-    <Link
-      href={href}
-      className="group relative flex flex-col gap-10 overflow-hidden rounded-2xl border border-[var(--line)] bg-[var(--surface)] p-7 backdrop-blur-sm transition-all hover:-translate-y-1 hover:border-accent/40 hover:bg-[var(--surface-hover)] hover:shadow-[0_16px_50px_rgba(0,0,0,0.45)]"
-    >
-      <div className="flex items-center justify-between">
-        <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--paper-soft)] text-accent transition-colors group-hover:bg-accent group-hover:text-[var(--paper)]">
-          {icon}
-        </span>
-        <span className="font-mono text-xs text-[var(--ink-soft)]">{n}</span>
-      </div>
-      <div className="flex items-end justify-between">
-        <div>
-          <span className="block text-xl font-medium tracking-tight">
-            {title}
-          </span>
-          <span className="mt-1.5 block max-w-[24ch] text-sm text-[var(--ink-soft)]">
-            {desc}
-          </span>
-        </div>
-        <ArrowUpRight
-          size={22}
-          className="shrink-0 text-[var(--ink-soft)] transition-all group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-accent"
-        />
-      </div>
-    </Link>
   );
 }

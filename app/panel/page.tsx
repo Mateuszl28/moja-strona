@@ -32,7 +32,7 @@ export default async function PanelPage() {
     <main className="mx-auto max-w-content px-6 pb-24 pt-28">
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
-          <p className="font-mono text-xs uppercase tracking-[0.18em] text-accent">
+          <p className="eyebrow">
             Panel klienta
           </p>
           <h1 className="mt-3 text-3xl font-semibold tracking-tight">
@@ -95,7 +95,7 @@ export default async function PanelPage() {
                       <StatusBadge status={o.status} />
                       <ArrowUpRight
                         size={16}
-                        className="text-[var(--ink-soft)] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                        className="text-[var(--ink-soft)] transition-transform group-hover:translate-x-0.5"
                       />
                     </div>
                   </Link>

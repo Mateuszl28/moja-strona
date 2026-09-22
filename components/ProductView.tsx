@@ -120,7 +120,6 @@ export default function ProductView({
 
           {/* Karta zamówienia */}
           <div className="relative flex h-full flex-col gap-6 overflow-hidden rounded-2xl border border-accent/20 bg-[var(--paper-soft)] p-6 sm:p-8">
-            <div className="glow-warm pointer-events-none absolute inset-x-0 -top-10 h-40 opacity-70" />
 
             <div className="relative">
               {showPromo && (

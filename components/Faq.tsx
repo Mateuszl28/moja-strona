@@ -6,7 +6,7 @@ export default function Faq() {
   return (
     <section className="mx-auto max-w-3xl px-6 pb-24">
       <Reveal>
-        <p className="font-mono text-xs uppercase tracking-[0.18em] text-accent">
+        <p className="eyebrow">
           FAQ
         </p>
         <h2 className="mt-4 text-balance text-3xl font-semibold tracking-tight sm:text-4xl">
