@@ -7,10 +7,13 @@ import BackToTop from "@/components/BackToTop";
 import CartProvider from "@/components/CartProvider";
 import { company } from "@/lib/company";
 
+// Bez preloadu: tekst startuje fontem zastępczym o dopasowanych metrykach (brak skoku
+// układu), a pasmo na starcie idzie na nagłówek i zrzut w hero (LCP).
 const body = Instrument_Sans({
   subsets: ["latin", "latin-ext"],
   variable: "--font-body",
   display: "swap",
+  preload: false,
 });
 
 const display = Bricolage_Grotesque({
