@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Solutions from "@/components/Solutions";
-import Reveal from "@/components/Reveal";
 import { getShopProducts } from "@/lib/products";
 
 export const dynamic = "force-dynamic";
@@ -16,7 +15,7 @@ export default function SklepPage() {
   return (
     <main className="pt-28">
       <section className="mx-auto max-w-content px-6 pb-12 pt-8">
-        <Reveal>
+        <div className="fade-rise">
           <p className="eyebrow">
             Sklep
           </p>
@@ -28,7 +27,7 @@ export default function SklepPage() {
             aplikacja do projektowania wnętrz — pojawi się tu wkrótce. Chcesz
             wiedzieć pierwszy? Zapytaj o&nbsp;dostępność.
           </p>
-        </Reveal>
+        </div>
       </section>
 
       <section className="mx-auto max-w-content px-6 pb-24">

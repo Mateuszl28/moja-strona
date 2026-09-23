@@ -70,23 +70,23 @@ a {
   }
 }
 
-/* Przejścia stron i wejścia treści — CSS zamiast framer-motion. Krótkie i ciche. */
+/* Przejścia stron i wejścia treści — CSS zamiast framer-motion. Krótkie i ciche.
+   Bez animowania opacity od 0: Google liczy LCP dopiero od chwili, gdy element jest
+   widoczny, więc „wjazd" z przezroczystości opóźniał wynik o ~1 s. Zostaje sam ruch. */
 @keyframes page-enter {
   from {
-    opacity: 0;
+    transform: translateY(4px);
   }
   to {
-    opacity: 1;
+    transform: none;
   }
 }
 
 @keyframes fade-rise {
   from {
-    opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(12px);
   }
   to {
-    opacity: 1;
     transform: translateY(0);
   }
 }

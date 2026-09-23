@@ -164,18 +164,18 @@ export default function AuditPage({ params }: { params: { slug: string } }) {
       {/* Zakres */}
       <section className="mx-auto max-w-content px-6 py-16 sm:py-20">
         <SectionHead label="Zakres" title="Co sprawdzam" />
-        <dl className="mt-10 grid gap-x-12 md:ml-[calc(13rem+2rem)] md:grid-cols-2">
+        <div className="mt-10 grid gap-x-12 md:ml-[calc(13rem+2rem)] md:grid-cols-2">
           {page.scope.map((s, i) => (
             <Reveal key={s.title} delay={(i % 2) * 0.05}>
               <div className="border-t border-[var(--line)] py-6">
-                <dt className="text-lg font-medium">{s.title}</dt>
-                <dd className="mt-2 leading-relaxed text-[var(--ink-soft)]">
+                <h3 className="font-sans text-lg font-medium tracking-normal">{s.title}</h3>
+                <p className="mt-2 leading-relaxed text-[var(--ink-soft)]">
                   {s.desc}
-                </dd>
+                </p>
               </div>
             </Reveal>
           ))}
-        </dl>
+        </div>
       </section>
 
       {/* Co dostajesz + przykładowy raport (ciemna sekcja dla rytmu) */}

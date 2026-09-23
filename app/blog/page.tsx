@@ -18,7 +18,7 @@ export default function BlogPage() {
   return (
     <main className="pt-28">
       <section className="mx-auto max-w-content px-6 pb-12 pt-8">
-        <Reveal>
+        <div className="fade-rise">
           <p className="eyebrow">
             Blog
           </p>
@@ -29,7 +29,7 @@ export default function BlogPage() {
             Praktyczne wpisy o&nbsp;tym, jak buduję i&nbsp;wdrażam — Next.js,
             serwery, frontend bez lania wody.
           </p>
-        </Reveal>
+        </div>
       </section>
 
       <section className="mx-auto max-w-content px-6 pb-24">

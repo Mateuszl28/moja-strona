@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import ProjectsBrowser from "@/components/ProjectsBrowser";
 import CTA from "@/components/CTA";
-import Reveal from "@/components/Reveal";
 import { projects } from "@/lib/projects";
 
 export const metadata: Metadata = {
@@ -40,7 +39,7 @@ export default function ProjektyPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }}
       />
       <section className="mx-auto max-w-content px-6 pb-12 pt-8">
-        <Reveal>
+        <div className="fade-rise">
           <p className="eyebrow">
             Projekty
           </p>
@@ -51,7 +50,7 @@ export default function ProjektyPage() {
             Wybór projektów — od eksperymentów po prace na zaliczenie i&nbsp;dla
             klientów. Każdy uczył mnie czegoś nowego.
           </p>
-        </Reveal>
+        </div>
       </section>
 
       <section className="mx-auto max-w-content px-6 pb-8">

@@ -18,7 +18,7 @@ export default function EnQuotePage() {
   return (
     <main className="pt-28">
       <section className="mx-auto max-w-content px-6 pb-12 pt-8">
-        <Reveal>
+        <div className="fade-rise">
           <p className="eyebrow">
             Quote
           </p>
@@ -29,7 +29,7 @@ export default function EnQuotePage() {
             Pick what you need and the price updates live. It&apos;s a rough
             starting point; we&apos;ll nail the details in a quick chat.
           </p>
-        </Reveal>
+        </div>
       </section>
 
       <Packages en />

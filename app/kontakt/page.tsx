@@ -25,7 +25,7 @@ export default function KontaktPage() {
   return (
     <main className="pt-28">
       <section className="mx-auto max-w-content px-6 pb-12 pt-8">
-        <Reveal>
+        <div className="fade-rise">
           <p className="eyebrow">
             Kontakt
           </p>
@@ -36,7 +36,7 @@ export default function KontaktPage() {
             Masz pomysł, projekt albo szukasz kogoś do zespołu? Napisz —
             odpisuję zwykle w&nbsp;ciągu jednego dnia.
           </p>
-        </Reveal>
+        </div>
       </section>
 
       <section className="mx-auto max-w-content px-6 pb-16">

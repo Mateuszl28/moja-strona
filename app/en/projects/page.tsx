@@ -19,7 +19,7 @@ export default function EnProjectsPage() {
   return (
     <main className="pt-28">
       <section className="mx-auto max-w-content px-6 pb-12 pt-8">
-        <Reveal>
+        <div className="fade-rise">
           <p className="eyebrow">
             Projects
           </p>
@@ -30,7 +30,7 @@ export default function EnProjectsPage() {
             A selection of projects — from experiments to client work. Each one
             taught me something new.
           </p>
-        </Reveal>
+        </div>
       </section>
 
       <section className="mx-auto max-w-content px-6 pb-8">

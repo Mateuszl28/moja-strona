@@ -71,7 +71,6 @@ export default function Landing() {
             target="_blank"
             rel="noreferrer"
             className="group md:col-span-8"
-            aria-label={`${main.title} — otwórz stronę`}
           >
             <SiteShot
               src={main.cover!}
@@ -90,7 +89,6 @@ export default function Landing() {
                 target="_blank"
                 rel="noreferrer"
                 className="group min-h-0"
-                aria-label={`${p.title} — otwórz stronę`}
               >
                 <SiteShot
                   src={p.cover!}

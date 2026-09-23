@@ -33,18 +33,18 @@ export default function WhyMe() {
     <section className="mx-auto max-w-content px-6 py-20 sm:py-28">
       <SectionHead label="Dlaczego ja" title="Konkret zamiast obietnic" />
 
-      <dl className="mt-12 grid gap-x-12 md:ml-[calc(13rem+2rem)] md:grid-cols-2">
+      <div className="mt-12 grid gap-x-12 md:ml-[calc(13rem+2rem)] md:grid-cols-2">
         {points.map((p, i) => (
           <Reveal key={p.title} delay={(i % 2) * 0.05}>
             <div className="border-t border-[var(--line)] py-6">
-              <dt className="text-lg font-medium">{p.title}</dt>
-              <dd className="mt-2 leading-relaxed text-[var(--ink-soft)]">
+              <h3 className="font-sans text-lg font-medium tracking-normal">{p.title}</h3>
+              <p className="mt-2 leading-relaxed text-[var(--ink-soft)]">
                 {p.desc}
-              </dd>
+              </p>
             </div>
           </Reveal>
         ))}
-      </dl>
+      </div>
     </section>
   );
 }

@@ -41,6 +41,7 @@ export default function SiteShot({
             alt={alt}
             fill
             sizes={sizes}
+            quality={70}
             priority={priority}
             className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.02]"
           />
@@ -53,6 +54,7 @@ export default function SiteShot({
             width={1280}
             height={640}
             sizes={sizes}
+            quality={70}
             priority={priority}
             className="block h-auto w-full transition-transform duration-700 ease-out group-hover:scale-[1.02]"
           />

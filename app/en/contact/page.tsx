@@ -27,7 +27,7 @@ export default function EnContactPage() {
   return (
     <main className="pt-28">
       <section className="mx-auto max-w-content px-6 pb-12 pt-8">
-        <Reveal>
+        <div className="fade-rise">
           <p className="eyebrow">
             Contact
           </p>
@@ -38,7 +38,7 @@ export default function EnContactPage() {
             Got an idea, a project, or looking for someone to join the team?
             Drop me a line — I usually reply within a day.
           </p>
-        </Reveal>
+        </div>
       </section>
 
       <section className="mx-auto max-w-content px-6 pb-16">

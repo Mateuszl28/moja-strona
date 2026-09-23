@@ -32,7 +32,7 @@ export default function WycenaPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
       <section className="mx-auto max-w-content px-6 pb-12 pt-8">
-        <Reveal>
+        <div className="fade-rise">
           <p className="eyebrow">
             Wycena
           </p>
@@ -43,7 +43,7 @@ export default function WycenaPage() {
             Zaznacz, czego potrzebujesz — kwota policzy się na bieżąco. To
             orientacyjny punkt wyjścia; szczegóły dopniemy w&nbsp;rozmowie.
           </p>
-        </Reveal>
+        </div>
       </section>
 
       <Packages />

@@ -22,28 +22,29 @@ const display = Bricolage_Grotesque({
 const BASE_URL =
   process.env.NEXT_PUBLIC_SITE_URL || "https://programujzmateuszem.pl";
 
+// Opis pod frazy, których szukają klienci (usługa + miejsce), a nie pod technologię.
+const SITE_DESCRIPTION =
+  "Projektuję i koduję szybkie strony internetowe, sklepy i aplikacje w Next.js. Leszno i cała Polska zdalnie. Wycena online, audyty SEO i bezpieczeństwa.";
+
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
-    default: "Mateusz Łagocki — Frontend Developer",
+    default: "Strony internetowe i sklepy online — Mateusz Łagocki, Leszno",
     template: "%s — Mateusz Łagocki",
   },
-  description:
-    "Portfolio Mateusza Łagockiego — frontend developer. React, Next.js, TypeScript, Tailwind.",
+  description: SITE_DESCRIPTION,
   openGraph: {
     type: "website",
     locale: "pl_PL",
     url: BASE_URL,
     siteName: "Mateusz Łagocki",
-    title: "Mateusz Łagocki — Frontend Developer",
-    description:
-      "Portfolio Mateusza Łagockiego — frontend developer. React, Next.js, TypeScript.",
+    title: "Strony internetowe i sklepy online — Mateusz Łagocki",
+    description: SITE_DESCRIPTION,
   },
   twitter: {
     card: "summary_large_image",
-    title: "Mateusz Łagocki — Frontend Developer",
-    description:
-      "Portfolio Mateusza Łagockiego — frontend developer. React, Next.js, TypeScript.",
+    title: "Strony internetowe i sklepy online — Mateusz Łagocki",
+    description: SITE_DESCRIPTION,
   },
   robots: {
     index: true,
@@ -86,9 +87,25 @@ const websiteSchema = {
   author: { "@type": "Person", name: "Mateusz Łagocki" },
 };
 
+// ProfessionalService (podtyp LocalBusiness) — z adresem i zakresem cen daje sygnał
+// dla wyników lokalnych („strony internetowe Leszno").
 const organizationSchema = {
   "@context": "https://schema.org",
-  "@type": "Organization",
+  "@type": "ProfessionalService",
+  "@id": `${BASE_URL}/#firma`,
+  image: `${BASE_URL}/opengraph-image`,
+  priceRange: "450–3000 zł",
+  areaServed: [
+    { "@type": "City", name: "Leszno" },
+    { "@type": "Country", name: "Polska" },
+  ],
+  knowsAbout: [
+    "strony internetowe",
+    "sklepy internetowe",
+    "aplikacje internetowe",
+    "audyt SEO",
+    "audyt bezpieczeństwa",
+  ],
   name: company.legalName,
   legalName: company.legalName,
   url: BASE_URL,
@@ -125,6 +142,10 @@ export default function RootLayout({
       className={`${body.variable} ${display.variable}`}
     >
       <head>
+        {/* Bez JS treść w [data-reveal] zostałaby niewidoczna — pokaż ją od razu. */}
+        <noscript>
+          <style>{`[data-reveal]{opacity:1!important;transform:none!important}`}</style>
+        </noscript>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
