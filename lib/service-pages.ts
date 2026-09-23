@@ -27,7 +27,7 @@ export const servicePages: ServicePage[] = [
     packageIds: ["start", "firmowy"],
     extraIds: ["cms", "blog", "i18n", "content", "anim"],
     caseStudySlugs: ["wlasnem-perfect-home"],
-    metaTitle: "Strony internetowe dla firm — cena i realizacje",
+    metaTitle: "Strony internetowe dla firm — cennik",
     metaDescription:
       "Strony internetowe dla firm: wizytówka od 450 zł, strona firmowa od 900 zł. Projekt od zera, szybkie ładowanie, SEO i wdrożenie w cenie.",
     label: "Strony internetowe",
@@ -92,7 +92,7 @@ export const servicePages: ServicePage[] = [
     packageIds: ["sklep"],
     extraIds: ["i18n", "content", "anim", "blog"],
     caseStudySlugs: ["vibe", "nawia"],
-    metaTitle: "Sklepy internetowe — projekt, płatności, wdrożenie",
+    metaTitle: "Sklepy internetowe na zamówienie",
     metaDescription:
       "Sklep internetowy od 1500 zł: katalog, koszyk, płatności BLIK i Przelewy24, konta klientów i panel do produktów. Projekt od zera i wdrożenie w cenie.",
     label: "Sklepy internetowe",
