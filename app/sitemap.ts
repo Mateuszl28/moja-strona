@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { posts } from "@/lib/posts";
+import { auditPages } from "@/lib/audit-pages";
 import { getShopProducts } from "@/lib/products";
 
 const BASE_URL =
@@ -26,6 +27,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/blog",
     "/kontakt",
     "/regulamin",
+    ...auditPages.map((a) => `/audyt/${a.slug}`),
   ];
   const staticRoutes = routes.map((path) => ({
     url: `${BASE_URL}${path}`,

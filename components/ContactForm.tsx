@@ -5,10 +5,22 @@ import { Loader2, Send, Check } from "lucide-react";
 
 type Status = "idle" | "loading" | "ok" | "error";
 
+// Klucze ?temat=… w tej samej kolejności co opcje `opts` (PL i EN).
+const TOPICS = [
+  "strona",
+  "sklep",
+  "webapp",
+  "mobile",
+  "audyt-bezpieczenstwa",
+  "audyt-seo",
+  "inne",
+];
+
 export default function ContactForm({ en = false }: { en?: boolean }) {
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState<string>("");
   const messageRef = useRef<HTMLTextAreaElement>(null);
+  const typeRef = useRef<HTMLSelectElement>(null);
 
   const t = en
     ? {
@@ -18,7 +30,7 @@ export default function ContactForm({ en = false }: { en?: boolean }) {
         emailPh: "john@company.com",
         ptype: "Project type (optional)",
         select: "— select —",
-        opts: ["Website", "Online store", "Web app", "Mobile app", "Other"],
+        opts: ["Website", "Online store", "Web app", "Mobile app", "Security audit", "SEO audit", "Other"],
         message: "Message",
         messagePh: "How can I help?",
         submit: "Send message",
@@ -41,6 +53,8 @@ export default function ContactForm({ en = false }: { en?: boolean }) {
           "Sklep internetowy",
           "Aplikacja internetowa",
           "Aplikacja mobilna",
+          "Audyt bezpieczeństwa",
+          "Audyt SEO",
           "Inne",
         ],
         message: "Wiadomość",
@@ -63,6 +77,15 @@ export default function ContactForm({ en = false }: { en?: boolean }) {
       messageRef.current.value = saved;
       sessionStorage.removeItem("wycena_summary");
     }
+  }, []);
+
+  // Prefill rodzaju projektu z ?temat=… (np. link „Zamów audyt" ze strony audytu).
+  useEffect(() => {
+    const topic = new URLSearchParams(window.location.search).get("temat");
+    const idx = topic ? TOPICS.indexOf(topic) : -1;
+    if (idx >= 0 && typeRef.current) typeRef.current.value = t.opts[idx];
+    // t.opts zależy tylko od `en`, które się nie zmienia po montażu
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -141,6 +164,7 @@ export default function ContactForm({ en = false }: { en?: boolean }) {
         <span className="text-[var(--ink-soft)]">{t.ptype}</span>
         <select
           name="rodzaj_projektu"
+          ref={typeRef}
           defaultValue=""
           className="rounded-lg border border-[var(--line)] bg-[var(--paper)] px-3.5 py-2.5 text-[var(--ink)] outline-none transition-colors focus:border-[var(--accent)]"
         >

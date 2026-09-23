@@ -17,7 +17,15 @@ export default function Audits({ en = false }: { en?: boolean }) {
         {audits.map((a, i) => (
           <Reveal key={a.id} delay={i * 0.05} className="h-full">
             <div className="flex h-full flex-col rounded-2xl border border-[var(--line)] bg-[var(--surface)] p-6">
-              <h3 className="text-xl">{en ? a.labelEn : a.label}</h3>
+              <h3 className="text-xl">
+                {en ? (
+                  a.labelEn
+                ) : (
+                  <Link href={`/audyt/${a.id}`} className="transition-colors hover:text-accent">
+                    {a.label}
+                  </Link>
+                )}
+              </h3>
               <p className="mt-2 flex-1 text-sm leading-relaxed text-[var(--ink-soft)]">
                 {en ? a.descEn : a.desc}
               </p>
@@ -26,10 +34,10 @@ export default function Audits({ en = false }: { en?: boolean }) {
                   {en ? `PLN ${a.price.toLocaleString("en-US")}` : zl(a.price)}
                 </span>
                 <Link
-                  href={en ? "/en/contact" : "/kontakt"}
+                  href={en ? `/en/contact?temat=${a.id}` : `/audyt/${a.id}`}
                   className="link-underline text-sm font-medium"
                 >
-                  {en ? "Order an audit" : "Zamów audyt"}
+                  {en ? "Order an audit" : "Szczegóły i zamówienie"}
                 </Link>
               </div>
             </div>

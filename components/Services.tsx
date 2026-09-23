@@ -63,7 +63,7 @@ export default function Services() {
             <li key={a.id} className="border-b border-[var(--line)] first:border-t">
               <Reveal delay={i * 0.04}>
                 <Link
-                  href="/kontakt"
+                  href={`/audyt/${a.id}`}
                   className="group grid items-baseline gap-x-6 gap-y-1 py-5 sm:grid-cols-[1fr_auto]"
                 >
                   <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:gap-6">

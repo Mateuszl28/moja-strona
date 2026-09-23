@@ -36,7 +36,7 @@ export default function Footer() {
   return (
     <footer className="mt-10 bg-[var(--ink)] text-[var(--paper)]">
       <div className="mx-auto max-w-content px-6 pb-10 pt-16">
-        <div className="grid gap-12 md:grid-cols-[1.5fr_1fr_1fr]">
+        <div className="grid gap-12 sm:grid-cols-2 md:grid-cols-[1.5fr_1fr_1fr_1.2fr]">
           <div>
             <Link href={homeHref} aria-label="Mateusz Łagocki">
               <Logo inverted />
@@ -63,6 +63,27 @@ export default function Footer() {
               ))}
             </ul>
           </nav>
+
+          {!isEn && (
+            <nav aria-label="Usługi" className="text-sm">
+              <p className="text-paper/50">Audyty</p>
+              <ul className="mt-3 space-y-1.5">
+                <li>
+                  <Link href="/audyt/audyt-seo" className="transition-colors hover:text-accent-soft">
+                    Audyt SEO
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/audyt/audyt-bezpieczenstwa"
+                    className="transition-colors hover:text-accent-soft"
+                  >
+                    Audyt bezpieczeństwa
+                  </Link>
+                </li>
+              </ul>
+            </nav>
+          )}
 
           <div className="text-sm">
             <p className="text-paper/50">{isEn ? "Contact" : "Kontakt"}</p>

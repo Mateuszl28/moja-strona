@@ -147,7 +147,7 @@ export default function EnHome() {
             {audits.map((a) => (
               <li key={a.id} className="border-b border-[var(--line)] first:border-t">
                 <Link
-                  href="/en/contact"
+                  href={`/en/contact?temat=${a.id}`}
                   className="group grid items-baseline gap-x-6 gap-y-1 py-5 sm:grid-cols-[1fr_auto]"
                 >
                   <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:gap-6">
