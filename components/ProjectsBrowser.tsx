@@ -20,6 +20,8 @@ export default function ProjectsBrowser({ items }: { items: Project[] }) {
 
   return (
     <div>
+      {/* Karty projektów mają h3 — ukryty h2 zachowuje kolejność nagłówków (SEO, czytniki). */}
+      <h2 className="sr-only">Lista projektów</h2>
       <div
         role="tablist"
         aria-label="Kategorie projektów"
