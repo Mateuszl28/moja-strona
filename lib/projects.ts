@@ -74,15 +74,25 @@ export const projects: Project[] = [
     featured: true,
   },
   {
-    title: "Vibe — sklep streetwear",
+    title: "Vibe — sklep festiwalowy",
     description:
-      "Sklep ze streetwearem premium (bluzy, koszulki z bawełny). Katalog z filtrowaniem, koszyk, płatności BLIK/Przelewy24 i pełny proces zakupowy.",
+      "Sklep z merchem Vibe City Festiwal — bluzy i koszulki z bawełny. Trzy języki, katalog z filtrowaniem, koszyk, płatności BLIK/Przelewy24 i sekcja eventów ze sprzedażą biletów.",
     descriptionEn:
-      "Premium streetwear store (hoodies, cotton tees). Filterable catalog, cart, BLIK/Przelewy24 payments and a full checkout flow.",
+      "Merch store for Vibe City Festiwal — cotton hoodies and tees. Three languages, filterable catalog, cart, BLIK/Przelewy24 payments and an events section with ticket sales.",
     category: "Sklepy www",
     tags: ["JavaScript", "HTML & CSS", "E-commerce"],
     href: "https://www.vibeleszno.com",
     cover: "/projekty/covers/vibe.webp",
+    caseStudy: {
+      client: "Vibe City Festiwal — festiwal muzyczny z Leszna",
+      role: "Projekt graficzny i kod od zera, bez gotowego szablonu",
+      challenge:
+        "Festiwal potrzebował jednego miejsca, w którym fani kupią merch — bluzy i koszulki z logo Vibe — i dowiedzą się o wydarzeniach. Część odwiedzających to goście z zagranicy, więc sklep musiał działać nie tylko po polsku.",
+      solution:
+        "Zaprojektowałem wygląd sklepu od podstaw — z mocnym logo festiwalu, jasnym tłem i dużymi zdjęciami produktów — i napisałem go od zera, bez szablonu. Sklep ma katalog z filtrowaniem, karty produktów z tabelą rozmiarów, koszyk, ulubione, konto klienta i płatności BLIK / Przelewy24.\n\nDoszła osobna sekcja eventów z opisem festiwalu i przyciskiem „Kup bilet”, który prowadzi do sprzedaży biletów w tobilet.pl. Całość działa w trzech językach — polskim, angielskim i niemieckim — z poprawnym oznaczeniem wersji językowych dla Google.",
+      result:
+        "Festiwal ma własny sklep pod adresem vibeleszno.com: merch, informacje o wydarzeniu i drogę do biletów w jednym miejscu, dostępne dla gości z Polski i z zagranicy.",
+    },
     year: "2026",
     featured: true,
   },
@@ -96,6 +106,16 @@ export const projects: Project[] = [
     tags: ["Next.js", "React", "E-commerce"],
     href: "https://nawiabizuteria.pl",
     cover: "/projekty/covers/nawia.webp",
+    caseStudy: {
+      client: "NAWIA — marka ręcznie robionej biżuterii",
+      role: "Projekt graficzny i kod od zera, bez gotowego szablonu",
+      challenge:
+        "Marka tworzy ręcznie biżuterię inspirowaną księżycem — naszyjniki i bransoletki ze stali chirurgicznej i naturalnych kamieni. Potrzebowała sklepu, który odda spokojny, „rytualny” charakter produktów, a jednocześnie pozwoli marce samodzielnie prowadzić sprzedaż.",
+      solution:
+        "Zaprojektowałem stonowany wygląd w beżach, z eleganckim krojem pisma i dużą ilością przestrzeni, żeby to biżuteria była na pierwszym planie. Sklep napisałem od zera w Next.js: katalog produktów, wyszukiwarka, ulubione, koszyk i strona o marce.\n\nDo tego własny panel administracyjny, w którym marka sama dodaje i edytuje produkty — bez proszenia programisty o każdą zmianę. Jest też komplet dokumentów sklepu: regulamin, polityka prywatności, cookies i zwrotów.",
+      result:
+        "NAWIA sprzedaje online pod adresem nawiabizuteria.pl i sama zarządza ofertą w panelu, a wygląd sklepu spójnie przenosi charakter marki.",
+    },
     year: "2026",
     featured: true,
   },
@@ -196,7 +216,7 @@ export const projects: Project[] = [
   },
 ];
 
-// Adres podstrony z tytułu: „Vibe — sklep streetwear" -> „vibe".
+// Adres podstrony z tytułu: „Vibe — sklep festiwalowy" -> „vibe".
 export function projectSlug(p: Project): string {
   return p.title
     .split(" — ")[0]
