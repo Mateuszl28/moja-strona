@@ -70,6 +70,15 @@ export const projects: Project[] = [
     tags: ["Next.js", "React", "Strona www"],
     href: "https://własnemperfecthome.pl",
     cover: "/projekty/covers/wlasnem-perfect-home.webp",
+    caseStudy: {
+      client: "Własne M – Perfect Home — wykończenia i remonty premium, Warszawa",
+      challenge:
+        "Firma łączy dwie usługi: wykończenia wnętrz i remonty łazienek premium oraz profesjonalne sprzątanie. Potrzebowała strony, która pokaże jakość prac klientom z segmentu premium, wyjaśni, jak wygląda współpraca, i zamieni odwiedzających w zapytania o wycenę — przede wszystkim z Warszawy i okolic.",
+      solution:
+        "Zbudowałem jednostronicową wizytówkę prowadzącą klienta krok po kroku: o firmie, usługi wykończeniowe i sprzątające, zakres prac przy remoncie pod klucz, czteroetapowy proces współpracy, cennik oparty na bezpłatnej wycenie, realizacje, opinie, porady i FAQ.\n\nGaleria realizacji ma podgląd każdej łazienki i mieszkania z opisem użytych materiałów, a przyciski „Zamów wycenę” i szybki telefon są pod ręką na każdym etapie. Strona działa po polsku i angielsku, ma tryb jasny i ciemny, a dla Google — dane lokalnej firmy z adresem w Warszawie, obszarem działania i pytaniami FAQ.",
+      result:
+        "Firma ma dopracowaną wizytówkę pod adresem własnemperfecthome.pl, która prowadzi od pierwszego wrażenia do zapytania o bezpłatną wycenę i jest przygotowana pod lokalne wyszukiwania w Warszawie.",
+    },
     year: "2026",
     featured: true,
   },
