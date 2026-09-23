@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { posts } from "@/lib/posts";
 import { auditPages } from "@/lib/audit-pages";
+import { servicePages } from "@/lib/service-pages";
 import { caseStudies, projectSlug } from "@/lib/projects";
 import { getShopProducts } from "@/lib/products";
 
@@ -30,6 +31,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/regulamin",
     ...auditPages.map((a) => `/audyt/${a.slug}`),
     "/strony-internetowe-leszno",
+    ...servicePages.map((p) => `/uslugi/${p.slug}`),
     ...caseStudies.map((p) => `/projekty/${projectSlug(p)}`),
   ];
   const staticRoutes = routes.map((path) => ({

@@ -69,6 +69,16 @@ export default function Footer() {
               <p className="text-paper/50">Usługi</p>
               <ul className="mt-3 space-y-1.5">
                 <li>
+                  <Link href="/uslugi/strony-internetowe" className="transition-colors hover:text-accent-soft">
+                    Strony internetowe
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/uslugi/sklepy-internetowe" className="transition-colors hover:text-accent-soft">
+                    Sklepy internetowe
+                  </Link>
+                </li>
+                <li>
                   <Link
                     href="/strony-internetowe-leszno"
                     className="transition-colors hover:text-accent-soft"

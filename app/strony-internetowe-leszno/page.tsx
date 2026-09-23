@@ -29,11 +29,10 @@ export const metadata: Metadata = {
   },
 };
 
-// „2 tygodnie", „5 tygodni" — polska odmiana liczebnika.
+// Po „około" dopełniacz: „około 2 tygodni", „około 1 tygodnia".
 const weeksOf = (id: string) => {
   const n: number = projectTypes.find((t) => t.id === id)?.weeks ?? 0;
-  const few = n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14);
-  return `${n} ${n === 1 ? "tydzień" : few ? "tygodnie" : "tygodni"}`;
+  return `${n} ${n === 1 ? "tygodnia" : "tygodni"}`;
 };
 const minPrice = (id: string) => projectTypes.find((t) => t.id === id)?.base ?? 0;
 
@@ -203,7 +202,13 @@ export default function LesznoPage() {
             <li key={t.id} className="border-b border-[var(--line)] first:border-t">
               <Reveal delay={i * 0.04}>
                 <Link
-                  href="/wycena"
+                  href={
+                    t.id === "strona"
+                      ? "/uslugi/strony-internetowe"
+                      : t.id === "sklep"
+                        ? "/uslugi/sklepy-internetowe"
+                        : "/wycena"
+                  }
                   className="group grid items-baseline gap-x-6 gap-y-1 py-5 sm:grid-cols-[1fr_auto]"
                 >
                   <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:gap-6">

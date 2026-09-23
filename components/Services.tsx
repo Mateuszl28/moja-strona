@@ -4,6 +4,12 @@ import Reveal from "./Reveal";
 import SectionHead from "./SectionHead";
 import { audits, projectTypes, zl } from "@/lib/pricing";
 
+// Rodzaje z własną stroną usługi — reszta prowadzi do kalkulatora.
+const SERVICE_PAGES: Record<string, string> = {
+  strona: "/uslugi/strony-internetowe",
+  sklep: "/uslugi/sklepy-internetowe",
+};
+
 export default function Services() {
   return (
     <section className="mx-auto max-w-content px-6 py-20 sm:py-28">
@@ -28,7 +34,7 @@ export default function Services() {
           <li key={s.id} className="border-b border-[var(--line)] first:border-t">
             <Reveal delay={i * 0.04}>
               <Link
-                href="/wycena"
+                href={SERVICE_PAGES[s.id] ?? "/wycena"}
                 className="group grid items-baseline gap-x-6 gap-y-1 py-5 sm:grid-cols-[1fr_auto]"
               >
                 <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:gap-6">
