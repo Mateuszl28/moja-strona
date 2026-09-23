@@ -3,7 +3,7 @@ import { ArrowUpRight, Github } from "lucide-react";
 import Reveal from "./Reveal";
 import SectionHead from "./SectionHead";
 import SiteShot from "./SiteShot";
-import { projects } from "@/lib/projects";
+import { projects, projectSlug } from "@/lib/projects";
 
 // Kilka wyróżnionych realizacji na stronie głównej (reszta na /projekty).
 // Najpierw te ze zrzutem strony — wyglądają najlepiej jako duże case study.
@@ -76,6 +76,15 @@ export default function FeaturedProjects() {
                       {p.tags.join(" · ")}
                     </p>
                     <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm">
+                      {p.caseStudy && (
+                        <Link
+                          href={`/projekty/${projectSlug(p)}`}
+                          className="group inline-flex items-center gap-1 font-medium text-accent"
+                        >
+                          <span className="link-underline">Przeczytaj case study</span>
+                          <ArrowUpRight size={15} />
+                        </Link>
+                      )}
                       {p.href && (
                         <a
                           href={p.href}

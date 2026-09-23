@@ -1,6 +1,7 @@
 import { ArrowUpRight, Github } from "lucide-react";
 import type { Project } from "@/lib/projects";
-import { categoryEn } from "@/lib/projects";
+import { categoryEn, projectSlug } from "@/lib/projects";
+import Link from "next/link";
 import ProjectShots from "./ProjectShots";
 
 export default function ProjectCard({
@@ -35,8 +36,17 @@ export default function ProjectCard({
 
       <p className="mt-5 text-sm text-[var(--ink-soft)]">{p.tags.join(" · ")}</p>
 
-      {(p.href || repoLinks.length > 0) && (
+      {(p.href || repoLinks.length > 0 || (p.caseStudy && !en)) && (
         <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-2 border-t border-[var(--line)] pt-4 text-sm">
+          {p.caseStudy && !en && (
+            <Link
+              href={`/projekty/${projectSlug(p)}`}
+              className="inline-flex items-center gap-1 font-medium text-accent transition-colors hover:text-[var(--ink)]"
+            >
+              Case study
+              <ArrowUpRight size={15} />
+            </Link>
+          )}
           {p.href && (
             <a
               href={p.href}

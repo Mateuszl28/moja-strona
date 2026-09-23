@@ -29,6 +29,17 @@ export type RepoLink = { label: string; href: string };
 // Zrzut ekranu z działania aplikacji. Pliki leżą w public/projekty/<projekt>/.
 export type Shot = { src: string; caption: string; captionEn?: string };
 
+// Opis realizacji (case study). Pisz konkretnie i prawdziwie — to czyta klient i Google.
+export type CaseStudy = {
+  client?: string; // np. „firma remontowa z Warszawy"
+  role?: string; // np. „projekt graficzny, kod, wdrożenie"
+  duration?: string; // np. „3 tygodnie"
+  challenge: string; // czego potrzebował klient / jaki był problem
+  solution: string; // co zrobiłem i dlaczego tak
+  result: string; // efekt — najlepiej mierzalny, jeśli jest
+  quote?: { text: string; author: string }; // opinia klienta (prawdziwa)
+};
+
 export type Project = {
   title: string;
   description: string;
@@ -41,6 +52,7 @@ export type Project = {
   repos?: RepoLink[]; // wiele repo z etykietami (np. Linux / Windows)
   shots?: Shot[]; // zrzuty ekranu — miniatury w karcie + podgląd po kliknięciu
   cover?: string; // zrzut strony głównej (2:1) — duży podgląd na stronie głównej
+  caseStudy?: CaseStudy; // uzupełnione => powstaje podstrona /projekty/<slug>
   year: string;
   featured?: boolean;
 };
@@ -183,3 +195,18 @@ export const projects: Project[] = [
     featured: true,
   },
 ];
+
+// Adres podstrony z tytułu: „Vibe — sklep streetwear" -> „vibe".
+export function projectSlug(p: Project): string {
+  return p.title
+    .split(" — ")[0]
+    .toLowerCase()
+    .replace(/ł/g, "l")
+    .normalize("NFD")
+    .replace(/\p{Diacritic}/gu, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+}
+
+// Projekty z opisanym case study — tylko one dostają własną podstronę.
+export const caseStudies = projects.filter((p) => p.caseStudy);
