@@ -7,7 +7,7 @@ import Reveal from "@/components/Reveal";
 import { faqs } from "@/lib/faq";
 
 export const metadata: Metadata = {
-  title: "Cennik stron internetowych i sklepów — wycena online",
+  title: "Cennik stron internetowych i sklepów",
   description:
     "Ile kosztuje strona internetowa lub sklep? Strona od 450 zł, sklep od 1500 zł. Policz dokładną wycenę w kalkulatorze online, bez zobowiązań.",
   alternates: { canonical: "/wycena" },
