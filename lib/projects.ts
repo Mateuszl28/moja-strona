@@ -72,6 +72,7 @@ export const projects: Project[] = [
     cover: "/projekty/covers/wlasnem-perfect-home.webp",
     caseStudy: {
       client: "Własne M – Perfect Home — wykończenia i remonty premium, Warszawa",
+      role: "Projekt graficzny i kod od zera, bez gotowego szablonu",
       challenge:
         "Firma łączy dwie usługi: wykończenia wnętrz i remonty łazienek premium oraz profesjonalne sprzątanie. Potrzebowała strony, która pokaże jakość prac klientom z segmentu premium, wyjaśni, jak wygląda współpraca, i zamieni odwiedzających w zapytania o wycenę — przede wszystkim z Warszawy i okolic.",
       solution:
