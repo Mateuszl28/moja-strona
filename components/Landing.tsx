@@ -81,7 +81,8 @@ export default function Landing() {
               sizes="(min-width: 768px) 66vw, 100vw"
             />
           </a>
-          <div className="grid gap-4 md:col-span-4 md:grid-rows-2">
+          {/* Na telefonie tylko główny zrzut — reszta jest niżej w „Wybranych projektach". */}
+          <div className="hidden gap-4 md:col-span-4 md:grid md:grid-rows-2">
             {side.map((p) => (
               <a
                 key={p.title}
@@ -101,7 +102,7 @@ export default function Landing() {
               </a>
             ))}
           </div>
-          <p className="text-sm text-[var(--ink-soft)] md:col-span-12">
+          <p className="hidden text-sm text-[var(--ink-soft)] md:col-span-12 md:block">
             Na zrzutach: {shots.map((p) => p.title).join(", ")}. Wszystkie działają,
             możesz je kliknąć.
           </p>
