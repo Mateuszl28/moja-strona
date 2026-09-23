@@ -5,9 +5,9 @@ import { getShopProducts } from "@/lib/products";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Shop",
+  title: "Ready-made websites and apps — shop",
   description:
-    "In-house apps and ready-made solutions — including an interior design app. Coming soon.",
+    "Ready-made solutions you can buy online: a business landing page package deployed on your domain, plus in-house apps.",
   alternates: {
     canonical: "/en/shop",
     languages: { "pl-PL": "/sklep", en: "/en/shop" },

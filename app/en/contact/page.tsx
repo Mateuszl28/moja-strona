@@ -5,9 +5,9 @@ import Reveal from "@/components/Reveal";
 import { company } from "@/lib/company";
 
 export const metadata: Metadata = {
-  title: "Contact",
+  title: "Contact — order a website or online store",
   description:
-    "Get in touch with Mateusz Łagocki — freelance frontend developer. Send a message or email directly.",
+    "Get in touch about a website, online store, app or audit. Based in Poland, working remotely. I usually reply within 24 hours.",
   alternates: {
     canonical: "/en/contact",
     languages: { "pl-PL": "/kontakt", en: "/en/contact" },

@@ -19,9 +19,16 @@ export function generateMetadata({
 }): Metadata {
   const post = getPost(params.slug);
   if (!post) return {};
+  // Google ucina tytuł ok. 60 znaków i opis ok. 160 — długie skracamy tylko w meta.
+  const title =
+    post.title.length > 42 ? { absolute: post.title } : post.title;
+  const description =
+    post.excerpt.length > 160
+      ? post.excerpt.slice(0, 157).replace(/\s+\S*$/, "") + "…"
+      : post.excerpt;
   return {
-    title: post.title,
-    description: post.excerpt,
+    title,
+    description,
     alternates: { canonical: `/blog/${post.slug}` },
     openGraph: { type: "article", title: post.title, description: post.excerpt },
   };

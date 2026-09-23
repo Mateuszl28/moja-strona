@@ -5,9 +5,9 @@ import { getShopProducts } from "@/lib/products";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Sklep",
+  title: "Gotowe strony i aplikacje — sklep",
   description:
-    "Gotowe rozwiązania i autorskie aplikacje — m.in. aplikacja do projektowania wnętrz. Wkrótce dostępne.",
+    "Gotowe rozwiązania do kupienia online: strona-wizytówka w pakiecie z wdrożeniem na Twojej domenie oraz autorskie aplikacje.",
   alternates: { canonical: "/sklep" },
 };
 

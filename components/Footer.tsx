@@ -66,8 +66,16 @@ export default function Footer() {
 
           {!isEn && (
             <nav aria-label="Usługi" className="text-sm">
-              <p className="text-paper/50">Audyty</p>
+              <p className="text-paper/50">Usługi</p>
               <ul className="mt-3 space-y-1.5">
+                <li>
+                  <Link
+                    href="/strony-internetowe-leszno"
+                    className="transition-colors hover:text-accent-soft"
+                  >
+                    Strony internetowe Leszno
+                  </Link>
+                </li>
                 <li>
                   <Link href="/audyt/audyt-seo" className="transition-colors hover:text-accent-soft">
                     Audyt SEO

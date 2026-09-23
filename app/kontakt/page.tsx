@@ -5,9 +5,9 @@ import Reveal from "@/components/Reveal";
 import { company } from "@/lib/company";
 
 export const metadata: Metadata = {
-  title: "Kontakt",
+  title: "Kontakt — zamów stronę lub sklep",
   description:
-    "Napisz do Mateusza Łagockiego — frontend developer. Formularz lub mail bezpośrednio.",
+    "Napisz albo zadzwoń: strony internetowe, sklepy, aplikacje i audyty. Leszno i cała Polska zdalnie. Odpowiadam zwykle w ciągu 24 godzin.",
   alternates: { canonical: "/kontakt" },
 };
 

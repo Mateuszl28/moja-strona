@@ -22,7 +22,15 @@ export default function Landing() {
           Przyjmuję nowe projekty
         </span>
         <span aria-hidden>/</span>
-        <span>Mateusz Łagocki, frontend developer</span>
+        <span>
+          Mateusz Łagocki, frontend developer z{" "}
+          <Link
+            href="/strony-internetowe-leszno"
+            className="underline decoration-[var(--line)] underline-offset-2 transition-colors hover:text-[var(--ink)]"
+          >
+            Leszna
+          </Link>
+        </span>
       </p>
 
       <div className="mt-8 grid items-end gap-10 lg:grid-cols-[1fr_20rem]">

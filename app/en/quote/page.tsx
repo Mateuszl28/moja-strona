@@ -5,9 +5,9 @@ import QuoteCalculator from "@/components/QuoteCalculator";
 import Reveal from "@/components/Reveal";
 
 export const metadata: Metadata = {
-  title: "Quote",
+  title: "Website & online store pricing — instant quote",
   description:
-    "Estimate your project cost — website, online store or app. Interactive quote calculator.",
+    "How much does a website or online store cost? Websites from PLN 450, stores from PLN 1,500. Get an instant estimate in the calculator.",
   alternates: {
     canonical: "/en/quote",
     languages: { "pl-PL": "/wycena", en: "/en/quote" },

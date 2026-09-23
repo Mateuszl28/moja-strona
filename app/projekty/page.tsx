@@ -4,9 +4,9 @@ import CTA from "@/components/CTA";
 import { projects } from "@/lib/projects";
 
 export const metadata: Metadata = {
-  title: "Projekty",
+  title: "Realizacje: strony, sklepy i aplikacje",
   description:
-    "Wybrane projekty Mateusza Łagockiego — frontend: React, Next.js, TypeScript.",
+    "Realizacje Mateusza Łagockiego: strony firmowe, sklepy internetowe, aplikacje webowe i mobilne. Działające wdrożenia, które możesz kliknąć.",
   alternates: { canonical: "/projekty" },
 };
 

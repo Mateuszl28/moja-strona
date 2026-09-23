@@ -28,6 +28,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/kontakt",
     "/regulamin",
     ...auditPages.map((a) => `/audyt/${a.slug}`),
+    "/strony-internetowe-leszno",
   ];
   const staticRoutes = routes.map((path) => ({
     url: `${BASE_URL}${path}`,

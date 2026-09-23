@@ -6,9 +6,9 @@ import Reveal from "@/components/Reveal";
 import { projects } from "@/lib/projects";
 
 export const metadata: Metadata = {
-  title: "Projects",
+  title: "Work: websites, online stores and apps",
   description:
-    "Selected work by Mateusz Łagocki — websites, online stores, web and mobile apps.",
+    "Selected work by Mateusz Łagocki — company websites, online stores, web and mobile apps. Live projects you can click through.",
   alternates: {
     canonical: "/en/projects",
     languages: { "pl-PL": "/projekty", en: "/en/projects" },

@@ -6,9 +6,9 @@ import Newsletter from "@/components/Newsletter";
 import { posts, formatDate, readingTime } from "@/lib/posts";
 
 export const metadata: Metadata = {
-  title: "Blog",
+  title: "Blog o tworzeniu stron i sklepów",
   description:
-    "Notatki z budowania — Next.js, wdrożenia, frontend. Praktyczne wpisy Mateusza Łagockiego.",
+    "Praktyczne wpisy o budowaniu i wdrażaniu stron w Next.js: wydajność, wyceny, serwery i SEO. Notatki z prawdziwych projektów.",
   alternates: { canonical: "/blog" },
 };
 
