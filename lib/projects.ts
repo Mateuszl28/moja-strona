@@ -61,6 +61,28 @@ export type Project = {
 // Każdy projekt musi mieć `category` z listy powyżej. featured: true => też na stronie głównej.
 export const projects: Project[] = [
   {
+    title: "Salon Zyra — makijaż permanentny",
+    description:
+      "Strona i sklep salonu kosmetycznego Mistrzyni Polski w mikropigmentacji brwi. Oferta usług, galeria metamorfoz, opinie z Google, rezerwacja przez Booksy, sklep z autorskimi kosmetykami i kursem online, płatności BLIK, Przelewy24 i kartą.",
+    descriptionEn:
+      "Website and store for a beauty salon run by the Polish champion in ombre brow micropigmentation. Services, a before-and-after gallery, Google reviews, Booksy booking, a store with signature cosmetics and an online course, and BLIK, Przelewy24 and card payments.",
+    category: "Sklepy www",
+    tags: ["Next.js", "React", "E-commerce"],
+    href: "https://salonzyra.pl",
+    cover: "/projekty/covers/salon-zyra.webp",
+    caseStudy: {
+      client: "Salon Kosmetyczny Zyra — Edyta Dąbal, Nisko",
+      challenge:
+        "Edyta Dąbal prowadzi w Nisku salon kosmetyczny, ma tytuł Mistrzyni Polski w mikropigmentacji brwi metodą Ombre, a do tego własną linię kremów i perfum oraz kurs makijażu online. Potrzebowała jednego miejsca, które pokaże te osiągnięcia, doprowadzi klientki do rezerwacji wizyty i pozwoli sprzedawać produkty oraz kurs przez internet.",
+      solution:
+        "Strona ma ciemny, elegancki wygląd ze złotymi akcentami i szeryfowymi nagłówkami, pasujący do usług premium. Prowadzi od osiągnięć właścicielki przez ofertę salonu i galerię metamorfoz po opinie z Google, a przycisk rezerwacji kieruje do Booksy, gdzie są aktualny cennik i wolne terminy.\n\nSklep sprzedaje kremy, perfumy, kurs online i pakiety łączące kurs z kremem. Ma koszyk, konto klienta, płatności BLIK, Przelewy24 i kartą przez Stripe oraz dostawę kurierem lub do Paczkomatu InPost. Dla Google są dane lokalnego salonu z adresem i godzinami otwarcia, a dla kupujących komplet dokumentów: regulamin, polityka prywatności oraz zasady zwrotów i dostawy.",
+      result:
+        "Salon ma pod adresem salonzyra.pl jedną stronę, która łączy wizerunek marki, drogę do rezerwacji wizyty i sprzedaż kosmetyków oraz kursu online w całej Polsce.",
+    },
+    year: "2026",
+    featured: true,
+  },
+  {
     title: "Własnem Perfect Home",
     description:
       "Wizytówka firmy wykończeniowo-remontowej — wykończenia wnętrz, remonty łazienek premium i profesjonalne sprzątanie. Galeria realizacji, opis 4-etapowego procesu, opinie klientów, FAQ i formularz wyceny. W pełni responsywna.",
@@ -79,6 +101,29 @@ export const projects: Project[] = [
         "Zbudowałem jednostronicową wizytówkę prowadzącą klienta krok po kroku: o firmie, usługi wykończeniowe i sprzątające, zakres prac przy remoncie pod klucz, czteroetapowy proces współpracy, cennik oparty na bezpłatnej wycenie, realizacje, opinie, porady i FAQ.\n\nGaleria realizacji ma podgląd każdej łazienki i mieszkania z opisem użytych materiałów, a przyciski „Zamów wycenę” i szybki telefon są pod ręką na każdym etapie. Strona działa po polsku i angielsku, ma tryb jasny i ciemny, a dla Google — dane lokalnej firmy z adresem w Warszawie, obszarem działania i pytaniami FAQ.",
       result:
         "Firma ma dopracowaną wizytówkę pod adresem własnemperfecthome.pl, która prowadzi od pierwszego wrażenia do zapytania o bezpłatną wycenę i jest przygotowana pod lokalne wyszukiwania w Warszawie.",
+    },
+    year: "2026",
+    featured: true,
+  },
+  {
+    title: "Po Prostu — Fundacja Kultura w Szczerym Polu",
+    description:
+      "Strona projektu „Po Prostu – Klub Młodzieżowy bez presji” finansowanego z Funduszy Europejskich. Opis zajęć, aktualności z działań, dane fundacji, zgodność z WCAG 2.1 AA: powiększanie tekstu, tryb wysokiego kontrastu i deklaracja dostępności.",
+    descriptionEn:
+      "Website for “Po Prostu”, an EU-funded youth club run by the Kultura w Szczerym Polu foundation. Activities, news, foundation details and WCAG 2.1 AA accessibility: text resizing, a high-contrast mode and an accessibility statement.",
+    category: "Strony www",
+    tags: ["PHP", "HTML & CSS", "WCAG 2.1 AA"],
+    href: "https://kulturawszczerympolu.pl",
+    cover: "/projekty/covers/kultura-w-szczerym-polu.webp",
+    caseStudy: {
+      client: "Fundacja Kultura w Szczerym Polu — Runowo Krajeńskie",
+      role: "Projekt graficzny i kod od zera, bez gotowego szablonu",
+      challenge:
+        "Fundacja prowadzi „Po Prostu – Klub Młodzieżowy bez presji”, program zajęć dla dzieci i młodzieży z powiatu sępoleńskiego, finansowany z Funduszy Europejskich dla Kujaw i Pomorza. Potrzebowała strony, która zachęci młodych ludzi i rodziców do zapisów, będzie informować o kolejnych działaniach i spełni wymogi projektu unijnego: oznaczenia programu i dostępność cyfrową.",
+      solution:
+        "Zaprojektowałem kolorową, przyjazną młodzieży oprawę z geometrycznymi wzorami i dużą, wyrazistą typografią, ale z czytelnym układem, w którym łatwo znaleźć najważniejsze: dla kogo jest klub, jakie są zajęcia (od jogi i teatru impro po szachy i gotowanie), kiedy i gdzie się odbywają oraz jak się skontaktować.\n\nStrona ma sekcję działań z aktualnościami, np. o rekrutacji do klubu, oraz podstrony o projekcie i o fundacji. Dostępność była wymogiem od początku: przyciski powiększania tekstu (A, A+, A++), tryb wysokiego kontrastu, przejście do treści z klawiatury, treść plakatu podana także jako tekst i deklaracja dostępności według WCAG 2.1 AA. Na górze każdej strony są wymagane logotypy Funduszy Europejskich, a w stopce informacja o dofinansowaniu.",
+      result:
+        "Fundacja ma pod adresem kulturawszczerympolu.pl stronę projektu, która prowadzi do zapisów, informuje o działaniach klubu przez cały rok i spełnia wymagania dostępności oraz oznaczeń projektu unijnego.",
     },
     year: "2026",
     featured: true,
