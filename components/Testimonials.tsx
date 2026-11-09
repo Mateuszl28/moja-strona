@@ -1,21 +1,19 @@
 import { Star } from "lucide-react";
 import Reveal from "./Reveal";
 import SectionHead from "./SectionHead";
-import {
-  googleProfileUrl,
-  googleReviewUrl,
-  testimonials,
-} from "@/lib/testimonials";
+import { getGoogleReviews } from "@/lib/google-reviews";
 
-// Sekcja opinii: poziomy pasek z opiniami (docelowo z Google). Dopóki lista jest pusta,
-// pokazuje krótką informację zamiast zmyślonych recenzji.
-export default function Testimonials() {
+// Sekcja opinii: poziomy pasek z opiniami wczytywanymi automatycznie z Google
+// (lib/google-reviews.ts, odświeżanie co 12 h). Bez klucza API — lista zapasowa.
+export default async function Testimonials() {
+  const {
+    reviews: testimonials,
+    rating: avg,
+    count,
+    profileUrl: googleProfileUrl,
+    reviewUrl: googleReviewUrl,
+  } = await getGoogleReviews();
   const hasReviews = testimonials.length > 0;
-  const rated = testimonials.filter((t) => t.rating);
-  const avg =
-    rated.length > 0
-      ? rated.reduce((sum, t) => sum + (t.rating ?? 0), 0) / rated.length
-      : null;
 
   return (
     <section className="py-20 sm:py-28">
@@ -32,7 +30,7 @@ export default function Testimonials() {
                 </span>
                 <Stars value={Math.round(avg)} />
                 <span className="text-[var(--ink-soft)]">
-                  ({rated.length})
+                  ({count})
                 </span>
               </p>
             )
@@ -58,7 +56,18 @@ export default function Testimonials() {
                     „{t.quote}”
                   </blockquote>
                   <figcaption className="mt-5 text-sm">
-                    <span className="font-medium">{t.author}</span>
+                    {t.authorUrl ? (
+                      <a
+                        href={t.authorUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="font-medium hover:underline"
+                      >
+                        {t.author}
+                      </a>
+                    ) : (
+                      <span className="font-medium">{t.author}</span>
+                    )}
                     {t.role && (
                       <span className="text-[var(--ink-soft)]"> · {t.role}</span>
                     )}
